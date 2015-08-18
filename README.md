@@ -20,15 +20,15 @@ Mobile and Web App to connect Clients to Tradespeople
 
 ## User needs analysis ##
 - Customers: 
--- A selection of tradies they can trust to do a job
--- Tradies by location, avaiablility, budget, skill/qualification, and most importantly, reliability
--- a safe way to make payments on job completion
--- a way to review their own job request history and rate tradies
+- - A selection of tradies they can trust to do a job
+- - Tradies by location, avaiablility, budget, skill/qualification, and most importantly, reliability
+- - a safe way to make payments on job completion
+- - a way to review their own job request history and rate tradies
 - Tradies: 
--- access to potential customers
--- a list of possible jobs with their locations and a good description of the service requested
--- trust in payment and the reality of avaiable jobs
--- up-to-date information
+- - access to potential customers
+- - a list of possible jobs with their locations and a good description of the service requested
+- - trust in payment and the reality of avaiable jobs
+- - up-to-date information
 
 ## Job stories ##
 - A client has an odd job that requires a tradesperson to fix.  They can take a photo with their smart phone which they can upload to the site with a brief description of the task, along with their location and the timeframe in which they need someone to attend to their job.
