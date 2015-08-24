@@ -1,0 +1,6 @@
+  [1m[36m (199.0ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (986.4ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (156.6ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (1018.6ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (15.8ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
