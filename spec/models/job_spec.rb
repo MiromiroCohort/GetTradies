@@ -6,8 +6,8 @@ RSpec.describe Job, type: :model do
       job=Job.new
       job.customer_id=1
       job.tradie_id=2
-      location="Quba street"
-      description="Dishwasher"
+      job.location="Quba street"
+      job.description="Dishwasher"
       job.save
       job=Job.first
       expect(job.customer_id).to eq(1)
