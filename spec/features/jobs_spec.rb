@@ -6,4 +6,16 @@ feature "Jobs", :type => :feature do
 
     expect(page).to have_content('Job Description')
   end
+  scenario 'user can see show interest button' do
+    visit jobs_path
+
+    expect(page).to have_link('Show Interest')
+  end
+
+  scenario 'user can see location' do
+    visit jobs_path
+
+    expect(page).to have_content('location')
+  end
+
 end
