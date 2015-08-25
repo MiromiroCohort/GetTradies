@@ -1,0 +1,36 @@
+<% @user = User.new %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+
+  <%= f.label :phone_number %>:
+  <%= f.text_field :phone_number %><br />
+
+  <%= f.label :address %>:
+  <%= f.text_area :address, rows: 4, required: required %>
+
+  <%= f.submit %>
+<% end %>
+
+
+<!--
+
+
+
+<form action=  method="POST">
+  <fieldset>
+    <legend>
+      Profile
+    </legend>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" placeholder="Please enter your full name" required><br>
+    <label for="phone-number">Phone Number</label>
+    <input id="phone-number" name="phone-number" type="text" placeholder="Please enter your phone number" required><br>
+    <label for="address">Address</label>
+    <textarea id="address" name="address" rows="4" placeholder="Please enter your full address: Street number and name, town or suburb, city or region" required></textarea>
+    <button type="submit">Save</button>
+  </fieldset>
+
+
+</form> -->

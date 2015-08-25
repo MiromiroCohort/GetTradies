@@ -5,6 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    render text: "wutang clan ain't nothing to fuck with"
+    if params[:password] == params[:password_confirm]
+      render text: "#{params}"
+    else
+      render text: "Passwords don't match :("
+    end
   end
 end
