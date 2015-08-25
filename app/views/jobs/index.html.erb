@@ -5,21 +5,22 @@
   </div>
   <% @jobs.each do |job| %>
   <div class="col-md-8">
-    <img src="images/job_pic.jpg" class="big-image">
-    <div class="panel panel-primary">
+    <a href=<%= job_path(job.id) %> id="job_<%= job.id %>">
+      <img src="images/job_pic.jpg" class="big-image">
+      <div class="panel panel-primary">
 
-      <div class="panel-heading">
-        <h3 class="panel-title">Job Description
-        </h3>
-        <p><%= job.description %></p>
+        <div class="panel-heading">
+          <h3 class="panel-title">Job Description
+          </h3>
+          <p><%= job.short_desc %></p>
+        </div>
+
+        <div class="panel-body">
+          <p></p>
+        </div>
+
       </div>
-
-      <div class="panel-body">
-        <p></p>
-      </div>
-
-    </div>
-
+    </a>
     <div class="location">
       <p>Location: <%=job.location %> </p>
     </div>
