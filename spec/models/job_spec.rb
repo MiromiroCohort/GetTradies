@@ -16,14 +16,5 @@ RSpec.describe Job, type: :model do
       expect(job.description).to eq("Dishwasher")
   end
 
-      # t.integer :customer_id, null: false
-      # t.integer :tradie_id
-      # # t.integer :rating
-      # # t.decimal :price, null: false
-      # t.string :location, null: false
-      # # t.string :type
-      # # t.string :title, null: false
-      # t.text :description
-      # t.string :photo_url
-      # # t.datetime :paid_at
+
 end
