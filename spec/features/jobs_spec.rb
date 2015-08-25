@@ -64,18 +64,7 @@ feature "Jobs", :type => :feature do
     expect(page).to have_content("Ut enim ad minim veniam")
   end
 
-  scenario 'tradie can click on show interest button and will have that job applied' do
-    pending 'waiting users'
-    visit jobs_path
-    click_link('Show Interest')
-    expect(page).to have_content("My jobs")
-  end
-  scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
-    pending 'waiting users'
-    visit jobs_path
-    click_link('Show Interest')
-    expect(page).to have_content("My jobs")
-  end
+
 end
 feature "Post jobs", :type => :feature do
   scenario 'logged user can open a post job page' do
@@ -87,5 +76,21 @@ feature "Post jobs", :type => :feature do
     # right now - all users
     visit new_job_path
     expect(page).to have_content("Upload photo")
+  end
+
+end
+
+feature "Show interest", :type => :feature do
+  scenario 'tradie can click on show interest button and will have that job applied' do
+    pending 'waiting users'
+    visit jobs_path
+    click_link('Show Interest')
+    expect(page).to have_content("My jobs")
+  end
+  scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
+    pending 'waiting users'
+    visit jobs_path
+    click_link('Show Interest')
+    expect(page).to have_content("My jobs")
   end
 end
