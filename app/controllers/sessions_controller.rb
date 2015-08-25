@@ -5,10 +5,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:password] == params[:password_confirm]
-      render text: "#{params}"
+    @user = User.find_by_email(params[:email])
+    if @user
+      if params[:password] == @user.password
+        cookies[:sessionemail] = { :value => params[:email], :expires => Time.now + 3600}
+        render text: "hello owner of #{params[:email]}. you are now logged in. cookie = #{cookies[:sessionemail]}"
+      else
+        session.clear
+        render text: "password incorrect"
+      end
     else
-      render text: "Passwords don't match :("
+      session.clear
+      render text: "user not found"
     end
   end
 end
