@@ -8,7 +8,6 @@ RSpec.feature "Profiles", type: :feature do
   end
 
   scenario 'they can complete the form and save it' do
-
     visit new_profile_path
 
     fill_in 'profile[given_name]', with: "John"
