@@ -5,10 +5,10 @@ class AddJobsTable < ActiveRecord::Migration
       t.integer :customer_id, null: false
       t.integer :tradie_id
       t.integer :rating
-      t.decimal :price, null: false
-      t.string :location, null: false
+      t.decimal :price
+      t.string :location, null:false
       t.string :type
-      t.string :title, null: false
+      t.string :title
       t.text :description
       t.string :photo_url
       t.datetime :paid_at
