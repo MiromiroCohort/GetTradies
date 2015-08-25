@@ -1,6 +1,7 @@
 require 'rails_helper'
 feature "Jobs", :type => :feature do
   before(:each) do
+    User.destroy_all
     Job.destroy_all
     job=Job.new
     job.customer_id=1
@@ -10,6 +11,7 @@ feature "Jobs", :type => :feature do
     job.save
   end
   after(:each) do
+    User.destroy_all
     Job.destroy_all
   end
   scenario 'user can see job description' do
@@ -81,10 +83,39 @@ feature "Post jobs", :type => :feature do
 end
 
 feature "Show interest", :type => :feature do
+  before(:each) do
+    User.destroy_all
+    Job.destroy_all
+    job=Job.new
+    job.customer_id=1
+    job.tradie_id=2
+    job.location="Quba street"
+    job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    job.save
+  end
+  after(:each) do
+    User.destroy_all
+    Job.destroy_all
+  end
   scenario 'tradie can click on show interest button and will have that job applied' do
-    pending 'waiting users'
+    visit new_user_path
+    fill_in 'email', with: "gin3002@mail.com"
+    fill_in 'password', with: "testPassword"
+    fill_in 'password-confirm', with: "testPassword"
+    click_on 'Submit'
+    # user=User.new
+    # user.email = 'gin3002@mail.com'
+    # user.password = 'testPassword'
+    # user.profession = "tradie"
+    # user.save
+    visit new_session_path
+    fill_in 'email', with: "gin3002@mail.com"
+    fill_in 'password', with: "testPassword"
+    click_button 'Submit'
+    # user = User.first
+    # session[:user_id] = user.id
     visit jobs_path
-    click_link('Show Interest')
+    click_on('Show Interest')
     expect(page).to have_content("My jobs")
   end
   scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
