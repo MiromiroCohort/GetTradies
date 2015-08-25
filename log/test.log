@@ -1,0 +1,17 @@
+  [1m[36m (125.7ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (255.2ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (138.2ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (666.8ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (29.9ms)[0m  [1mBEGIN[0m
+Started GET "/jobs" for 127.0.0.1 at 2015-08-25 11:54:22 +1200
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (120.2ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (784.4ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+Started GET "/jobs" for 127.0.0.1 at 2015-08-25 13:38:09 +1200
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (109.7ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (579.9ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+Started GET "/jobs" for 127.0.0.1 at 2015-08-25 13:39:06 +1200
+  [1m[35m (0.2ms)[0m  ROLLBACK
