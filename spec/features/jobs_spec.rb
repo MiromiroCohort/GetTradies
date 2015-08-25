@@ -63,11 +63,7 @@ feature "Jobs", :type => :feature do
     click_link('job_'+job.id.to_s)
     expect(page).to have_content("Ut enim ad minim veniam")
   end
-  scenario 'logged user can open a post job page' do
-    # right now - all users
-    visit new_job_path
-    expect(page).to have_content("Please describe your job here")
-  end
+
   scenario 'tradie can click on show interest button and will have that job applied' do
     pending 'waiting users'
     visit jobs_path
@@ -80,6 +76,16 @@ feature "Jobs", :type => :feature do
     click_link('Show Interest')
     expect(page).to have_content("My jobs")
   end
-
-
+end
+feature "Post jobs", :type => :feature do
+  scenario 'logged user can open a post job page' do
+    # right now - all users
+    visit new_job_path
+    expect(page).to have_content("Please describe your job here")
+  end
+  scenario 'post job page has an Upload photo button' do
+    # right now - all users
+    visit new_job_path
+    expect(page).to have_content("Upload photo")
+  end
 end
