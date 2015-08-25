@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if @user
       if @user.password == params[:password]
         cookies[:session_id] = { :value => @user.id, :expires => Time.now + 3600}
-        render text: "hello owner of #{params[:email]}. you are now logged in. cookie = #{cookies[:session_id]}"
+        render text: "hello owner of #{params[:email]}. you are now logged in. cookie = #{cookies[:session_id]}  <br> Users exists = #{user_exists}"
       else
         session.clear
         render text: "password incorrect"
@@ -17,6 +17,14 @@ class SessionsController < ApplicationController
     else
       session.clear
       render text: "user not found"
+    end
+  end
+
+  def user_exists
+    if User.find(cookies[:session_id])
+      true
+    else
+      false
     end
   end
 

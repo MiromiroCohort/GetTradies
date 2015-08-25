@@ -1,1 +1,3 @@
-session.rb
+class Session < ActiveRecord::Base
+
+end

@@ -9,13 +9,14 @@ class CreateUsers < ActiveRecord::Migration
       t.string :address
       t.text :description
       t.decimal :rates
+      t.string :phone_number
       t.string :password_hash, null: false
 
       t.timestamps null: false
     end
   end
 
-  def down
+  def downq
     drop_table :users
   end
 end
