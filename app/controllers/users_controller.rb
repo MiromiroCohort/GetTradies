@@ -1,4 +1,6 @@
+
 class UsersController < ApplicationController
+
   def new
   end
 
@@ -6,7 +8,9 @@ class UsersController < ApplicationController
 
     if !User.find_by_email(params[:email])
       if params[:password] == params[:password_confirm]
-        @user = User.create(email: params[:email], password: params[:password])
+        @user = User.new(email: params[:email])
+        @user.password = params[:password]
+        @user.save!
         render text: "new user #{@user.email}"
       else
         render text: "Passwords do not match"

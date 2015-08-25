@@ -7,7 +7,7 @@ require 'faker'
               email: Faker::Internet.safe_email,
               address: Faker::Address.street_address,
               description: Faker::Lorem.sentence,
-              password: Faker::Lorem.word)
+              password_hash: Faker::Lorem.word)
 end
 # add tradies
 10.times do
@@ -19,7 +19,7 @@ end
               address: Faker::Address.street_address,
               description: Faker::Lorem.sentence,
               rates: Faker::Commerce.price.to_f,
-              password: Faker::Lorem.word)
+              password_hash: Faker::Lorem.word)
 end
 
 # add jobs

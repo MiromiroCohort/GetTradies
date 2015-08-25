@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user
-      if params[:password] == @user.password
-        cookies[:sessionemail] = { :value => params[:email], :expires => Time.now + 3600}
-        render text: "hello owner of #{params[:email]}. you are now logged in. cookie = #{cookies[:sessionemail]}"
+      if @user.password == params[:password]
+        cookies[:session_id] = { :value => @user.id, :expires => Time.now + 3600}
+        render text: "hello owner of #{params[:email]}. you are now logged in. cookie = #{cookies[:session_id]}"
       else
         session.clear
         render text: "password incorrect"
@@ -19,4 +19,5 @@ class SessionsController < ApplicationController
       render text: "user not found"
     end
   end
+
 end
