@@ -1,0 +1,13 @@
+<%if User.find(session[:user_id]).profession == 'admin'%>
+  <% @users.each do |user| %>
+    <p>
+
+      <%=user.email%>
+      <%=user.profession%>
+
+    </p>
+  <%end%>
+
+<%else%>
+  <p>Access Denigned</p>
+<%end%>
