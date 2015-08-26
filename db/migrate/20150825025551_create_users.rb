@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def up
     create_table :users do |t|
+
       t.string :username
       t.string :given_name
       t.string :family_name
@@ -16,7 +17,7 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 
-  def downq
+  def down
     drop_table :users
   end
 end

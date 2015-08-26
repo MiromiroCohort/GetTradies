@@ -4934,3 +4934,420 @@ Processing by SessionsController#index as HTML
   [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", nil]]
   Rendered text template (0.0ms)
 Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sessions" for ::1 at 2015-08-26 11:54:10 +1200
+Processing by SessionsController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", nil]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sessions/new" for ::1 at 2015-08-26 11:54:13 +1200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 141ms (Views: 140.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for ::1 at 2015-08-26 11:54:15 +1200
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 47ms (Views: 47.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-08-26 11:54:23 +1200
+Processing by UsersController#create as HTML
+  Parameters: {"email"=>"gabe@gabe", "password"=>"[FILTERED]", "password_confirm"=>"[FILTERED]"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "gabe@gabe"]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sessions/new" for ::1 at 2015-08-26 11:54:24 +1200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 33ms (Views: 32.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions" for ::1 at 2015-08-26 11:54:28 +1200
+Processing by SessionsController#create as HTML
+  Parameters: {"email"=>"gabe@gabe", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "gabe@gabe"]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 78ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sessions" for ::1 at 2015-08-26 11:54:31 +1200
+Processing by SessionsController#index as HTML
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", nil]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/sessions" for ::1 at 2015-08-26 11:54:35 +1200
+Processing by SessionsController#create as HTML
+  Parameters: {"email"=>"gabe@gabe", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "gabe@gabe"]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 78ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/sessions" for ::1 at 2015-08-26 11:54:43 +1200
+Processing by SessionsController#create as HTML
+  Parameters: {"email"=>"gabe@gabe", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "gabe@gabe"]]
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 23]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 75ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[36mJob Load (0.6ms)[0m  [1mSELECT "jobs".* FROM "jobs"[0m
+  [1m[35mJob Load (27.7ms)[0m  SELECT "jobs".* FROM "jobs" WHERE "jobs"."tradies_id" IS NULL
+PG::UndefinedColumn: ERROR:  column jobs.tradies_id does not exist
+LINE 1: SELECT "jobs".* FROM "jobs" WHERE "jobs"."tradies_id" IS NUL...
+                                          ^
+: SELECT "jobs".* FROM "jobs" WHERE "jobs"."tradies_id" IS NULL
+  [1m[36mJob Load (0.5ms)[0m  [1mSELECT "jobs".* FROM "jobs" WHERE "jobs"."tradie_id" IS NULL[0m
+  [1m[35mJob Load (0.5ms)[0m  SELECT "jobs".* FROM "jobs" WHERE "jobs"."tradie_id" IS NULL
+  [1m[36mJob Load (0.5ms)[0m  [1mSELECT "jobs".* FROM "jobs" WHERE "jobs"."tradie_id" IS NULL[0m
+
+
+Started GET "/sessions" for ::1 at 2015-08-26 12:09:51 +1200
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by SessionsController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 23]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 61ms (Views: 0.5ms | ActiveRecord: 1.7ms)
+  [1m[36m (3.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddJobsTable (20150825020332)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.3ms)[0m  [1mCREATE TABLE "jobs" ("id" serial primary key, "customer_id" integer NOT NULL, "rating" integer, "price" decimal, "location" character varying NOT NULL, "job_type" character varying, "title" character varying, "description" text, "photo_url" character varying, "paid_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (17.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddJobsTable (20150825020332)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (4.0ms)[0m  [1mCREATE TABLE "jobs" ("id" serial primary key, "customer_id" integer NOT NULL, "rating" integer, "price" decimal, "location" character varying NOT NULL, "job_type" character varying, "title" character varying, "description" text, "photo_url" character varying, "paid_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddJobsTable (20150825020332)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (21.9ms)[0m  [1mCREATE TABLE "jobs" ("id" serial primary key, "customer_id" integer NOT NULL, "rating" integer, "price" decimal, "location" character varying NOT NULL, "job_type" character varying, "title" character varying, "description" text, "photo_url" character varying, "paid_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.3ms)[0m  CREATE TABLE "applications" ("id" serial primary key, "job_id" integer NOT NULL, "tradie_id" integer NOT NULL, "accepted" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150825020332"]]
+  [1m[35m (29.3ms)[0m  COMMIT
+Migrating to CreateUsers (20150825025551)
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35m (3.3ms)[0m  CREATE TABLE "users" ("id" serial primary key, "username" character varying, "given_name" character varying, "family_name" character varying, "email" character varying NOT NULL, "profession" character varying DEFAULT 'customer' NOT NULL, "address" character varying, "description" text, "rates" decimal, "phone_number" character varying, "password_hash" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150825025551"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'applications'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'jobs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "tatyana_lemke"], ["given_name", "Rosella"], ["family_name", "Gislason"], ["email", "marlen_stanton@example.com"], ["address", "8827 Mills Land"], ["description", "Eius ipsum eos quis dolores."], ["password_hash", "voluptatem"], ["created_at", "2015-08-26 00:14:04.213685"], ["updated_at", "2015-08-26 00:14:04.213685"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "jarrod_nienow"], ["given_name", "Jeramie"], ["family_name", "Muller"], ["email", "nedra@example.org"], ["address", "7614 Brekke Roads"], ["description", "Quos sit omnis facere."], ["password_hash", "exercitationem"], ["created_at", "2015-08-26 00:14:04.219712"], ["updated_at", "2015-08-26 00:14:04.219712"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "agustina"], ["given_name", "Bethel"], ["family_name", "Boehm"], ["email", "mollie@example.com"], ["address", "95565 Pfannerstill Loop"], ["description", "Est quam laborum delectus doloribus et voluptate."], ["password_hash", "at"], ["created_at", "2015-08-26 00:14:04.222559"], ["updated_at", "2015-08-26 00:14:04.222559"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "daphne"], ["given_name", "Orland"], ["family_name", "Cremin"], ["email", "rowena@example.net"], ["address", "588 Stiedemann Locks"], ["description", "In quibusdam neque et inventore et alias fuga et."], ["password_hash", "odit"], ["created_at", "2015-08-26 00:14:04.225384"], ["updated_at", "2015-08-26 00:14:04.225384"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "kurtis"], ["given_name", "Ezequiel"], ["family_name", "Swaniawski"], ["email", "clyde@example.com"], ["address", "10709 Bergnaum Groves"], ["description", "Aspernatur ipsum cum delectus."], ["password_hash", "voluptas"], ["created_at", "2015-08-26 00:14:04.228297"], ["updated_at", "2015-08-26 00:14:04.228297"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "jacques"], ["given_name", "Zelma"], ["family_name", "Kulas"], ["email", "jacey.price@example.org"], ["address", "5785 Melvina Streets"], ["description", "Explicabo consequatur quia voluptas distinctio nemo voluptatibus vel."], ["password_hash", "omnis"], ["created_at", "2015-08-26 00:14:04.231810"], ["updated_at", "2015-08-26 00:14:04.231810"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "rahul_crooks"], ["given_name", "Nannie"], ["family_name", "Stanton"], ["email", "glenda@example.org"], ["address", "78703 Wilderman Plains"], ["description", "Suscipit nulla iure necessitatibus magni voluptas consequatur."], ["password_hash", "ullam"], ["created_at", "2015-08-26 00:14:04.234827"], ["updated_at", "2015-08-26 00:14:04.234827"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "jacinthe"], ["given_name", "Lulu"], ["family_name", "Windler"], ["email", "leonel@example.net"], ["address", "7039 Adrien Wall"], ["description", "Non pariatur laboriosam aut iusto."], ["password_hash", "voluptatem"], ["created_at", "2015-08-26 00:14:04.237591"], ["updated_at", "2015-08-26 00:14:04.237591"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "camila.price"], ["given_name", "Elvis"], ["family_name", "Ruecker"], ["email", "eveline@example.com"], ["address", "3158 Lempi Radial"], ["description", "Et est qui et necessitatibus."], ["password_hash", "et"], ["created_at", "2015-08-26 00:14:04.240310"], ["updated_at", "2015-08-26 00:14:04.240310"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "renee"], ["given_name", "Gracie"], ["family_name", "Bailey"], ["email", "brayan_turner@example.com"], ["address", "215 Rosalia Prairie"], ["description", "Ratione qui nostrum sed aut expedita recusandae et doloribus."], ["password_hash", "ratione"], ["created_at", "2015-08-26 00:14:04.243052"], ["updated_at", "2015-08-26 00:14:04.243052"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "jovan.klein"], ["given_name", "Garrison"], ["family_name", "Brekke"], ["email", "brandt@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "895 Abbie Passage"], ["description", "Dolore quasi assumenda deserunt."], ["rates", "54.41"], ["password_hash", "pariatur"], ["created_at", "2015-08-26 00:14:04.246003"], ["updated_at", "2015-08-26 00:14:04.246003"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "napoleon_fay"], ["given_name", "Myrna"], ["family_name", "Kling"], ["email", "treva.kuhlman@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "1505 Lillian Lake"], ["description", "Voluptate adipisci quia possimus qui et quis."], ["rates", "83.33"], ["password_hash", "quas"], ["created_at", "2015-08-26 00:14:04.249215"], ["updated_at", "2015-08-26 00:14:04.249215"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "deven"], ["given_name", "Tatyana"], ["family_name", "Feil"], ["email", "cara_brakus@example.com"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "4511 McKenzie Burg"], ["description", "Iusto aut atque et officiis non laborum aperiam."], ["rates", "16.06"], ["password_hash", "sed"], ["created_at", "2015-08-26 00:14:04.252264"], ["updated_at", "2015-08-26 00:14:04.252264"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "bette.lind"], ["given_name", "Louie"], ["family_name", "Torp"], ["email", "rogers@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "76006 Darien Canyon"], ["description", "Suscipit deleniti facere sequi possimus qui."], ["rates", "81.48"], ["password_hash", "omnis"], ["created_at", "2015-08-26 00:14:04.255222"], ["updated_at", "2015-08-26 00:14:04.255222"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "carmel.oconnell"], ["given_name", "Selena"], ["family_name", "Crist"], ["email", "mariano@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "67014 Brenna Canyon"], ["description", "Nisi aut tenetur earum sunt commodi numquam."], ["rates", "94.51"], ["password_hash", "et"], ["created_at", "2015-08-26 00:14:04.258284"], ["updated_at", "2015-08-26 00:14:04.258284"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "enid_thiel"], ["given_name", "Karianne"], ["family_name", "Hintz"], ["email", "taryn.wilkinson@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "37030 Stephon Springs"], ["description", "Sit reprehenderit vitae doloribus est facilis similique non assumenda."], ["rates", "20.01"], ["password_hash", "rerum"], ["created_at", "2015-08-26 00:14:04.261264"], ["updated_at", "2015-08-26 00:14:04.261264"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "teagan.schaefer"], ["given_name", "Jeffry"], ["family_name", "Lindgren"], ["email", "faustino@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "383 Renner Mountain"], ["description", "Dolore quos aut fuga quae repudiandae est et."], ["rates", "43.22"], ["password_hash", "amet"], ["created_at", "2015-08-26 00:14:04.264263"], ["updated_at", "2015-08-26 00:14:04.264263"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "jolie"], ["given_name", "Savion"], ["family_name", "Weimann"], ["email", "arlie_renner@example.com"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "59680 Wyman Fort"], ["description", "Deserunt aspernatur earum nihil molestiae explicabo."], ["rates", "47.26"], ["password_hash", "consequuntur"], ["created_at", "2015-08-26 00:14:04.267167"], ["updated_at", "2015-08-26 00:14:04.267167"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "yazmin.hoppe"], ["given_name", "Peyton"], ["family_name", "Upton"], ["email", "clovis@example.org"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "5168 Skiles Port"], ["description", "Error doloremque eaque est."], ["rates", "29.04"], ["password_hash", "harum"], ["created_at", "2015-08-26 00:14:04.270082"], ["updated_at", "2015-08-26 00:14:04.270082"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "celestine_schamberger"], ["given_name", "Ewald"], ["family_name", "Mann"], ["email", "timmothy.konopelski@example.com"], ["profession", "[\"builder\", \"plumber\", \"electrician\", \"handy man\", \"plasterer\", \"painter\", \"gardener\"]"], ["address", "606 Morissette Valleys"], ["description", "Corporis molestiae qui sit vel voluptatem minus."], ["rates", "4.78"], ["password_hash", "debitis"], ["created_at", "2015-08-26 00:14:04.273040"], ["updated_at", "2015-08-26 00:14:04.273040"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["customer_id", 5], ["price", "21.62"], ["location", "Petone"], ["job_type", "Gardening"], ["title", "Voluptatem qui quia."], ["description", "Quos aut sint nam non."], ["photo_url", "http://robohash.org/explicabooptiototam.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:14:04.286110"], ["updated_at", "2015-08-26 00:14:04.286110"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["customer_id", 7], ["price", "79.39"], ["location", "Khandala"], ["job_type", "Electical"], ["title", "Ex explicabo qui illum unde molestiae voluptas."], ["description", "Laboriosam optio aut quibusdam voluptas."], ["photo_url", "http://robohash.org/ipsamutet.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 08:49:27.000000"], ["created_at", "2015-08-26 00:14:04.289636"], ["updated_at", "2015-08-26 00:14:04.289636"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["customer_id", 7], ["price", "18.55"], ["location", "Te Aro"], ["job_type", "Plastering"], ["title", "Repellendus qui deleniti eum qui accusamus quas ipsam."], ["description", "Sunt dicta possimus at vitae."], ["photo_url", "http://robohash.org/eiusassumendafugiat.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:14:04.292686"], ["updated_at", "2015-08-26 00:14:04.292686"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["customer_id", 8], ["rating", 2], ["price", "47.53"], ["location", "Khandala"], ["job_type", "Plumbing"], ["title", "Nemo provident aperiam quisquam temporibus molestiae quia iusto."], ["description", "Et ducimus deleniti consequatur nihil libero."], ["photo_url", "http://robohash.org/magnamquasiet.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:14:04.295570"], ["updated_at", "2015-08-26 00:14:04.295570"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["customer_id", 2], ["rating", 3], ["price", "0.02"], ["location", "Newtown"], ["job_type", "Gardening"], ["title", "Est velit aut sapiente."], ["description", "Voluptates quis ex architecto enim quia consequatur repellendus."], ["photo_url", "http://robohash.org/autsitatque.png?size=300x300&set=set1"], ["paid_at", "2015-08-26 04:34:05.000000"], ["created_at", "2015-08-26 00:14:04.298568"], ["updated_at", "2015-08-26 00:14:04.298568"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["customer_id", 7], ["price", "26.65"], ["location", "Newtown"], ["job_type", "Plastering"], ["title", "Et commodi officiis quia rerum."], ["description", "Ut optio sapiente voluptatum et neque."], ["photo_url", "http://robohash.org/debitisfaciliset.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:14:04.301661"], ["updated_at", "2015-08-26 00:14:04.301661"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["customer_id", 1], ["price", "62.02"], ["location", "Johnsonville"], ["job_type", "Electical"], ["title", "Non perspiciatis aut."], ["description", "Corrupti ipsa illum earum qui."], ["photo_url", "http://robohash.org/temporamolestiaevoluptatibus.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:14:04.304593"], ["updated_at", "2015-08-26 00:14:04.304593"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["customer_id", 7], ["rating", 4], ["price", "88.39"], ["location", "Karori"], ["job_type", "Building"], ["title", "Qui reiciendis aut asperiores ad."], ["description", "Voluptas officia odit ut a."], ["photo_url", "http://robohash.org/recusandaererumamet.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 01:15:42.000000"], ["created_at", "2015-08-26 00:14:04.307695"], ["updated_at", "2015-08-26 00:14:04.307695"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["customer_id", 4], ["rating", 4], ["price", "7.11"], ["location", "Johnsonville"], ["job_type", "Painting"], ["title", "Nisi consequatur debitis qui rerum esse nihil."], ["description", "Sit cum aut nobis quasi minus deleniti."], ["photo_url", "http://robohash.org/earerumquia.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:14:04.310538"], ["updated_at", "2015-08-26 00:14:04.310538"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["customer_id", 7], ["rating", 4], ["price", "40.25"], ["location", "Island Bay"], ["job_type", "Painting"], ["title", "Consequuntur aut quae maxime in adipisci repellendus ipsum quisquam."], ["description", "Reiciendis maxime in eos."], ["photo_url", "http://robohash.org/nemoimpeditducimus.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 13:40:37.000000"], ["created_at", "2015-08-26 00:14:04.313358"], ["updated_at", "2015-08-26 00:14:04.313358"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["job_id", 1], ["tradie_id", 20], ["created_at", "2015-08-26 00:14:04.340939"], ["updated_at", "2015-08-26 00:14:04.340939"]]
+  [1m[35m (15.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["job_id", 4], ["tradie_id", 19], ["created_at", "2015-08-26 00:14:04.359526"], ["updated_at", "2015-08-26 00:14:04.359526"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["job_id", 6], ["tradie_id", 11], ["created_at", "2015-08-26 00:14:04.362499"], ["updated_at", "2015-08-26 00:14:04.362499"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["job_id", 7], ["tradie_id", 13], ["created_at", "2015-08-26 00:14:04.364934"], ["updated_at", "2015-08-26 00:14:04.364934"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["job_id", 5], ["tradie_id", 15], ["created_at", "2015-08-26 00:14:04.367156"], ["updated_at", "2015-08-26 00:14:04.367156"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mApplication Load (0.5ms)[0m  [1mSELECT "applications".* FROM "applications"[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."profession" = $1  [["profession", "painter"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."profession" = $1[0m  [["profession", "builder"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."profession" = $1  [["profession", "gardener"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."profession" = $1[0m  [["profession", "customer"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."profession" = $1  [["profession", "customer"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[36m (3.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddJobsTable (20150825020332)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (4.0ms)[0m  [1mCREATE TABLE "jobs" ("id" serial primary key, "customer_id" integer NOT NULL, "rating" integer, "price" decimal, "location" character varying NOT NULL, "job_type" character varying, "title" character varying, "description" text, "photo_url" character varying, "paid_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "applications" ("id" serial primary key, "job_id" integer NOT NULL, "tradie_id" integer NOT NULL, "accepted" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150825020332"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+Migrating to CreateUsers (20150825025551)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "users" ("id" serial primary key, "username" character varying, "given_name" character varying, "family_name" character varying, "email" character varying NOT NULL, "profession" character varying DEFAULT 'customer' NOT NULL, "address" character varying, "description" text, "rates" decimal, "phone_number" character varying, "password_hash" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150825025551"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'applications'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'jobs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "alec"], ["given_name", "Lindsey"], ["family_name", "Torphy"], ["email", "rubie@example.org"], ["address", "83975 Patricia Mall"], ["description", "Iusto voluptatem magnam ipsam tempora et tempore error minus."], ["password_hash", "temporibus"], ["created_at", "2015-08-26 00:16:48.610340"], ["updated_at", "2015-08-26 00:16:48.610340"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "hillard"], ["given_name", "Gregorio"], ["family_name", "Hilll"], ["email", "freeda@example.com"], ["address", "4306 Powlowski Stravenue"], ["description", "Eius alias et qui."], ["password_hash", "nobis"], ["created_at", "2015-08-26 00:16:48.618482"], ["updated_at", "2015-08-26 00:16:48.618482"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "pierre"], ["given_name", "Samantha"], ["family_name", "O'Connell"], ["email", "anthony@example.com"], ["address", "75561 Darion Gateway"], ["description", "Quos quo doloribus quia sed odit omnis asperiores."], ["password_hash", "ea"], ["created_at", "2015-08-26 00:16:48.621613"], ["updated_at", "2015-08-26 00:16:48.621613"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "shayne"], ["given_name", "Tyrel"], ["family_name", "Stamm"], ["email", "earnestine_bradtke@example.org"], ["address", "5180 Kamron Wall"], ["description", "Dicta qui cum qui molestiae."], ["password_hash", "aut"], ["created_at", "2015-08-26 00:16:48.624496"], ["updated_at", "2015-08-26 00:16:48.624496"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "shana.wiza"], ["given_name", "Nathanael"], ["family_name", "Wilkinson"], ["email", "lisandro@example.com"], ["address", "23044 Abbott Hill"], ["description", "Nostrum provident occaecati sint iste."], ["password_hash", "eius"], ["created_at", "2015-08-26 00:16:48.627717"], ["updated_at", "2015-08-26 00:16:48.627717"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "sylvester"], ["given_name", "Frida"], ["family_name", "Orn"], ["email", "immanuel@example.com"], ["address", "9365 Marietta Lodge"], ["description", "Inventore tempora ut iure ipsa delectus ut."], ["password_hash", "accusantium"], ["created_at", "2015-08-26 00:16:48.630663"], ["updated_at", "2015-08-26 00:16:48.630663"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "colten"], ["given_name", "Andy"], ["family_name", "Parker"], ["email", "burley_okeefe@example.com"], ["address", "17585 Fisher Haven"], ["description", "Et eligendi sit sapiente et consequatur."], ["password_hash", "rem"], ["created_at", "2015-08-26 00:16:48.633482"], ["updated_at", "2015-08-26 00:16:48.633482"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "casey_ferry"], ["given_name", "Oceane"], ["family_name", "Zemlak"], ["email", "junius@example.net"], ["address", "9232 Yazmin Wells"], ["description", "Sint quibusdam non ratione doloremque sint voluptatem deserunt."], ["password_hash", "expedita"], ["created_at", "2015-08-26 00:16:48.636199"], ["updated_at", "2015-08-26 00:16:48.636199"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "cesar"], ["given_name", "Darrel"], ["family_name", "Kuhn"], ["email", "valentine@example.net"], ["address", "848 Kunze Inlet"], ["description", "Vero ut rerum voluptatem."], ["password_hash", "labore"], ["created_at", "2015-08-26 00:16:48.638811"], ["updated_at", "2015-08-26 00:16:48.638811"]]
+  [1m[35m (4.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "address", "description", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["username", "kory.schowalter"], ["given_name", "Kayla"], ["family_name", "Orn"], ["email", "ramon@example.net"], ["address", "77905 Quigley Viaduct"], ["description", "Fugiat ratione officiis asperiores."], ["password_hash", "dolorem"], ["created_at", "2015-08-26 00:16:48.646597"], ["updated_at", "2015-08-26 00:16:48.646597"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "armani"], ["given_name", "Alayna"], ["family_name", "Mante"], ["email", "brayan.rath@example.net"], ["profession", "handy man"], ["address", "254 Genoveva Lodge"], ["description", "Animi pariatur mollitia maxime."], ["rates", "45.04"], ["password_hash", "eum"], ["created_at", "2015-08-26 00:16:48.650421"], ["updated_at", "2015-08-26 00:16:48.650421"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "shanna_haag"], ["given_name", "Rashad"], ["family_name", "Schmeler"], ["email", "liam_durgan@example.net"], ["profession", "painter"], ["address", "36470 Klein Tunnel"], ["description", "Et doloribus aliquam sed omnis quos veniam."], ["rates", "97.15"], ["password_hash", "ut"], ["created_at", "2015-08-26 00:16:48.654013"], ["updated_at", "2015-08-26 00:16:48.654013"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "dion"], ["given_name", "Vallie"], ["family_name", "Heathcote"], ["email", "rahul_hilll@example.net"], ["profession", "handy man"], ["address", "858 Karina Harbor"], ["description", "Ea error occaecati enim sit repudiandae."], ["rates", "67.93"], ["password_hash", "rerum"], ["created_at", "2015-08-26 00:16:48.657194"], ["updated_at", "2015-08-26 00:16:48.657194"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "reba"], ["given_name", "Brain"], ["family_name", "Hoeger"], ["email", "vanea@example.org"], ["profession", "electrician"], ["address", "8462 Hobart Corner"], ["description", "Sunt molestiae vero quibusdam fugit modi."], ["rates", "50.03"], ["password_hash", "eligendi"], ["created_at", "2015-08-26 00:16:48.660238"], ["updated_at", "2015-08-26 00:16:48.660238"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "bobbie_ledner"], ["given_name", "Nella"], ["family_name", "Koelpin"], ["email", "jerry@example.net"], ["profession", "builder"], ["address", "212 Jast Fall"], ["description", "Rerum consequatur est iste similique eveniet ea in omnis."], ["rates", "42.84"], ["password_hash", "dicta"], ["created_at", "2015-08-26 00:16:48.663344"], ["updated_at", "2015-08-26 00:16:48.663344"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "forrest_davis"], ["given_name", "Anibal"], ["family_name", "McDermott"], ["email", "forrest@example.com"], ["profession", "gardener"], ["address", "185 Pansy Walk"], ["description", "Quo similique voluptatibus et voluptatum est quos nemo ipsam."], ["rates", "63.04"], ["password_hash", "qui"], ["created_at", "2015-08-26 00:16:48.666440"], ["updated_at", "2015-08-26 00:16:48.666440"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "yvette"], ["given_name", "Perry"], ["family_name", "Mayert"], ["email", "luz@example.com"], ["profession", "plumber"], ["address", "28015 Bennie Corners"], ["description", "Voluptatum impedit et corporis quia asperiores ut repudiandae."], ["rates", "29.02"], ["password_hash", "rerum"], ["created_at", "2015-08-26 00:16:48.669441"], ["updated_at", "2015-08-26 00:16:48.669441"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "melvina"], ["given_name", "Shaina"], ["family_name", "Towne"], ["email", "henry.hand@example.com"], ["profession", "plasterer"], ["address", "533 Goyette Vista"], ["description", "Reiciendis est eos sit eligendi amet."], ["rates", "49.78"], ["password_hash", "et"], ["created_at", "2015-08-26 00:16:48.672373"], ["updated_at", "2015-08-26 00:16:48.672373"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["username", "jimmy_walsh"], ["given_name", "Karson"], ["family_name", "Cassin"], ["email", "gayle@example.com"], ["profession", "painter"], ["address", "29277 Paris Rest"], ["description", "Adipisci nesciunt sit excepturi totam neque quas atque."], ["rates", "67.96"], ["password_hash", "nesciunt"], ["created_at", "2015-08-26 00:16:48.675416"], ["updated_at", "2015-08-26 00:16:48.675416"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "given_name", "family_name", "email", "profession", "address", "description", "rates", "password_hash", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["username", "kaden_kilback"], ["given_name", "Cathrine"], ["family_name", "Koelpin"], ["email", "talia@example.com"], ["profession", "painter"], ["address", "7851 Lafayette Ramp"], ["description", "Et id saepe odio."], ["rates", "13.65"], ["password_hash", "qui"], ["created_at", "2015-08-26 00:16:48.678463"], ["updated_at", "2015-08-26 00:16:48.678463"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["customer_id", 6], ["rating", 5], ["price", "91.65"], ["location", "Te Aro"], ["job_type", "Plastering"], ["title", "Inventore illo aperiam magni harum sapiente."], ["description", "Ut aut quasi dolores."], ["photo_url", "http://robohash.org/doloribussittenetur.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 14:28:44.000000"], ["created_at", "2015-08-26 00:16:48.691934"], ["updated_at", "2015-08-26 00:16:48.691934"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["customer_id", 4], ["rating", 5], ["price", "12.78"], ["location", "Island Bay"], ["job_type", "Painting"], ["title", "Rerum quis excepturi vero."], ["description", "Voluptatem aliquid blanditiis quod molestias."], ["photo_url", "http://robohash.org/nonlaborerecusandae.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:16:48.695886"], ["updated_at", "2015-08-26 00:16:48.695886"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["customer_id", 10], ["rating", 2], ["price", "95.0"], ["location", "Petone"], ["job_type", "Electical"], ["title", "Est eum in qui sint sed omnis."], ["description", "Iste neque quo molestiae quia explicabo repellendus non atque."], ["photo_url", "http://robohash.org/ametfuganatus.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 22:07:49.000000"], ["created_at", "2015-08-26 00:16:48.700208"], ["updated_at", "2015-08-26 00:16:48.700208"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["customer_id", 7], ["price", "42.07"], ["location", "Johnsonville"], ["job_type", "Plastering"], ["title", "Ex qui neque delectus fugiat atque nobis."], ["description", "Dolor quas aut ad sit et culpa sit."], ["photo_url", "http://robohash.org/enimquoddeleniti.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 13:56:14.000000"], ["created_at", "2015-08-26 00:16:48.703763"], ["updated_at", "2015-08-26 00:16:48.703763"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["customer_id", 2], ["rating", 5], ["price", "5.37"], ["location", "Newtown"], ["job_type", "Plastering"], ["title", "Fugit eos voluptas et laborum dolorum."], ["description", "Blanditiis voluptas et in doloremque nesciunt aut nisi."], ["photo_url", "http://robohash.org/voluptasmagnamet.png?size=300x300&set=set1"], ["created_at", "2015-08-26 00:16:48.707067"], ["updated_at", "2015-08-26 00:16:48.707067"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["customer_id", 8], ["price", "58.5"], ["location", "Petone"], ["job_type", "Painting"], ["title", "Veritatis voluptas voluptas eaque."], ["description", "Aliquid enim ut omnis iure."], ["photo_url", "http://robohash.org/praesentiumeosquia.png?size=300x300&set=set1"], ["paid_at", "2015-08-23 23:18:00.000000"], ["created_at", "2015-08-26 00:16:48.710181"], ["updated_at", "2015-08-26 00:16:48.710181"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["customer_id", 1], ["rating", 3], ["price", "87.03"], ["location", "Te Aro"], ["job_type", "Painting"], ["title", "Magnam pariatur sed quidem explicabo perferendis."], ["description", "Labore veritatis ut voluptatem tempore aut."], ["photo_url", "http://robohash.org/omnisanimiodio.png?size=300x300&set=set1"], ["paid_at", "2015-08-25 00:35:36.000000"], ["created_at", "2015-08-26 00:16:48.713181"], ["updated_at", "2015-08-26 00:16:48.713181"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["customer_id", 1], ["rating", 2], ["price", "20.49"], ["location", "Island Bay"], ["job_type", "Painting"], ["title", "Quis libero quaerat ut omnis repudiandae."], ["description", "Quo fugit quae temporibus officiis."], ["photo_url", "http://robohash.org/quialaboriosamesse.png?size=300x300&set=set1"], ["paid_at", "2015-08-24 06:38:04.000000"], ["created_at", "2015-08-26 00:16:48.716137"], ["updated_at", "2015-08-26 00:16:48.716137"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "jobs" ("customer_id", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["customer_id", 3], ["price", "16.42"], ["location", "Johnsonville"], ["job_type", "General Handy Work"], ["title", "Placeat sed cum ex alias saepe."], ["description", "Rerum rerum amet illum qui voluptates."], ["photo_url", "http://robohash.org/namfugaaut.png?size=300x300&set=set1"], ["paid_at", "2015-08-23 18:18:11.000000"], ["created_at", "2015-08-26 00:16:48.719063"], ["updated_at", "2015-08-26 00:16:48.719063"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "jobs" ("customer_id", "rating", "price", "location", "job_type", "title", "description", "photo_url", "paid_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["customer_id", 1], ["rating", 4], ["price", "7.21"], ["location", "Khandala"], ["job_type", "Painting"], ["title", "Occaecati ex laborum."], ["description", "Quia harum aut eos."], ["photo_url", "http://robohash.org/quibusdamavoluptatibus.png?size=300x300&set=set1"], ["paid_at", "2015-08-24 20:48:06.000000"], ["created_at", "2015-08-26 00:16:48.722410"], ["updated_at", "2015-08-26 00:16:48.722410"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["job_id", 8], ["tradie_id", 15], ["created_at", "2015-08-26 00:16:48.733391"], ["updated_at", "2015-08-26 00:16:48.733391"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["job_id", 1], ["tradie_id", 15], ["created_at", "2015-08-26 00:16:48.736644"], ["updated_at", "2015-08-26 00:16:48.736644"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["job_id", 5], ["tradie_id", 12], ["created_at", "2015-08-26 00:16:48.739122"], ["updated_at", "2015-08-26 00:16:48.739122"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["job_id", 10], ["tradie_id", 17], ["created_at", "2015-08-26 00:16:48.741546"], ["updated_at", "2015-08-26 00:16:48.741546"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "applications" ("job_id", "tradie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["job_id", 3], ["tradie_id", 15], ["created_at", "2015-08-26 00:16:48.743836"], ["updated_at", "2015-08-26 00:16:48.743836"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."profession" = $1[0m  [["profession", "builder"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."profession" = $1  [["profession", "builder"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."profession" = $1[0m  [["profession", "painter"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."profession" = $1  [["profession", "electrician"]]

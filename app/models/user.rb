@@ -1,6 +1,11 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
+
+    has_many :jobs
+    has_many :applications
+
+
   include BCrypt
 
   def password

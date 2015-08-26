@@ -3,7 +3,6 @@ class AddJobsTable < ActiveRecord::Migration
     create_table :jobs do |t|
 
       t.integer :customer_id, null: false
-      t.integer :tradie_id
       t.integer :rating
       t.decimal :price
       t.string :location, null:false
@@ -12,6 +11,15 @@ class AddJobsTable < ActiveRecord::Migration
       t.text :description
       t.string :photo_url
       t.datetime :paid_at
+
+      t.timestamps null: false
+    end
+
+    create_table :applications do |t|
+
+      t.integer :job_id, null: false
+      t.integer :tradie_id, null: false
+      t.boolean :accepted, null: false, default: false
 
       t.timestamps null: false
     end

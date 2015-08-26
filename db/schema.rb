@@ -16,9 +16,16 @@ ActiveRecord::Schema.define(version: 20150825025551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "applications", force: :cascade do |t|
+    t.integer  "job_id",                     null: false
+    t.integer  "tradie_id",                  null: false
+    t.boolean  "accepted",   default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.integer  "customer_id", null: false
-    t.integer  "tradie_id"
     t.integer  "rating"
     t.decimal  "price"
     t.string   "location",    null: false
@@ -40,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150825025551) do
     t.string   "address"
     t.text     "description"
     t.decimal  "rates"
+    t.string   "phone_number"
     t.string   "password_hash",                      null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
