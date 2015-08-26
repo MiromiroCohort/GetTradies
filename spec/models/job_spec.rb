@@ -19,6 +19,7 @@ RSpec.describe Job, type: :model do
   scenario 'user visits post a job page' do
     visit new_job_path
 
+    expect(page).to have_selector('form')
   end
 
 end
