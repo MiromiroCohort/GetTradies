@@ -11,7 +11,7 @@
         <% if job.description %>
           <div class="panel-heading">
             <% if job.description %>
-              <h3 class="panel-title"><%= job.title %></h3>
+              <h3 class="panel-title">Job Description<%= job.title %></h3>
             <% else %>
               <h3 class="panel-title">Job Description</h3>
             <% end %>
@@ -30,7 +30,8 @@
     </div>
 
     <div>
-      <a href=<%= "user_tenders" %> class="btn btn-primary btn-lg btn-interest" >Show Interest</a>
+      <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
+
     </div>
   </div>
   <% end %>

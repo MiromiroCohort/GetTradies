@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :jobs
+  root "jobs#index"
+  resources :jobs do
+    resources :tenders
+  end
   resources :sessions
   resources :users do
     resources :tenders

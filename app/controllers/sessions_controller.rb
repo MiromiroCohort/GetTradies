@@ -19,10 +19,12 @@ class SessionsController < ApplicationController
       if @user.password == params[:password]
         session[:user_id] = @user.id
         session[:expires_at] = Time.current + 1.hours
-        render text: "hello owner of #{params[:email]}. you are now logged in. session info = #{session[:user_id]}  <br> Users exists = #{user_exists}"
+        # render text: "hello owner of #{params[:email]}. you are now logged in. session info = #{session[:user_id]}  <br> Users exists = #{user_exists}"
+        redirect_to '/jobs'
       else
         session[:user_id] = nil
-        render text: "password incorrect <a href='/sessions'>Index</a>"
+        # render text: "password incorrect <a href='/sessions'>Index</a>"
+        redirect_to '/sessions/new', notice: "password incorrect"
       end
     else
       session[:user_id] = nil
