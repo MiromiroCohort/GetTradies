@@ -103,17 +103,13 @@ feature "Show interest", :type => :feature do
     fill_in 'password', with: "testPassword"
     fill_in 'password-confirm', with: "testPassword"
     click_on 'Submit'
-    # user=User.new
-    # user.email = 'gin3002@mail.com'
-    # user.password = 'testPassword'
-    # user.profession = "tradie"
-    # user.save
     visit new_session_path
     fill_in 'email', with: "gin3002@mail.com"
     fill_in 'password', with: "testPassword"
     click_button 'Submit'
-    # user = User.first
-    # session[:user_id] = user.id
+    user = User.first
+    user.profession = "tradie"
+    user.save
     visit jobs_path
     click_on('Show Interest')
     expect(page).to have_content("My jobs")
