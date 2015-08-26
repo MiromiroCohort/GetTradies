@@ -24,11 +24,12 @@ class SessionsController < ApplicationController
       else
         session[:user_id] = nil
         # render text: "password incorrect <a href='/sessions'>Index</a>"
-        redirect_to '/sessions/new', notice: "password incorrect"
+        redirect_to '/sessions/new', alert: "password incorrect"
       end
     else
       session[:user_id] = nil
-      render text: "user not found <a href='/sessions'>Index</a>"
+      # render text: "user not found <a href='/sessions'>Index</a>"
+      redirect_to '/sessions/new', alert: "user not found"
     end
   end
 

@@ -13,7 +13,7 @@ class TendersController < ApplicationController
         # render text: "My jobs"
         redirect_to user_tenders_path(user)
       else
-        flash.notice = 'You should be registered as a tradie'
+        flash.notice = 'You need to be registered as a tradie to apply'
         redirect_to jobs_url
       end
     else
