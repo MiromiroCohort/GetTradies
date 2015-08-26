@@ -5831,3 +5831,7 @@ WHERE c.contype = 'f'
   AND t3.nspname = ANY (current_schemas(false))
 ORDER BY c.conname
 [0m
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (26.7ms)[0m  INSERT INTO "jobs" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["location", "weelington"], ["created_at", "2015-08-26 04:55:38.237707"], ["updated_at", "2015-08-26 04:55:38.237707"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mTender Load (9.9ms)[0m  SELECT "tenders".* FROM "tenders" WHERE "tenders"."job_id" = $1  [["job_id", 1]]
