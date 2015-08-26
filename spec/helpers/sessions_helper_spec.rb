@@ -17,7 +17,7 @@ RSpec.feature "Signups", type: :feature do
     expect(page).to have_selector('form')
   end
 
-  scenario "clear user cookies" do
+  # scenario "clear user cookies" do
 
 
 end
