@@ -15,7 +15,7 @@ end
               given_name: Faker::Name.first_name,
               family_name: Faker::Name.last_name,
               email: Faker::Internet.safe_email,
-              profession: ['builder','plumber','electrician', 'handy man', 'plasterer', 'painter', 'gardener'],
+              profession: ['builder','plumber','electrician', 'handy man', 'plasterer', 'painter', 'gardener'].sample,
               address: Faker::Address.street_address,
               description: Faker::Lorem.sentence,
               rates: Faker::Commerce.price.to_f,
@@ -25,7 +25,6 @@ end
 # add jobs
 10.times do
   Job.create(customer_id: rand(1..10),
-             tradie_id: [nil, rand(1..10)].sample,
              rating:[nil, rand(1..5)].sample,
              price: Faker::Commerce.price.to_f,
              location: ['Newtown', 'Te Aro', 'Karori', 'Johnsonville', 'Petone', 'Seatoun', 'Island Bay', 'Khandala', 'Kelburn'].sample,
@@ -35,3 +34,12 @@ end
              photo_url: Faker::Avatar.image,
              paid_at: [nil, Faker::Time.between(2.days.ago, Time.now)].sample)
 end
+
+
+5.times do
+  Application.create(job_id: rand(1..10),
+                      tradie_id: rand(11..20))
+end
+
+
+

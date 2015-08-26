@@ -1,7 +1,10 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessor :name, :phone_number, :address
+
+    has_many :jobs
+    has_many :tenders
+    # has_many :tenders, through: :jobs, foreign_key: "offer_id"
 
   include BCrypt
 
