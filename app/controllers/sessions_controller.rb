@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def index
-    if User.exists?(cookies[:session_id])
-      render text: "session id = #{cookies[:session_id]}"
+    if User.exists?(session[:user_id])
+      render text: "session id = #{session[:user_id]}"
     else
-      cookies[:session_id] = nil
+      session[:user_id] = nil
       render text: "no user session"
     end
   end
@@ -17,23 +17,24 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user
       if @user.password == params[:password]
-        cookies[:session_id] = { :value => @user.id, :expires => Time.now + 3600}
-        render text: "hello owner of #{params[:email]}. you are now logged in. cookie = #{cookies[:session_id]}  <br> Users exists = #{user_exists}"
+        session[:user_id] = @user.id
+        session[:expires_at] = Time.current + 1.hours
+        render text: "hello owner of #{params[:email]}. you are now logged in. session info = #{session[:user_id]}  <br> Users exists = #{user_exists}"
       else
-        cookies[:session_id] = nil
+        session[:user_id] = nil
         render text: "password incorrect <a href='/sessions'>Index</a>"
       end
     else
-      cookies[:session_id] = nil
+      session[:user_id] = nil
       render text: "user not found <a href='/sessions'>Index</a>"
     end
   end
 
   def user_exists
-    if User.exists?(cookies[:session_id])
+    if User.exists?(session[:user_id])
       true
     else
-      cookies[:session_id] = nil
+      session[:user_id] = nil
       false
     end
   end
