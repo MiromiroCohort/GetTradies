@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150825025551) do
     t.integer  "rating"
     t.decimal  "price"
     t.string   "location",    null: false
-    t.string   "type"
+    t.string   "job_type"
     t.string   "title"
     t.text     "description"
     t.string   "photo_url"
@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(version: 20150825025551) do
     t.string   "username"
     t.string   "given_name"
     t.string   "family_name"
-    t.string   "email",                            null: false
-    t.string   "profession",  default: "customer", null: false
+    t.string   "email",                              null: false
+    t.string   "profession",    default: "customer", null: false
     t.string   "address"
     t.text     "description"
     t.decimal  "rates"
-    t.string   "password",                         null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "password_hash",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end

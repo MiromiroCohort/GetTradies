@@ -7,7 +7,7 @@ class AddJobsTable < ActiveRecord::Migration
       t.integer :rating
       t.decimal :price
       t.string :location, null:false
-      t.string :type
+      t.string :job_type
       t.string :title
       t.text :description
       t.string :photo_url

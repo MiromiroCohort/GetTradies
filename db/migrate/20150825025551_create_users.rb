@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :address
       t.text :description
       t.decimal :rates
-      t.string :password, null: false
+      t.string :password_hash, null: false
 
       t.timestamps null: false
     end
