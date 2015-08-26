@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :jobs
   resources :sessions
   resources :users do
-    resources :applications
+    resources :tenders
+    resources :jobs
   end
   resources :profiles
   # The priority is based upon order of creation: first created -> highest priority.
