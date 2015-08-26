@@ -224,3 +224,45 @@ feature "Show interest", :type => :feature do
     expect(page).to have_content("You should be logged in")
   end
 end
+
+feature "See users jobs", :type => :feature do
+
+ before(:each) do
+    User.destroy_all
+    Job.destroy_all
+    user1=User.new
+    user1.email="gin1@gmail.com"
+    user1.password='qwerty'
+    user1.save
+    user=User.new
+    user.email="gin2@gmail.com"
+    user.password='qwerty'
+    user.save
+    user1.jobs.create location:"Quba street", description:"Dishwasher"
+    user.jobs.create location:"Churchill Drive", description:"Oven"
+
+    # User.create(email: "email@email", password_hash: "pw")
+  end
+  after(:each) do
+    User.destroy_all
+    Job.destroy_all
+  end
+
+  scenario 'User can see particular users jobs' do
+    user=User.first
+    visit user_jobs_path(user)
+    expect(page).to have_content("Quba street")
+    expect(page).to have_content("Dishwasher")
+    expect(page).to have_no_content("Churchill")
+    expect(page).to have_no_content("Oven")
+  end
+  scenario 'User can see particular users jobs' do
+    user=User.last
+    visit user_jobs_path(user)
+    expect(page).to have_no_content("Quba street")
+    expect(page).to have_no_content("Dishwasher")
+    expect(page).to have_content("Churchill")
+    expect(page).to have_content("Oven")
+  end
+
+end

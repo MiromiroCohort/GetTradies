@@ -12,7 +12,7 @@
       </div>
 
         <div class="location"><p>Location: <%=@job.location %> </p></div>
-        <div><a href="my_jobs_tradie.html" class="btn btn-primary btn-lg btn-interest">Show Interest</a></div>
+        <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
 
 
    </div>

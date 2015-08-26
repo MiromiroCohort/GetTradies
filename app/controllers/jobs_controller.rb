@@ -1,12 +1,17 @@
 class JobsController < ApplicationController
   def index
-    @jobs=Job.all
+    user_id = params[:user_id]
+    if !user_id
+      @jobs = Job.all
+    else
+      @jobs = Job.where(user_id:user_id)
+    end
   end
   def show
-    @job=Job.find(params[:id])
+    @job = Job.find(params[:id])
   end
   def new
-    @job=Job.new
+    @job = Job.new
   end
 
   def create
