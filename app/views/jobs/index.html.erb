@@ -26,7 +26,7 @@
     </div>
 
     <div>
-      <a href=<%= link_to 'Comments', [job, job.tenders] %> class="btn btn-primary btn-lg btn-interest" >Show Interest</a>
+      <%= link_to 'Show Interest', job_tenders_path(job), class:"btn btn-primary btn-lg btn-interest" %>
     </div>
   </div>
   <% end %>
