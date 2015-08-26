@@ -16,5 +16,9 @@ RSpec.describe Job, type: :model do
       expect(job.description).to eq("Dishwasher")
   end
 
+  scenario 'user visits post a job page' do
+    visit new_job_path
+
+  end
 
 end
