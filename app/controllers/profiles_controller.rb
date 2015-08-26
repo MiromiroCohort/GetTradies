@@ -4,8 +4,12 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @user = User.find_by_id(cookies[:session_id])
-    @id = @user.id
+    puts params
+    # @user = User.find(params[:session_id])
+    # puts @user
+    # puts "Mike"
+    # @id = 1
+    # puts @id
     @profile = Profile.create(profile_params)
     render text: "Success"
   end
@@ -17,7 +21,7 @@ class ProfilesController < ApplicationController
     # Same as using "params[:profile]", except that it:
     # - raises an error if :profilegi is not present
     # - allows listed attributes to be mass-assigned
-    params.require(:profile).permit(:given_name, :family_name, :phone_number, :address, :user_id => @id)
+    params.require(:profile).permit(:given_name, :family_name, :phone_number, :address, :user_id)
   end
 
 end

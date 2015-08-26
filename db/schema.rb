@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20150826100700) do
     t.integer  "customer_id", null: false
     t.integer  "tradie_id"
     t.integer  "rating"
-    t.decimal  "price",       null: false
+    t.decimal  "price"
     t.string   "location",    null: false
     t.string   "type"
-    t.string   "title",       null: false
+    t.string   "title"
     t.text     "description"
     t.string   "photo_url"
     t.datetime "paid_at"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150826100700) do
     t.string   "family_name"
     t.string   "phone_number"
     t.text     "address"
-    t.integer "user_id"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

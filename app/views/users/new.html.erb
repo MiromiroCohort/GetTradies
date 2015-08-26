@@ -1,14 +1,35 @@
-<div class='row'>
-    <form method="post" action="../users">
+
+<% @user = User.new %>
+    <div>
+        <form>
+          <fieldset>
+                <%= form_for :user, :url => {:action => 'new'} do |f| %>
+                  <%= f.label :email %>:
+                  <%= f.text_field :email, required: true, placeholder: "Please enter your email" %><br />
+
+                  <%= f.label :password %>:
+                  <%= f.password_field :password, required: true, placeholder: "Please enter a password" %><br />
+
+                  <%= f.label :password_confirm %>:
+                  <%= f.password_field :password_confirm, required: true, placeholder: "Please confirm your password" %><br />
+
+                  <%= f.submit "sign-up", class: "btn btn-info btn-sm"%>
+                <% end %>
+            </fieldset>
+        </form>
+    </div>
+
+<!-- <div class='row'>
+    <form method="post" action="/users">
       <fieldset>
         <legend>Sign up</legend>
         <label for="email"></label>
-        <input id="email" name="email" type="email" placeholder="Please enter your email" required />
+        <input id="email" name="user[email]" type="email" placeholder="Please enter your email" required />
         <label for="password"></label>
-        <input id="password" name="password" type="password" placeholder="Please enter a password" required />
+        <input id="password" name="user[password]" type="password" placeholder="Please enter a password" required />
         <label for="password-confirm"></label>
-        <input id="password-confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required />
-        <input type="submit">
+        <input id="password-confirm" name="user[password_confirm]" type="password" placeholder="Please re-enter your password" required />
+        <input type="submit" value="sign-up">
       </fieldset>
     </form>
-</div>
+</div> -->

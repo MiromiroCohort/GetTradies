@@ -1,12 +1,7 @@
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <% flash[:notice] %>
-  </div>
-<% end %>
 
-<% @profile = Profile.new %>
+<% @user = 3 %>
 
-<%= form_for @profile do |f| %>
+<%= form_for(:profile, :url => {:action => 'create', :user_id => @user}) do |f| %>
   <%= f.label :given_name %>:
   <%= f.text_field :given_name, required: true, placeholder: "Please enter your given name" %><br />
 
