@@ -5,20 +5,94 @@ feature "Jobs", :type => :feature do
     Job.destroy_all
     job=Job.new
     job.user_id=1
-    # job.tradie_id=2
     job.location="Quba street"
     job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    job.save
+    job.save!
+    # User.create(email: "email@email", password_hash: "pw")
   end
   after(:each) do
     User.destroy_all
     Job.destroy_all
   end
+
+  scenario 'user visits post a job page' do
+    visit '/jobs/new'
+
+    expect(page).to have_selector('form')
+  end
+
+  scenario 'logged in user can progress a job posting' do
+    visit 'users/new'
+
+    fill_in 'email', with: 'email@email'
+    fill_in 'password', with: 'pw'
+    fill_in 'password_confirm', with: 'pw'
+    click_on 'Submit'
+
+    visit '/sessions/new'
+
+    fill_in 'email', with: 'email@email'
+    fill_in 'password', with: 'pw'
+    click_on 'Submit'
+
+    visit '/jobs/new'
+
+    # session[:user_id] = 1
+
+    fill_in 'job[description]', with: 'jobby job'
+    fill_in 'job[location]', with: 'placy place'
+    click_on 'Post job'
+
+    expect(page).to have_content('progress')
+  end
+
+  scenario 'unlogged in user cannot progress a job posting' do
+    visit '/jobs/new'
+
+    # session[:user_id] = nil
+
+    fill_in 'job[description]', with: 'jobby job'
+    fill_in 'job[location]', with: 'placy place'
+    click_on 'Post job'
+    expect(page).to have_content('log-in')
+  end
+
+  scenario 'creating a job increases the number of jobs in database' do
+    existing_jobs = Job.all.length
+
+    visit 'users/new'
+
+    fill_in 'email', with: 'email@email'
+    fill_in 'password', with: 'pw'
+    fill_in 'password_confirm', with: 'pw'
+    click_on 'Submit'
+
+    visit '/sessions/new'
+
+    fill_in 'email', with: 'email@email'
+    fill_in 'password', with: 'pw'
+    click_on 'Submit'
+
+    visit '/jobs/new'
+
+    # session[:user_id] = 1
+
+    fill_in 'job[description]', with: 'jobby job'
+    fill_in 'job[location]', with: 'placy place'
+    click_on 'Post job'
+
+    new_jobs = Job.all.length
+
+    expect(new_jobs).to be > existing_jobs
+  end
+
+
   scenario 'user can see job description' do
     visit jobs_path
 
     expect(page).to have_content('Job Description')
   end
+
   scenario 'user can see show interest button' do
     visit jobs_path
 
