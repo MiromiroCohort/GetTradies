@@ -9,6 +9,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <% if flash.alert %>
+          <div class="messages">
+            <div class="alert alert-danger" role="alert">
+              <%= flash.alert %>
+            </div>
+          </div>
+        <% end %>
+
+      <% if flash.notice %>
+        <div class="messages">
+          <div class="alert alert-success" role="alert">
+            <%= flash.notice %>
+          </div>
+        </div>
+      <% end %>
 
 <%= yield %>
 

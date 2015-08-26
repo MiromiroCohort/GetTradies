@@ -11,6 +11,7 @@ class UsersController < ApplicationController
         @user = User.new(email: params[:email])
         @user.password = params[:password]
         @user.save!
+        session[:user_id] = @user.id
         render text: "new user #{@user.email}"
       else
         render text: "Passwords do not match"

@@ -6,15 +6,19 @@
   <% @jobs.each do |job| %>
   <div class="col-md-8">
     <a href=<%= job_path(job.id) %> id="job_<%= job.id %>">
-      <img src="images/job_pic.jpg" class="big-image">
+      <img src="images/job_pic.png" class="big-image">
       <div class="panel panel-primary">
+        <% if job.description %>
+          <div class="panel-heading">
+            <% if job.description %>
+              <h3 class="panel-title">Job Description<%= job.title %></h3>
+            <% else %>
+              <h3 class="panel-title">Job Description</h3>
+            <% end %>
 
-        <div class="panel-heading">
-          <h3 class="panel-title">Job Description
-          </h3>
-          <p><%= job.short_desc %></p>
-        </div>
-
+             <p><%= job.short_desc %></p>
+          </div>
+        <% end %>
         <div class="panel-body">
           <p></p>
         </div>
@@ -26,7 +30,8 @@
     </div>
 
     <div>
-      <a href=<%= user_tenders %> class="btn btn-primary btn-lg btn-interest" >Show Interest</a>
+      <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
+
     </div>
   </div>
   <% end %>
