@@ -18,7 +18,7 @@ class AddJobsTable < ActiveRecord::Migration
 
     create_table :jobs do |t|
 
-    ser
+    t.belongs_to :user
 
       # t.integer :customer_id, null: false
       t.integer :rating
