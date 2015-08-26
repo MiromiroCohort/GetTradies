@@ -1,8 +1,26 @@
 class AddJobsTable < ActiveRecord::Migration
   def change
+    create_table :users do |t|
+
+      t.string :username
+      t.string :given_name
+      t.string :family_name
+      t.string :email, null: false
+      t.string :profession, default: 'customer', null: false
+      t.string :address
+      t.text :description
+      t.decimal :rates
+      t.string :phone_number
+      t.string :password_hash, null: false
+
+      t.timestamps null: false
+    end
+
     create_table :jobs do |t|
 
-      t.integer :customer_id, null: false
+    ser
+
+      # t.integer :customer_id, null: false
       t.integer :rating
       t.decimal :price
       t.string :location, null:false
@@ -15,13 +33,17 @@ class AddJobsTable < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :applications do |t|
+    create_table :tenders do |t|
 
-      t.integer :job_id, null: false
-      t.integer :tradie_id, null: false
+      t.belongs_to :user
+      t.belongs_to :job
+
+      # t.integer :job_id, null: false
+      # t.integer :tradie_id, null: false
       t.boolean :accepted, null: false, default: false
 
       t.timestamps null: false
     end
+
   end
 end
