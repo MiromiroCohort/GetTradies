@@ -5831,3 +5831,4 @@ WHERE c.contype = 'f'
   AND t3.nspname = ANY (current_schemas(false))
 ORDER BY c.conname
 [0m
+  [1m[36mJob Load (1.0ms)[0m  [1mSELECT  "jobs".* FROM "jobs"  ORDER BY "jobs"."id" DESC LIMIT 1[0m
