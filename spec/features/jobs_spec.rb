@@ -115,9 +115,17 @@ feature "Show interest", :type => :feature do
     expect(page).to have_content("My jobs")
   end
   scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
-    pending 'waiting users'
+    visit new_user_path
+    fill_in 'email', with: "gin3002@mail.com"
+    fill_in 'password', with: "testPassword"
+    fill_in 'password-confirm', with: "testPassword"
+    click_on 'Submit'
+    visit new_session_path
+    fill_in 'email', with: "gin3002@mail.com"
+    fill_in 'password', with: "testPassword"
+    click_button 'Submit'
     visit jobs_path
     click_link('Show Interest')
-    expect(page).to have_content("My jobs")
+    expect(page).to have_content("You should be registered as a tradie")
   end
 end
