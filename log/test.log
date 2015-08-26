@@ -1,0 +1,47 @@
+  [1m[36m (199.0ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (986.4ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (156.6ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (1018.6ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (15.8ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (123.2ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (939.5ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+Started GET "/sessions" for 127.0.0.1 at 2015-08-25 11:53:00 +1200
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (114.8ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (272.8ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (114.3ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (276.8ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2015-08-25 11:54:12 +1200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 782ms (Views: 781.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (114.4ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (313.9ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2015-08-25 11:55:11 +1200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 158ms (Views: 157.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (113.9ms)[0m  [1mDROP DATABASE IF EXISTS "GetTradies_test"[0m
+  [1m[35m (295.2ms)[0m  CREATE DATABASE "GetTradies_test" ENCODING = 'unicode'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2015-08-25 13:53:19 +1200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 166ms (Views: 165.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Started GET "/sessions/new" for 127.0.0.1 at 2015-08-25 13:53:19 +1200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
