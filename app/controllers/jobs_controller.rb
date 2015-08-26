@@ -23,7 +23,7 @@ class JobsController < ApplicationController
       #             description: #{params[:job][:description]})"
       render text: "job params = #{params[:job]} current user email = #{User.find(session[:user_id]).email} #{User.find(session[:user_id]).profession}. Job id = #{@job.id} Job may progress"
     else
-      render text: "Please log-in if you'd like to post a job"
+      render text: "Please <a href='/sessions/new'>log-in</a> if you'd like to post a job"
     end
 
   end
