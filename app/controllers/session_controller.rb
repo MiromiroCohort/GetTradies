@@ -1,0 +1,9 @@
+class SessionsController < ApplicationController
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  # protect_from_forgery with: :exception
+
+  def new
+    render text: "And yo ;osdygpisdurghaor;d too"
+  end
+end
