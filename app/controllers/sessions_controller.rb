@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    # render text: "good work old bot"
+    #render text: "good work old bot"
   end
 
   def index
@@ -24,12 +24,12 @@ class SessionsController < ApplicationController
       else
         session[:user_id] = nil
         # render text: "password incorrect <a href='/sessions'>Index</a>"
-        redirect_to '/sessions/new', alert: "password incorrect"
+        redirect_to '/jobs', alert: "password incorrect"
       end
     else
       session[:user_id] = nil
       # render text: "user not found <a href='/sessions'>Index</a>"
-      redirect_to '/sessions/new', alert: "user not found"
+      redirect_to '/jobs', alert: "user not found"
     end
   end
 
@@ -45,8 +45,7 @@ class SessionsController < ApplicationController
   def destroy
     if session[:user_id]
       session[:user_id] = nil
-      # render text: "User logged out"
-      redirect_to '/jobs'
+      redirect_to '/jobs', notice: "user logged out"
     end
   end
 

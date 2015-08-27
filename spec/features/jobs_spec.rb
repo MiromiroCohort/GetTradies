@@ -3,8 +3,12 @@ feature "Jobs", :type => :feature do
   before(:each) do
     User.destroy_all
     Job.destroy_all
-    job=Job.new
-    job.user_id=1
+    user1 = User.new
+    user1.email="gin1@gmail.com"
+    user1.password='qwerty'
+    user1.save
+    job = Job.new
+    job.user = user1
     job.location="Quba street"
     job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     job.save!
@@ -19,6 +23,12 @@ feature "Jobs", :type => :feature do
     visit '/jobs/new'
 
     expect(page).to have_selector('form')
+  end
+
+  scenario 'user can see show interest button' do
+
+    visit jobs_path
+    expect(page).to have_link('Show Interest')
   end
 
   scenario 'logged in user can progress a job posting' do
@@ -93,11 +103,7 @@ feature "Jobs", :type => :feature do
     expect(page).to have_content('Job Description')
   end
 
-  scenario 'user can see show interest button' do
-    visit jobs_path
 
-    expect(page).to have_link('Show Interest')
-  end
 
   scenario 'user can see location' do
     visit jobs_path
@@ -154,8 +160,12 @@ feature "Show interest", :type => :feature do
   before(:each) do
     User.destroy_all
     Job.destroy_all
-    job=Job.new
-    job.user_id=1
+    user1 = User.new
+    user1.email="gin1@gmail.com"
+    user1.password='qwerty'
+    user1.save
+    job = Job.new
+    job.user = user1
     # job.tradie_id=2
     job.location="Quba street"
     job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -175,7 +185,7 @@ feature "Show interest", :type => :feature do
     fill_in 'email', with: "gin3002@mail.com"
     fill_in 'password', with: "testPassword"
     click_button 'Submit'
-    user = User.first
+    user = User.last
     user.profession = "tradie"
     user.save
     visit jobs_path
@@ -196,7 +206,7 @@ feature "Show interest", :type => :feature do
     fill_in 'email', with: "gin3002@mail.com"
     fill_in 'password', with: "testPassword"
     click_button 'Submit'
-    user = User.first
+    user = User.last
     user.profession = "tradie"
     user.save
     visit jobs_path
@@ -223,4 +233,81 @@ feature "Show interest", :type => :feature do
     click_link('Show Interest')
     expect(page).to have_content("You should be logged in")
   end
+end
+
+feature "See users jobs", :type => :feature do
+
+ before(:each) do
+    User.destroy_all
+    Job.destroy_all
+    user1=User.new
+    user1.email="gin1@gmail.com"
+    user1.password='qwerty'
+    user1.save
+    user=User.new
+    user.email="gin2@gmail.com"
+    user.password='qwerty'
+    user.save
+    user1.jobs.create location:"Quba street", description:"Dishwasher"
+    user.jobs.create location:"Churchill Drive", description:"Oven"
+
+    # User.create(email: "email@email", password_hash: "pw")
+  end
+  after(:each) do
+    User.destroy_all
+    Job.destroy_all
+  end
+
+  scenario 'User can see particular users jobs' do
+    user=User.first
+    visit user_jobs_path(user)
+    expect(page).to have_content("Quba street")
+    expect(page).to have_content("Dishwasher")
+    expect(page).to have_no_content("Churchill")
+    expect(page).to have_no_content("Oven")
+  end
+  scenario 'User can see particular users jobs' do
+    user=User.last
+    visit user_jobs_path(user)
+    expect(page).to have_no_content("Quba street")
+    expect(page).to have_no_content("Dishwasher")
+    expect(page).to have_content("Churchill")
+    expect(page).to have_content("Oven")
+  end
+
+end
+feature "Delete own job", :type => :feature do
+
+ before(:each) do
+    User.destroy_all
+    Job.destroy_all
+    user1=User.new
+    user1.email="gin1@gmail.com"
+    user1.password='qwerty'
+    user1.save
+    user1.jobs.create location:"Quba street", description:"Dishwasher"
+    user1.jobs.create location:"Churchill Drive", description:"Oven"
+
+    # User.create(email: "email@email", password_hash: "pw")
+  end
+  after(:each) do
+    User.destroy_all
+    Job.destroy_all
+  end
+
+  scenario 'User can delete his jobs' do
+    visit new_session_path
+    fill_in 'email', with: "gin1@gmail.com"
+    fill_in 'password', with: 'qwerty'
+    click_button 'Submit'
+    user=User.last
+    visit user_jobs_path(user)
+    first(:link, "Delete job").click
+    expect(page).to have_no_content("Quba street")
+    expect(page).to have_no_content("Dishwasher")
+    expect(page).to have_content("Churchill")
+    expect(page).to have_content("Oven")
+    expect(page).to have_content("Job deleted")
+  end
+
 end

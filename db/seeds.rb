@@ -25,7 +25,6 @@ end
 # add jobs
 10.times do
   Job.create(user_id: rand(1..10),
-             rating:[nil, rand(1..5)].sample,
              price: Faker::Commerce.price.to_f,
              location: ['Newtown', 'Te Aro', 'Karori', 'Johnsonville', 'Petone', 'Seatoun', 'Island Bay', 'Khandala', 'Kelburn'].sample,
              job_type: ['Building', 'Plumbing', 'Electical', 'Gardening', 'Painting', 'General Handy Work', 'Plastering'].sample,
@@ -38,7 +37,8 @@ end
 
 5.times do
   Tender.create(job_id: rand(1..10),
-                user_id: rand(11..20))
+                user_id: rand(11..20),
+                rating:[nil, rand(1..5)].sample)
 end
 
 

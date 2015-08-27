@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title><% if @title != nil %><%= @title %> | <% end %>GetTradies</title>
 
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <%= csrf_meta_tags %>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -13,7 +14,10 @@
   <%= javascript_include_tag 'application' %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+
+<body class="container">
+
+
   <heading>
     <h1>Get Tradies</h1>
     <nav>
@@ -46,6 +50,5 @@
     <%= yield %>
 
   </main>
-
 </body>
 </html>
