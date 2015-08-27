@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  div.col-sm-6.job:nth-child(2n+1) {
+    clear: both;
+  }
+  div.col-sm-6.job:nth-child(3n+1) {
+    clear: none;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  div.col-md-4.job:nth-child(2n+1) {
+    clear: none;
+  }
+  div.col-md-4.job:nth-child(3n+1) {
+    clear: both;
+  }
+}
