@@ -15,7 +15,9 @@ class JobsController < ApplicationController
     @accepted_tender = Tender.where(job_id: @job.id, accepted: true).first
     @tenders = Tender.where(job_id: @job.id, accepted: false)
     @tender_changeable = true
-    @tender_changeable = false if @accepted_tender.updated_at > 3.hours.ago
+    @tender_changeable = false if @accepted_tender.updated_at > 30.seconds.ago
+    @job_complete = false
+    @job_complete = true if Tender.where(job_id: @job.id, rating: nil).length != Tender.where(job_id: @job.id)
   end
 
   def new
