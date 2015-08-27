@@ -34,7 +34,7 @@
 
       <% else %>
 
-        <% if @current_user && !@job.tenders.find_by_user_id(@current_user.id) %>
+        <% if (@current_user && !@job.tenders.find_by_user_id(@current_user.id))||(!@current_user) %>
           <div>
             <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
           </div>
