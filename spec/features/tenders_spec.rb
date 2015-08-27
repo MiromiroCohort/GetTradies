@@ -37,10 +37,13 @@ RSpec.feature "Tenders", type: :feature do
     expect(page).to have_no_content("gin2@gmail.com")
   end
   scenario 'tradie can see a contact information for customer accepted tender' do
-    visit new_session_path
-    fill_in 'email', with: "gin1@gmail.com"
-    fill_in 'password', with: 'qwerty'
-    click_button 'Submit'
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin1@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
     user = User.first
     tender = Tender.last
     tender.accepted = true

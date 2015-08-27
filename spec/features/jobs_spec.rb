@@ -32,18 +32,18 @@ feature "Jobs", :type => :feature do
   end
 
   scenario 'logged in user can progress a job posting' do
-    visit 'users/new'
-
-    fill_in 'email', with: 'email@email'
-    fill_in 'password', with: 'pw'
-    fill_in 'password_confirm', with: 'pw'
-    click_on 'Submit'
-
-    visit '/sessions/new'
-
-    fill_in 'email', with: 'email@email'
-    fill_in 'password', with: 'pw'
-    click_on 'Submit'
+    user1 = User.new
+    user1.email = "gin1@gmail.com"
+    user1.password ='qwerty'
+    user1.profession ='tradie'
+    user1.save
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin1@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
 
     visit '/jobs/new'
 
@@ -70,19 +70,18 @@ feature "Jobs", :type => :feature do
   scenario 'creating a job increases the number of jobs in database' do
     existing_jobs = Job.all.length
 
-    visit 'users/new'
-
-    fill_in 'email', with: 'email@email'
-    fill_in 'password', with: 'pw'
-    fill_in 'password_confirm', with: 'pw'
-    click_on 'Submit'
-
-    visit '/sessions/new'
-
-    fill_in 'email', with: 'email@email'
-    fill_in 'password', with: 'pw'
-    click_on 'Submit'
-
+    user1 = User.new
+    user1.email = "gin1@gmail.com"
+    user1.password ='qwerty'
+    user1.profession ='tradie'
+    user1.save
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin1@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
     visit '/jobs/new'
 
     # session[:user_id] = 1
@@ -176,57 +175,59 @@ feature "Show interest", :type => :feature do
     Job.destroy_all
   end
   scenario 'tradie can click on show interest button and will have that job applied' do
-    visit new_user_path
-    fill_in 'email', with: "gin3002@mail.com"
-    fill_in 'password', with: "testPassword"
-    fill_in 'password-confirm', with: "testPassword"
-    click_on 'Submit'
-    visit new_session_path
-    fill_in 'email', with: "gin3002@mail.com"
-    fill_in 'password', with: "testPassword"
-    click_button 'Submit'
-    user = User.last
-    user.profession = "tradie"
-    user.save
+    user1 = User.new
+    user1.email = "gin2@gmail.com"
+    user1.password ='qwerty'
+    user1.profession ='tradie'
+    user1.save
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin2@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
     visit jobs_path
     click_on('Show Interest')
     tender=Tender.last
     job=Job.last
     expect(page).to have_content("My jobs")
     expect(tender.job_id).to eq(job.id)
-    expect(tender.user_id).to eq(user.id)
+    expect(tender.user_id).to eq(user1.id)
   end
    scenario 'tradie can click on show interest button and will be redirected to his tenders' do
-    visit new_user_path
-    fill_in 'email', with: "gin3002@mail.com"
-    fill_in 'password', with: "testPassword"
-    fill_in 'password-confirm', with: "testPassword"
-    click_on 'Submit'
-    visit new_session_path
-    fill_in 'email', with: "gin3002@mail.com"
-    fill_in 'password', with: "testPassword"
-    click_button 'Submit'
-    user = User.last
-    user.profession = "tradie"
-    user.save
+    user1 = User.new
+    user1.email = "gin2@gmail.com"
+    user1.password ='qwerty'
+    user1.profession ='tradie'
+    user1.save
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin2@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
     visit jobs_path
     click_on('Show Interest')
-    expect(current_path).to eq(user_tenders_path(user))
+    expect(current_path).to eq(user_tenders_path(user1))
   end
 
   scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
-    visit new_user_path
-    fill_in 'email', with: "gin3002@mail.com"
-    fill_in 'password', with: "testPassword"
-    fill_in 'password-confirm', with: "testPassword"
-    click_on 'Submit'
-    visit new_session_path
-    fill_in 'email', with: "gin3002@mail.com"
-    fill_in 'password', with: "testPassword"
-    click_button 'Submit'
+   user1 = User.new
+    user1.email = "gin2@gmail.com"
+    user1.password ='qwerty'
+    user1.save
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin2@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
     visit jobs_path
     click_link('Show Interest')
-    expect(page).to have_content("You should be registered as a tradie")
+    expect(page).to have_content("You need to be registered as a tradie to apply")
   end
    scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
     visit jobs_path
@@ -296,10 +297,13 @@ feature "Delete own job", :type => :feature do
   end
 
   scenario 'User can delete his jobs' do
-    visit new_session_path
-    fill_in 'email', with: "gin1@gmail.com"
-    fill_in 'password', with: 'qwerty'
-    click_button 'Submit'
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: "gin1@gmail.com"
+      fill_in 'password', with: 'qwerty'
+      # fill_in second 'password-confirm', with: "testPassword"
+      click_on "Log in"
+    end
     user=User.last
     visit user_jobs_path(user)
     first(:link, "Delete job").click
