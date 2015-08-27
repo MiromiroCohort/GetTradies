@@ -50,7 +50,9 @@
 
         <% end %>
       <% else %>
-        <p>Job complete. Job rating: <%= @accepted_tender.rating  %></p>
+        <% if @accepted_tender%>
+          <p>Job complete. Job rating: <%= @accepted_tender.rating  %></p>
+        <%end%>
       <% end %>
    </div>
 </div>
