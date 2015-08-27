@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
       # render text: "user not found <a href='/sessions'>Index</a>"
       redirect_to '/jobs', alert: "user not found"
     end
-    p @user
+
   end
 
   def user_exists
