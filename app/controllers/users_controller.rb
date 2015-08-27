@@ -44,12 +44,13 @@ class UsersController < ApplicationController
 
   def update
     puts user_update_params
-    # if @user = User.find(params[:id])
-    #   @user.update_attributes(user_update_params)
-    #   redirect_to(:action => 'show', :id => @user.id)
-    # else
-    #   render('edit')
-    # end
+    if @user = User.find(params[:id])
+      @user.update_attributes(user_update_params)
+      flash[:notice] = "Your profile has been successfully updated"
+      redirect_to(:action => 'show', :id => @user.id)
+    else
+      render('edit')
+    end
   end
 
 
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.permit(:username, :given_name, :family_name, :email, :address, :phone_number)
+    params.require(:user).permit(:username, :given_name, :family_name, :email, :address, :phone_number)
   end
 
 end
