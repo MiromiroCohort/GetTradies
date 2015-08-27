@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
+
+  root "jobs#index"
+  resources :jobs do
+    resources :tenders
+  end
+  resources :sessions
+  resources :users do
+    resources :tenders
+    resources :jobs
+  end
+  resources :profiles
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-
+  # get '/signup' => 'signup#new'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GetTradies</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <meta charset="utf-8">
+  <title><% if @title != nil %><%= @title %> | <% end %>GetTradies</title>
+
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag 'application' %>
+
 </head>
 <body>
+  <heading>
+    <h1>Get Tradies</h1>
+    <nav>
+      <% if !session[:user_id] %>
+        <%= render '/users/new.html.erb' %>
+        <%= render '/sessions/new.html.erb' %>
+      <% else %>
+        <%= render '/sessions/end.html.erb' %>
+      <% end %>
+    </nav>
+  </heading>
+  <main>
+    <% if flash.alert %>
+      <div class="messages">
+        <div class="alert alert-danger" role="alert">
+          <%= flash.alert %>
+        </div>
+      </div>
+    <% end %>
 
-<%= yield %>
+    <% if flash.notice %>
+      <div class="messages">
+        <div class="alert alert-success" role="alert">
+          <%= flash.notice %>
+        </div>
+      </div>
+    <% end %>
+    <%= yield %>
+  </main>
 
 </body>
 </html>

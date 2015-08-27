@@ -1,0 +1,98 @@
+.container{
+  margin: 3% 5% 10% 0;
+}
+
+.big-image {
+  width: 60%;
+  margin: 5% 20% 8% 20%;
+}
+
+body{
+
+  text-align: center;
+}
+
+.location {
+  float: left;
+  background-color: lightgrey;
+  padding: 0 6.5% 0 6.5%;
+  clear: all;
+}
+
+.interested-tradie{
+
+  background-color: orange;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.interested-tradie-customer-details{
+  margin-top:100px;
+  background-color: orange;
+  height: 100px;
+  border-radius: 5px;
+  border: ridge white 2px;
+}
+
+.tradie-pic {
+  max-height: 90px;
+  float: left;
+  margin: 3px;
+}
+
+/*.tradie-interest-description{
+  float:left;
+}*/
+
+.btn-interest {
+  max-width: 15%;
+  float: right;
+}
+
+.contact-tradie{
+  background-color: #006600;
+  float:right;
+  height: 90px;
+  width: 90px;
+  margin: 3px;
+  margin-top: -78px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  /*text-align: middle;*/
+  vertical-align: middle;
+  padding-top: 28px;
+}
+
+.top-btn{
+  width:33%;
+}
+
+.btn-lg{
+  /*postion: absolute;*/
+  width: 70% ;
+  margin-left: auto;
+}
+
+.jobpostlink{
+  margin: 40%;
+  font-size: 1.25em;
+}
+
+.container{
+  /*postion: absolute;*/
+  margin: auto;
+  /*border: 2px solid black;*/
+
+}
+
+.col-md-8{
+  /*border: 2px solid orange;*/
+  width: 100%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.description{
+  display: none;
+}
