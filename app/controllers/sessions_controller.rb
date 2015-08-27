@@ -42,4 +42,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    if session[:user_id]
+      session[:user_id] = nil
+      render text: "User logged out"
+    end
+  end
+
 end
