@@ -18,6 +18,7 @@ class TendersController < ApplicationController
       end
     else
       flash.notice = 'You should be logged in'
+#      render '/users/_new.html.erb'
       redirect_to jobs_url
     end
     # params[:job_id]

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "jobs#index"
   resources :jobs do
     resources :tenders
+    resources :ratings
   end
   resources :sessions
   resources :users do
@@ -18,7 +19,9 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  get '*path', to: 'jobs#index' #redirect any unrecognized URI to login page
+  get '/jobs/rate', to: 'jobs#rate'
+
+  # get '*path', to: 'jobs#index' #redirect any unrecognized URI to login page
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

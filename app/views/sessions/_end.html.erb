@@ -1,4 +1,7 @@
-<form method="post" action="/sessions/<%= session[:user_id] %>" class="logout">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Log out" class="btn btn-danger btn-sm">
+<form method="post" action="/sessions/<%= session[:user_id] %>" class="form-inline">
+  <fieldset>
+    <legend class="sr-only">Log out</legend>
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Log out" class="form-control btn btn-danger">
+  </fieldset>
 </form>

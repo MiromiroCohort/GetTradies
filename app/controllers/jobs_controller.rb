@@ -8,9 +8,13 @@ class JobsController < ApplicationController
       @jobs = Job.where(user_id:user_id)
     end
   end
+
   def show
     @job = Job.find(params[:id])
+    @tenders = Tender.where(job_id: @job.id)
+    @accepted_tender = Tender.where(job_id: @job.id, accepted: true)
   end
+
   def new
     @job = Job.new
   end
@@ -23,10 +27,10 @@ class JobsController < ApplicationController
                         location: params[:job][:location],
                         description: params[:job][:description])
 
-
       redirect_to "/jobs"
     else
       render text: "Please <a href='/sessions/new'>log-in</a> if you'd like to post a job"
+#      render '/users/new.html.erb'
     end
 
   end

@@ -1,13 +1,15 @@
- <div class="container">
-  <div class="bs-component" style="margin-bottom: 15px;">
-    <a href="#" class="btn btn-default top-btn" style="float: left;">Search</a>
-    <a href="#" class="btn btn-default top-btn" style="float: right;">Filter</a>
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-2 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4">
+    <a href="#" class="btn btn-default btn-block">Search</a>
   </div>
+  <div class="col-xs-4 col-sm-3 col-md-2">
+    <a href="#" class="btn btn-default btn-block">Filter</a>
+  </div>
+</div>
+
+<div class="row">
   <% @jobs.each do |job| %>
-  <br>
-  <div class="col-md-8">
-    <a href=<%= job_path(job.id) %> id="job_<%= job.id %>">
-      <img src="/images/job_pic.png" class="big-image">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-4">
       <div class="panel panel-primary">
         <% if job.description %>
           <div class="panel-heading">
@@ -16,27 +18,20 @@
             <% else %>
               <h3 class="panel-title">Job Description</h3>
             <% end %>
-
-            </div>
+          </div>
           <div class="panel-body">
+            <p>Location: <%=job.location %> </p>
+            <img src="/images/job_pic.png" class="big-image">
             <p><%= job.short_desc %></p>
+            <a href=<%= job_path(job.id) %> id="job_<%= job.id %>" class="btn btn-info">More info >></a>
+            <% if job.user == @current_user %>
+              <%= link_to 'Delete job', job_path(job), method: :delete, class:"btn btn-primary" %>
+            <% else %>
+              <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-success" %>
+            <% end %>
           </div>
         <% end %>
-
       </div>
-    </a>
-    <div class="location">
-      <p>Location: <%=job.location %> </p>
     </div>
-    <% if job.user == @current_user %>
-      <div>
-        <%= link_to 'Delete job', job_path(job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
-      </div>
-    <% else %>
-      <div>
-        <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
-      </div>
-    <% end -%>
-  </div>
   <% end %>
 </div>

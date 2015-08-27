@@ -1,54 +1,59 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title><% if @title != nil %><%= @title %> | <% end %>GetTradies</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-  <%= csrf_meta_tags %>
+    <title><% if @title != nil %><%= @title %> | <% end %>GetTradies</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= csrf_meta_tags %>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <%= javascript_include_tag 'application' %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
 
-<body class="container">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag 'application' %>
 
+  </head>
 
-  <heading>
-    <h1>Get Tradies</h1>
-    <nav>
-      <% if !session[:user_id] %>
-        <%= render '/sessions/new.html.erb' %>
-        <%= render '/users/new.html.erb' %>
-      <% else %>
-        <%= render '/sessions/end.html.erb' %>
+  <body class="container">
+
+    <heading class="row">
+      <h1 class="col-xs-12 col-sm-6 col-md-4">Get Tradies</h1>
+      <nav class="col-xs-12 col-sm-6 col-md-8">
+        <div class="pull-right"> <!-- this is correct for sm+ but should be centered for xs - need to find out how to control?!? -->
+          <% if !session[:user_id] %>
+            <%= render '/sessions/new.html.erb' %>
+          <% else %>
+            <%= render '/sessions/end.html.erb' %>
+            <%= render '/jobs/post.html.erb' %>
+          <% end %>
+        </div>
+      </nav>
+    </heading>
+
+    <main class="row">
+
+      <% if flash.alert %>
+        <div class="messages">
+          <div class="alert alert-danger" role="alert">
+            <%= flash.alert %>
+          </div>
+        </div>
       <% end %>
-    </nav>
-  </heading>
 
-  <main>
-    <% if flash.alert %>
-      <div class="messages">
-        <div class="alert alert-danger" role="alert">
-          <%= flash.alert %>
+      <% if flash.notice %>
+        <div class="messages">
+          <div class="alert alert-success" role="alert">
+            <%= flash.notice %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
-    <% if flash.notice %>
-      <div class="messages">
-        <div class="alert alert-success" role="alert">
-          <%= flash.notice %>
-        </div>
-      </div>
-    <% end %>
+      <%= yield %>
 
-    <%= yield %>
+    </main>
 
-  </main>
-</body>
+  </body>
 </html>

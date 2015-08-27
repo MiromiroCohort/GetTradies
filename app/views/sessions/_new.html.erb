@@ -1,10 +1,10 @@
-<form method="post" action="/sessions" class="login">
-    <fieldset>
-        <legend>Log in</legend>
-        <label for="email"></label>
-        <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control" />
-        <label for="password"></label>
-        <input id="password" name="password" type="password" placeholder="Please enter your password" required class="form-control" />
-        <input type="submit" value="Log in" class="btn btn-success btn-sm">
-    </fieldset>
+<form method="post" action="/sessions" class="form-inline">
+  <fieldset>
+    <legend class="sr-only">Log in</legend>
+    <label for="email" class="sr-only">Email:</label>
+    <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control has-feedback" />
+    <label for="password" class="sr-only">Password:</label>
+    <input id="password" name="password" type="password" placeholder="Please enter your password" required class="form-control has-feedback" />
+    <input type="submit" value="Log in" class="form-control btn btn-success">
+  </fieldset>
 </form>
