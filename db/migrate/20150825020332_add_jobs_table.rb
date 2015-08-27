@@ -21,7 +21,6 @@ class AddJobsTable < ActiveRecord::Migration
     t.belongs_to :user
 
       # t.integer :customer_id, null: false
-      t.integer :rating
       t.decimal :price
       t.string :location, null:false
       t.string :job_type
@@ -41,6 +40,7 @@ class AddJobsTable < ActiveRecord::Migration
       # t.integer :job_id, null: false
       # t.integer :tradie_id, null: false
       t.boolean :accepted, null: false, default: false
+      t.integer :rating
 
       t.timestamps null: false
     end
