@@ -29,6 +29,8 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to(:action => '')
       end
+    end
+  end
 
   def index
     @users = User.all
