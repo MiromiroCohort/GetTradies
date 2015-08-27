@@ -8,9 +8,13 @@ class JobsController < ApplicationController
       @jobs = Job.where(user_id:user_id)
     end
   end
+
   def show
     @job = Job.find(params[:id])
+    @tenders = Tender.where(job_id: @job.id)
+    @accepted_tender = Tender.where(job_id: @job.id, accepted: true)
   end
+
   def new
     @job = Job.new
   end
