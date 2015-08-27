@@ -45,9 +45,11 @@ class UsersController < ApplicationController
   def update
     puts user_update_params
     if @user = User.find(params[:id])
+      @id = @user.id.to_s
       @user.update_attributes(user_update_params)
       flash[:notice] = "Your profile has been successfully updated"
-      redirect_to(:action => 'show', :id => @user.id)
+      # redirect_to(:action => 'show', :id => @user.id)
+      redirect_to '/users/'+ @id + '/jobs/new'
     else
       render('edit')
     end
