@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   def index
-    @current_user=User.find_by_id(session[:user_id])
+    @current_user = User.find_by_id(session[:user_id])
     user_id = params[:user_id]
     if !user_id
       @jobs = Job.all
@@ -10,6 +10,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    @current_user = User.find_by_id(session[:user_id])
     @job = Job.find(params[:id])
     @tenders = Tender.where(job_id: @job.id)
     @accepted_tender = Tender.where(job_id: @job.id, accepted: true)

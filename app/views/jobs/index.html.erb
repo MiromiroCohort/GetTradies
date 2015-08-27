@@ -6,28 +6,33 @@
     <a href="#" class="btn btn-default btn-block">Filter</a>
   </div>
 </div>
-
+<br />
 <div class="row">
   <% @jobs.each do |job| %>
-    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-4">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 col-md-offset-0"> <!-- need some kind of clearfix for div.panel:nth-child(2n+1) for sm, or div.panel:nth-child(3n+1) for md+ -->
       <div class="panel panel-primary">
         <% if job.description %>
           <div class="panel-heading">
             <% if job.title %>
-              <h3 class="panel-title">Job Description: <%= job.title %></h3>
+              <h3 class="panel-title"><%= job.title %></h3>
             <% else %>
               <h3 class="panel-title">Job Description</h3>
             <% end %>
           </div>
           <div class="panel-body">
+            <img src="/images/job_pic.png">
+            <p>Description: <%= job.short_desc %></p>
             <p>Location: <%=job.location %> </p>
-            <img src="/images/job_pic.png" class="big-image">
-            <p><%= job.short_desc %></p>
-            <a href=<%= job_path(job.id) %> id="job_<%= job.id %>" class="btn btn-info">More info >></a>
+            <%= link_to 'More info', job_path(job.id), method: :get, class:"btn btn-info" %>
             <% if job.user == @current_user %>
-              <%= link_to 'Delete job', job_path(job), method: :delete, class:"btn btn-primary" %>
+              <%= link_to 'Delete job', job_path(job), method: :delete, class:"btn btn-danger" %>
             <% else %>
-              <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-success" %>
+              <% if @current_user && !job.tenders.find_by_user_id(@current_user.id) %>
+                <%= link_to 'Show interest', job_tenders_path(job), method: :post, class:"btn btn-primary" %>
+              <% else %>
+              <!-- this shouldn't be a button - it should be a "tag" or notice on the job itself showing that the job has been tendered on -->
+                <%= link_to 'Applied job', job_path(job), class:"btn btn-warning" %>
+              <% end %>
             <% end %>
           </div>
         <% end %>

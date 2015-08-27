@@ -4,18 +4,10 @@ class UsersController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-    if !User.find_by_email(params[:email])
-      if params[:password] == params[:password_confirm]
-        @user = User.new(email: params[:email])
-        @user.password = params[:password]
-        @user.save!
-=======
     if !User.find_by_email(user_signup_params[:email])
        if user_signup_params[:password] == user_signup_params[:password_confirm]
         @user = User.new(user_signup_params)
         @user.save
->>>>>>> 0b733ea95b9de9220c794de1fa970ea9965ab121
         session[:user_id] = @user.id
         redirect_to edit_user_path(@user)
        else
@@ -25,20 +17,6 @@ class UsersController < ApplicationController
       render text: "email already assigned to account. Please <a href='sessions/new'>log in.</a>"
     end
   end
-
-<<<<<<< HEAD
-  def edit
-    @user = User.find(session[:user_id])
-  end
-
-  def update
-    @user = User.find(session[:user_id])
-    if @user.update_attributes(params)
-      if @user.save
-        redirect_to(:action => '')
-      end
-=======
->>>>>>> 0b733ea95b9de9220c794de1fa970ea9965ab121
 
   def index
     @users = User.all
@@ -59,7 +37,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(session[:user_id])
-
   end
 
   def update
