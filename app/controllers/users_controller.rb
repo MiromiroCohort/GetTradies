@@ -5,21 +5,20 @@ class UsersController < ApplicationController
   end
 
   def create
-
-    if !User.find_by_email(params[:email])
-      if params[:password] == params[:password_confirm]
-        @user = User.new(email: params[:email])
-        @user.password = params[:password]
-        @user.save!
+    if !User.find_by_email(user_params[:email])
+       if user_params[:password] == user_params[:password_confirm]
+        @user = User.new(user_signup_params)
+        @user.save
         session[:user_id] = @user.id
         render text: "new user #{@user.email}"
-      else
+       else
         render text: "Passwords do not match"
-      end
+       end
     else
       render text: "email already assigned to account. Please <a href='sessions/new'>log in.</a>"
     end
   end
+
 
   def index
     @users = User.all
@@ -36,6 +35,16 @@ class UsersController < ApplicationController
     else
       @user = User.find(session[:user_id])
     end
+  end
+
+
+  private
+
+  def user_signup_params
+    params.permit(:email, :password, :password_confirm)
+  end
+
+  def user_update_params
   end
 
 end
