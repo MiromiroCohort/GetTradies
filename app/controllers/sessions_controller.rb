@@ -45,7 +45,8 @@ class SessionsController < ApplicationController
   def destroy
     if session[:user_id]
       session[:user_id] = nil
-      render text: "User logged out"
+      # render text: "User logged out"
+      redirect_to '/jobs'
     end
   end
 

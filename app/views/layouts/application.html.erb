@@ -11,15 +11,15 @@
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <%= javascript_include_tag 'application' %>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <heading>
     <h1>Get Tradies</h1>
     <nav>
       <% if !session[:user_id] %>
-        <%= render '/users/new.html.erb' %>
         <%= render '/sessions/new.html.erb' %>
+        <%= render '/users/new.html.erb' %>
       <% else %>
         <%= render '/sessions/end.html.erb' %>
       <% end %>

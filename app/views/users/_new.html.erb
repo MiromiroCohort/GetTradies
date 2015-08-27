@@ -1,14 +1,12 @@
-<div class='row'>
-    <form method="post" action="/users">
-      <fieldset>
-        <legend>Sign up</legend>
-        <label for="email"></label>
-        <input id="email" name="email" type="email" placeholder="Please enter your email" required />
-        <label for="password"></label>
-        <input id="password" name="password" type="password" placeholder="Please enter a password" required />
-        <label for="password-confirm"></label>
-        <input id="password-confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required />
-        <input type="submit" value="Submit">
-      </fieldset>
-    </form>
-</div>
+<form method="post" action="/users" class="signup">
+  <fieldset>
+    <legend>Sign up</legend>
+    <label for="email"></label>
+    <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control" />
+    <label for="password"></label>
+    <input id="password" name="password" type="password" placeholder="Please enter a password" required class="form-control" />
+    <label for="password_confirm"></label>
+    <input id="password_confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required class="form-control" />
+    <input type="submit" value="Sign up" class="btn btn-info btn-sm">
+  </fieldset>
+</form>
