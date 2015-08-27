@@ -5,14 +5,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    if !User.find_by_email(user_params[:email])
-       if user_params[:password] == user_params[:password_confirm]
+    if !User.find_by_email(user_signup_params[:email])
+       if user_signup_params[:password] == user_signup_params[:password_confirm]
         @user = User.new(user_signup_params)
         @user.save
         session[:user_id] = @user.id
-        render text: "new user #{@user.email}"
+        redirect_to edit_user_path(@user)
        else
-        render text: "Passwords do not match"
+        redirect_to "/"
        end
     else
       render text: "email already assigned to account. Please <a href='sessions/new'>log in.</a>"
@@ -37,6 +37,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(session[:user_id])
+
+  end
+
+  def update
+    puts user_update_params
+    # if @user = User.find(params[:id])
+    #   @user.update_attributes(user_update_params)
+    #   redirect_to(:action => 'show', :id => @user.id)
+    # else
+    #   render('edit')
+    # end
+  end
+
 
   private
 
@@ -45,6 +60,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
+    params.permit(:username, :given_name, :family_name, :email, :address, :phone_number)
   end
 
 end
