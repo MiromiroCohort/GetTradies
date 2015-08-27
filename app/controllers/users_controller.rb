@@ -1,4 +1,3 @@
-
 class UsersController < ApplicationController
 
   def new
@@ -18,8 +17,6 @@ class UsersController < ApplicationController
       render text: "email already assigned to account. Please <a href='sessions/new'>log in.</a>"
     end
   end
-
-
   def index
     @users = User.all
   end

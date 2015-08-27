@@ -1,1 +1,35 @@
-"My jobs"
+<div class="container">
+<h1>My jobs</h1>
+<% @tenders.each do |tender| %>
+  <a href=<%= job_path(tender.job.id) %> id="job_<%= tender.job.id %>">
+    <img src="images/job_pic.png" class="big-image">
+    <div class="panel panel-primary">
+      <% if tender.job.description %>
+        <div class="panel-heading">
+          <% if tender.job.description %>
+            <h3 class="panel-title">Job Description <%= tender.job.title %></h3>
+          <% else %>
+            <h3 class="panel-title">Job Description</h3>
+          <% end %>
+
+           <p><%= tender.job.description %></p>
+        </div>
+      <% end %>
+      <div class="panel-body">
+        <p></p>
+      </div>
+
+    </div>
+  </a>
+  <div class="location">
+    <p>Location: <%=tender.job.location %> </p>
+  </div>
+  <%if tender.accepted && (tender.user_id == @current_user.id) %>
+    <p>
+      Contact email: <%=tender.job.user.email if tender.job.user.email %>
+      Contact phone: <%=tender.job.user.phone_number if tender.job.user.phone_number %>
+    </p>
+  <% end %>
+
+<% end %>
+</div>

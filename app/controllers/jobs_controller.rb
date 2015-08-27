@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   def index
-    @current_user=User.find_by_id(session[:user_id])
+    @current_user = User.find_by_id(session[:user_id])
     user_id = params[:user_id]
     if !user_id
       @jobs = Job.all
