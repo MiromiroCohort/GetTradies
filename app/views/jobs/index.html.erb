@@ -4,14 +4,15 @@
     <a href="#" class="btn btn-default top-btn" style="float: right;">Filter</a>
   </div>
   <% @jobs.each do |job| %>
+  <br>
   <div class="col-md-8">
     <a href=<%= job_path(job.id) %> id="job_<%= job.id %>">
-      <img src="images/job_pic.png" class="big-image">
+      <img src="/images/job_pic.png" class="big-image">
       <div class="panel panel-primary">
         <% if job.description %>
           <div class="panel-heading">
             <% if job.description %>
-              <h3 class="panel-title">Job Description<%= job.title %></h3>
+              <h3 class="panel-title">Job Description: <%= job.title %></h3>
             <% else %>
               <h3 class="panel-title">Job Description</h3>
             <% end %>
