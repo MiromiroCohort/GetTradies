@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     # @user = User.find(session[:user_id])
+    @current_user = User.find_by_id(session[:user_id])
     if params[:id] != "show"
       if User.exists?(params[:id])
         @user = User.find(params[:id])
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts user_update_params
+    @current_user = User.find_by_id(session[:user_id])
     if @user = User.find(params[:id])
       @user.update_attributes(user_update_params)
       flash[:notice] = "Your profile has been successfully updated"

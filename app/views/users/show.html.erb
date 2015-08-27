@@ -1,6 +1,18 @@
-<p>
-
-<%=@user.email%>
-<%=@user.profession%>
-
-</p>
+<div class="container">
+  <div class="col-md-8">
+    <p> Username: <%= @user.username %> </p>
+    <% if @user == @current_user %>
+      <p> Givenname: <%= @user.given_name %> </p>
+      <p> Family name: <%= @user.family_name %></p>
+      <p> Email: <%=@user.email%></p>
+      <p> Address: <%=@user.address %> </p>
+      <p> Phone number: <%=@user.phone_number%> </p>
+    <% end %>
+    <% if @user.tenders %>
+      <%=link_to "See #{@user.username} tenders", user_tenders_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
+    <% end %>
+    <% if @user.jobs %>
+      <%=link_to "See #{@user.username} jobs", user_jobs_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
+    <% end %>
+  </div>
+</div>
