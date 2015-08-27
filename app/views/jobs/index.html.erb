@@ -28,11 +28,15 @@
     <div class="location">
       <p>Location: <%=job.location %> </p>
     </div>
-
-    <div>
-      <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
-
-    </div>
+    <% if job.user == @current_user %>
+      <div>
+        <%= link_to 'Delete job', job_path(job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to 'Show Interest', job_tenders_path(job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
+      </div>
+    <% end -%>
   </div>
   <% end %>
 </div>

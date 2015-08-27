@@ -9,7 +9,6 @@
         <p><%= @job.description %></p>
       </div>
   </div>
-
   <div class="location"><p>Location: <%=@job.location %> </p></div>
     <div><a href="my_jobs_tradie.html" class="btn btn-primary btn-lg btn-interest">Show Interest</a></div>
       <% if @job.user_id == session[:user_id]%>
@@ -17,6 +16,5 @@
         <div><a href="rate/<%=@job.id%>" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a></div>
       <% end %>
     </div>
-
    </div>
 </div>
