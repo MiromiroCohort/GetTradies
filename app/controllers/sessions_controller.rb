@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
       session[:user_id] = nil
       render text: "user not found <a href='/sessions'>Index</a>"
     end
+    p @user
   end
 
   def user_exists
