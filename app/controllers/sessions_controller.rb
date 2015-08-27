@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    # render text: "good work old bot"
+    #render text: "good work old bot"
   end
 
   def index
@@ -19,14 +19,17 @@ class SessionsController < ApplicationController
       if @user.password == params[:password]
         session[:user_id] = @user.id
         session[:expires_at] = Time.current + 1.hours
-        render text: "hello owner of #{params[:email]}. you are now logged in. session info = #{session[:user_id]}  <br> Users exists = #{user_exists}"
+        # render text: "hello owner of #{params[:email]}. you are now logged in. session info = #{session[:user_id]}  <br> Users exists = #{user_exists}"
+        redirect_to '/jobs'
       else
         session[:user_id] = nil
-        render text: "password incorrect <a href='/sessions'>Index</a>"
+        # render text: "password incorrect <a href='/sessions'>Index</a>"
+        redirect_to '/jobs', alert: "password incorrect"
       end
     else
       session[:user_id] = nil
-      render text: "user not found <a href='/sessions'>Index</a>"
+      # render text: "user not found <a href='/sessions'>Index</a>"
+      redirect_to '/jobs', alert: "user not found"
     end
     p @user
   end
@@ -37,6 +40,13 @@ class SessionsController < ApplicationController
     else
       session[:user_id] = nil
       false
+    end
+  end
+
+  def destroy
+    if session[:user_id]
+      session[:user_id] = nil
+      redirect_to '/jobs', notice: "user logged out"
     end
   end
 

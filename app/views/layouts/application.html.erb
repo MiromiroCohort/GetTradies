@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GetTradies</title>
-   <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <title><% if @title != nil %><%= @title %> | <% end %>GetTradies</title>
+
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <%= csrf_meta_tags %>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag 'application' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <% if flash.alert %>
-          <div class="messages">
-            <div class="alert alert-danger" role="alert">
-              <%= flash.alert %>
-            </div>
-          </div>
-        <% end %>
 
-      <% if flash.notice %>
-        <div class="messages">
-          <div class="alert alert-success" role="alert">
-            <%= flash.notice %>
-          </div>
-        </div>
+<body class="container">
+
+
+  <heading>
+    <h1>Get Tradies</h1>
+    <nav>
+      <% if !session[:user_id] %>
+        <%= render '/sessions/new.html.erb' %>
+        <%= render '/users/new.html.erb' %>
+      <% else %>
+        <%= render '/sessions/end.html.erb' %>
       <% end %>
+    </nav>
+  </heading>
 
-<%= yield %>
+  <main>
+    <% if flash.alert %>
+      <div class="messages">
+        <div class="alert alert-danger" role="alert">
+          <%= flash.alert %>
+        </div>
+      </div>
+    <% end %>
 
+    <% if flash.notice %>
+      <div class="messages">
+        <div class="alert alert-success" role="alert">
+          <%= flash.notice %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+  </main>
 </body>
 </html>

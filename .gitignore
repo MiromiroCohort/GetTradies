@@ -33,4 +33,4 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
-#log/development.log
+log/development.log

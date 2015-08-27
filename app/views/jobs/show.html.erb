@@ -1,23 +1,18 @@
 <div class="container">
-
-      <div class="col-md-8">
-        <img src="images/job_pic.jpg" class="big-image">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Job Description</h3>
-          </div>
-          <div class="panel-body">
-            <p><%= @job.description %></p>
-          </div>
+  <div class="col-md-8">
+    <img src="/images/job_pic.png" class="big-image">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Job Description: <%=@job.title%></h3>
       </div>
-
         <div class="location"><p>Location: <%=@job.location %> </p></div>
         <% if @job.user == @current_user %>
           <div>
             <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
+            <a href="rate/<%=@job.id%>" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
           </div>
         <% else %>
         <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
-
         <% end -%>
    </div>
+</div>
