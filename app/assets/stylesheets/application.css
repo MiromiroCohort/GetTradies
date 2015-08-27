@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+div.job:nth-child(3n+1) {
+  clear: both;
+}
