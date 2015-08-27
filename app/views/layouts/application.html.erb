@@ -25,6 +25,7 @@
       <% end %>
     </nav>
   </heading>
+
   <main>
     <% if flash.alert %>
       <div class="messages">
@@ -41,7 +42,9 @@
         </div>
       </div>
     <% end %>
+
     <%= yield %>
+
   </main>
 
 </body>

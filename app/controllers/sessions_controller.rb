@@ -39,6 +39,7 @@ class SessionsController < ApplicationController
     end
   end
 
+# added by lani
   def destroy
     if session[:user_id]
       session[:user_id] = nil

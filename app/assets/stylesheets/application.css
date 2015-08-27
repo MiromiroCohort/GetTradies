@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  */
-h1 {
+/* styles to control heading and navbar layout */
+heading h1 {
   float: left;
 }
 
