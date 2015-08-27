@@ -11,18 +11,17 @@
       <div class="panel panel-primary">
         <% if job.description %>
           <div class="panel-heading">
-            <% if job.description %>
+            <% if job.title %>
               <h3 class="panel-title">Job Description: <%= job.title %></h3>
             <% else %>
               <h3 class="panel-title">Job Description</h3>
             <% end %>
 
-             <p><%= job.short_desc %></p>
+            </div>
+          <div class="panel-body">
+            <p><%= job.short_desc %></p>
           </div>
         <% end %>
-        <div class="panel-body">
-          <p></p>
-        </div>
 
       </div>
     </a>
