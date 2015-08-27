@@ -12,8 +12,14 @@ class JobsController < ApplicationController
   def show
     @current_user = User.find_by_id(session[:user_id])
     @job = Job.find(params[:id])
-    @tenders = Tender.where(job_id: @job.id)
-    @accepted_tender = Tender.where(job_id: @job.id, accepted: true)
+    @accepted_tender = Tender.where(job_id: @job.id, accepted: true).first
+    @tenders = Tender.where(job_id: @job.id, accepted: false)
+    @tender_changeable = true
+    if @accepted_tender
+      @tender_changeable = false if @accepted_tender.updated_at > 30.seconds.ago
+    end
+    @job_complete = false
+    @job_complete = true if Tender.where(job_id: @job.id, rating: nil).length != Tender.where(job_id: @job.id) && Tender.where(job_id: @job.id) != 0
   end
 
   def new
