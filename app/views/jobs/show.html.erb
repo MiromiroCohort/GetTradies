@@ -1,18 +1,22 @@
 <div class="container">
-
-      <div class="col-md-8">
-        <img src="/images/job_pic.png" class="big-image">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Job Description: <%=@job.title%></h3>
-          </div>
-          <div class="panel-body">
-            <p><%= @job.description %></p>
-          </div>
+  <div class="col-md-8">
+    <img src="/images/job_pic.png" class="big-image">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Job Description: <%=@job.title%></h3>
       </div>
+      <div class="panel-body">
+        <p><%= @job.description %></p>
+      </div>
+  </div>
 
-        <div class="location"><p>Location: <%=@job.location %> </p></div>
-        <div><a href="my_jobs_tradie.html" class="btn btn-primary btn-lg btn-interest">Show Interest</a></div>
-
+  <div class="location"><p>Location: <%=@job.location %> </p></div>
+    <div><a href="my_jobs_tradie.html" class="btn btn-primary btn-lg btn-interest">Show Interest</a></div>
+      <% if @job.user_id == session[:user_id]%>
+        <br>
+        <div><a href="rate/<%=@job.id%>" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a></div>
+      <% end %>
+    </div>
 
    </div>
+</div>

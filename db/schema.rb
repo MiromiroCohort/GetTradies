@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20150825020332) do
 
   create_table "jobs", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "rating"
     t.decimal  "price"
     t.string   "location",    null: false
     t.string   "job_type"
@@ -34,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150825020332) do
     t.integer  "user_id"
     t.integer  "job_id"
     t.boolean  "accepted",   default: false, null: false
+    t.integer  "rating"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

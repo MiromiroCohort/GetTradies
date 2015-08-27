@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    # render text: "good work old bot"
+    #render text: "good work old bot"
   end
 
   def index
