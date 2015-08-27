@@ -10,28 +10,39 @@
       </div>
     </div>
     <div class="location"><p>Location: <%=@job.location %> </p></div>
-        <% if @job.user == @current_user %>
-           <div>
-            <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
-            <% if @accepted_tender %>
-              <div>
-                <a href="<%=@job.id%>/ratings/new" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
-              </div>
-            <% end %>
-          </div>
-          <% if @tenders%>
-            <% @tenders.each do |tender| %>
-              <br>
-              <p>Tradie email: <%= User.find(tender.user_id).email %></p>
-              <p>Tradie username: <%= User.find(tender.user_id).username %></p>
-              <p>Tradie address: <%= User.find(tender.user_id).address %></p>
-              <% if tender.accepted == true %>
+
+      <% if @job.user == @current_user %>
+         <div>
+          <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
+          <% if @accepted_tender %>
+            <div>
+              <a href="<%=@job.id%>/ratings/new" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
+            </div>
+          <% end %>
+        </div>
+        <% if @tenders%>
+          <% @tenders.each do |tender| %>
+            <br>
+            <p>Tradie email: <%= User.find(tender.user_id).email %></p>
+            <p>Tradie username: <%= User.find(tender.user_id).username %></p>
+            <p>Tradie address: <%= User.find(tender.user_id).address %></p>
+            <% if tender.accepted == true %>
               <p class="btn btn-success btn-sm">Accepted</p>
             <% end %>
           <% end %>
+        <% end %>
+
+      <% else %>
+
+        <% if @current_user && !@job.tenders.find_by_user_id(@current_user.id) %>
+          <div>
+            <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
+          </div>
         <% else %>
-        <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
-        <% end -%>
-        <% end -%>
+          <%= link_to 'Applied job', job_path(@job), class:"btn btn-primary btn-lg btn-interest" %>
+        <% end %>
+
+      <% end %>
+
    </div>
 </div>
