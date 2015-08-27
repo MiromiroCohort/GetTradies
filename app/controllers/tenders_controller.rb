@@ -1,5 +1,12 @@
 class TendersController < ApplicationController
   def index
+    user = User.find_by_id params[:user_id]
+    @current_user = User.find_by_id(session[:user_id])
+    if !user
+      flash.alert = "You misspelled the path"
+    else
+       @tenders=Tender.where user_id:user.id
+    end
 
   end
 
