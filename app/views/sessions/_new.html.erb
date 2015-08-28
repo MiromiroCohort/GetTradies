@@ -12,3 +12,6 @@
     <input type="submit" value="Log in" class="btn btn-success form-control">
   </fieldset>
 </form>
+<% if @current_path != new_user_path %>
+<%= link_to 'Or sign up', new_user_path, method: :get, class:"btn btn-primary btn-block" %>
+<% end %>
