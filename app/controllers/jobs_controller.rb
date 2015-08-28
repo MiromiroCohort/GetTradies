@@ -19,7 +19,11 @@ class JobsController < ApplicationController
       @tender_changeable = false if @accepted_tender.updated_at > 30.seconds.ago
     end
     @job_complete = false
-    @job_complete = true if Tender.where(job_id: @job.id, rating: nil).length != Tender.where(job_id: @job.id) && Tender.where(job_id: @job.id) != 0
+    if Tender.where(job_id: @job.id, rating: nil).length < Tender.where(job_id: @job.id).length
+      @job_complete = true
+    end
+    @job_complete = false if Tender.where(job_id: @job.id).length == 0
+    # render text: @job_complete
   end
 
   def new
