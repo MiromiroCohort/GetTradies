@@ -7,10 +7,13 @@
       <p> Email: <%=@user.email%></p>
       <p> Address: <%=@user.address %> </p>
       <p> Phone number: <%=@user.phone_number%> </p>
-       <%=link_to "Edit profile", edit_user_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
        <% if @user.profession != "customer" %>
           <p> Profession: <%= @user.profession %> </p>
        <%  end %>
+        <% if @user.profession != "customer" %>
+          <p> Description: <%= @user.description %> </p>
+       <%  end %>
+       <%=link_to "Edit profile", edit_user_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
     <% end %>
     <% if @user.tenders %>
       <%=link_to "See #{@user.username} tenders", user_tenders_path(@user), class:"btn btn-primary btn-lg btn-interest" %>

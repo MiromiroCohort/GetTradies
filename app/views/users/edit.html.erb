@@ -16,8 +16,15 @@
   <%= f.text_field :address, required: true, placeholder: "Please enter your address" %><br />
   <%= f.label :phone_number  %>:
   <%= f.text_field :phone_number, required: true, placeholder: "Please enter your phone number" %><br />
-  <%= f.label :profession  %>:
-  <%= f.text_field :profession, required: true, placeholder: "Please enter your profession" %><br />
-
+   <%= f.label :description  %>:
+  <%= f.text_area :description, required: true, placeholder: "Describe yourself and your skills" %><br />
+  <label>Only complete choose a profession if you wish to be listed as a tradie</label><br>
+  <%= f.label :profession  %>:<br>
+  <%= f.radio_button(:profession, "Builder") %> Builder <br>
+  <%= f.radio_button(:profession, "Electrician") %> Electrician <br>
+  <%= f.radio_button(:profession, "Plumber") %> Plumber <br>
+  <%= f.radio_button(:profession, "Painter") %> Painter <br>
+  <%= f.radio_button(:profession, "Plasterer") %> Plasterer <br>
+  <%= f.radio_button(:profession, "General Handy Man") %> General Handy Man <br>
    <%= f.submit %>
 <% end %>

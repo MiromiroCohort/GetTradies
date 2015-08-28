@@ -51,6 +51,7 @@ class UsersController < ApplicationController
     else
       render('edit')
     end
+
   end
 
 
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:username, :given_name, :family_name, :email, :address, :phone_number, :profession)
+    params.require(:user).permit(:username, :given_name, :family_name, :email, :address, :phone_number, :profession, :description)
   end
 
 end
