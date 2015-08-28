@@ -1,5 +1,9 @@
 <div class="container">
-<h1>My jobs</h1>
+<% if @user == @current_user %>
+  <h1>My tenders</h1>
+<% else %>
+  <h1><%= @user.username %> tenders</h1>
+<% end %>
 <% @tenders.each do |tender| %>
   <a href=<%= job_path(tender.job.id) %> id="job_<%= tender.job.id %>">
     <img src="images/job_pic.png" class="big-image">
