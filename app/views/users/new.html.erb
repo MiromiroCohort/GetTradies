@@ -1,12 +1,18 @@
-<form method="post" action="/users" class="signup">
+<form method="post" action="/users" class="form-horizontal col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">
   <fieldset>
-    <legend>Sign up</legend>
-    <label for="email"></label>
-    <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control" />
-    <label for="password"></label>
-    <input id="password" name="password" type="password" placeholder="Please enter a password" required class="form-control" />
-    <label for="password_confirm"></label>
-    <input id="password_confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required class="form-control" />
-    <input type="submit" value="Sign up" class="btn btn-info btn-sm">
+    <legend class="sr-only">Sign up</legend>
+    <div class="form-group">
+        <label for="email" class="control-label sr-only">Email:</label>
+        <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="password" class="control-label sr-only">Password:</label>
+        <input id="password" name="password" type="password" placeholder="Please enter a password" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="password_confirm" class="control-label sr-only">Confirm password:</label>
+        <input id="password_confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required class="form-control" />
+    </div>
+    <input type="submit" value="Sign up" class="btn btn-success form-control">
   </fieldset>
 </form>

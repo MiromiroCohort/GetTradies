@@ -22,9 +22,12 @@
     <heading class="row">
       <h1 class="col-xs-12 col-sm-6 col-md-4">Get Tradies</h1>
       <nav class="col-xs-12 col-sm-6 col-md-8">
-        <div class="pull-right"> <!-- this is correct for sm+ but should be centered for xs - need to find out how to control the style here -->
+        <div class="xs-center sm-pull-right ">
           <% if !session[:user_id] %>
             <%= render '/sessions/new.html.erb' %>
+            <% if !new_user_path %>
+              <%= link_to 'Or sign up', new_user_path, method: :get, class:"btn btn-primary btn-block" %>
+            <% end %>
           <% else %>
             <%= render '/sessions/end.html.erb' %>
             <%= render '/jobs/post.html.erb' %>
