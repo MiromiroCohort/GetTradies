@@ -1,22 +1,41 @@
-<div class="container">
-  <div class="col-md-8">
-    <p> Username: <%= @user.username %> </p>
-    <% if @user == @current_user %>
-      <p> Givenname: <%= @user.given_name %> </p>
-      <p> Family name: <%= @user.family_name %></p>
-      <p> Email: <%=@user.email%></p>
-      <p> Address: <%=@user.address %> </p>
-      <p> Phone number: <%=@user.phone_number%> </p>
-       <%=link_to "Edit profile", edit_user_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
-       <% if @user.profession != "customer" %>
-          <p> Profession: <%= @user.profession %> </p>
-       <%  end %>
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+  <p class="row">
+    <span class="col-xs-5 col-sm-3 col-md-2">Username: </span>
+    <span class="col-xs-7 col-sm-9 col-md-10"><%= @user.username %></span>
+  </p>
+  <% if @user == @current_user %>
+    <p class="row">
+      <span class="col-xs-5 col-sm-3 col-md-2">Givenname: </span>
+      <span class="col-xs-7 col-sm-9 col-md-10"><%= @user.given_name %></span>
+    </p>
+    <p class="row">
+      <span class="col-xs-5 col-sm-3 col-md-2">Family name: </span>
+      <span class="col-xs-7 col-sm-9 col-md-10"><%= @user.family_name %></span>
+    </p>
+    <p class="row">
+      <span class="col-xs-5 col-sm-3 col-md-2">Email: </span>
+      <span class="col-xs-7 col-sm-9 col-md-10"><%=@user.email%></span>
+    </p>
+    <p class="row">
+      <span class="col-xs-5 col-sm-3 col-md-2">Address: </span>
+      <span class="col-xs-7 col-sm-9 col-md-10"><%=@user.address %></span>
+    </p>
+    <p class="row">
+      <span class="col-xs-5 col-sm-3 col-md-2">Phone number: </span>
+      <span class="col-xs-7 col-sm-9 col-md-10"><%=@user.phone_number%></span>
+    </p>
+    <% if @user.profession != "customer" %>
+      <p class="row">
+        <span class="col-xs-5 col-sm-3 col-md-2">Profession: </span>
+        <span class="col-xs-7 col-sm-9 col-md-10"><%= @user.profession %></span>
+      </p>
     <% end %>
-    <% if @user.tenders %>
-      <%=link_to "See #{@user.username} tenders", user_tenders_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
-    <% end %>
-    <% if @user.jobs %>
-      <%=link_to "See #{@user.username} jobs", user_jobs_path(@user), class:"btn btn-primary btn-lg btn-interest" %>
-    <% end %>
-  </div>
+    <%=link_to "Edit profile", edit_user_path(@user), class:"btn btn-warning" %>
+  <% end %>
+  <% if @user.tenders %>
+    <%=link_to "See #{@user.username} tenders", user_tenders_path(@user), class:"btn btn-info" %>
+  <% end %>
+  <% if @user.jobs %>
+    <%=link_to "See #{@user.username} jobs", user_jobs_path(@user), class:"btn btn-info" %>
+  <% end %>
 </div>
