@@ -31,10 +31,12 @@
               <% end %>
             <% end %>
           <% end %>
-          <% if (@current_user && !@job.tenders.find_by_user_id(@current_user.id))||(!@current_user) %>
-            <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
-          <% else %>
-            <%= link_to 'Applied job', job_path(@job), class:"btn btn-primary btn-lg btn-interest" %>
+          <% if @current_user.id != @job.user_id %>
+            <% if (@current_user && !@job.tenders.find_by_user_id(@current_user.id))||(!@current_user) %>
+              <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
+            <% else %>
+              <%= link_to 'Applied to job', job_path(@job), class:"btn btn-primary btn-lg btn-interest" %>
+            <% end %>
           <% end %>
         <% end %>
       <% else %>
