@@ -1,7 +1,4 @@
-<form method="post" action="/sessions/<%= session[:user_id] %>" class="form-inline">
-  <fieldset>
-    <legend class="sr-only">Log out</legend>
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Log out" class="form-control btn btn-danger btn-block">
-  </fieldset>
-</form>
+<% if @current_user %>
+  <li> <%= link_to 'Logout', session_path(@current_user.id), method: :delete  %> </li>
+<% end %>
+
