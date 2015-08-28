@@ -23,7 +23,7 @@ class JobsController < ApplicationController
       @job_complete = true
     end
     @job_complete = false if Tender.where(job_id: @job.id).length == 0
-    # render text: @job_complete
+    # render text: @tenders.length
   end
 
   def new
