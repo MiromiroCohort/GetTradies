@@ -36,7 +36,8 @@ class JobsController < ApplicationController
       @job = Job.create(user_id: session[:user_id],
                         title: params[:job][:title],
                         location: params[:job][:location],
-                        description: params[:job][:description])
+                        description: params[:job][:description],
+                        photo_url: params[:job][:photo_url])
 
       redirect_to "/jobs"
     else

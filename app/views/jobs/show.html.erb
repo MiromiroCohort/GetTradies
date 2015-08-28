@@ -5,7 +5,11 @@
         <h3 class="panel-title"><%=@job.title%></h3>
       </div>
       <div class="panel-body">
-        <img src="/images/job_pic.png" class="img-responsive center-block">
+        <% if @job.photo_url != nil%>
+          <img src=<%= @job.photo_url%> class="img-responsive center-block " style="height:150px">
+        <% else%>
+          <img src="/images/job_pic.png" class="img-responsive center-block" style="height:150px">
+        <% end %>
         <p>Description: <%= @job.description %></p>
         <p>Location: <%=@job.location %></p>
         <% if !@job_complete %>
