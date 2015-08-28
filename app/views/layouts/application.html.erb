@@ -13,6 +13,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <%= javascript_include_tag 'application' %>
 
   </head>
@@ -25,9 +26,6 @@
         <div class="xs-center sm-pull-right ">
           <% if !session[:user_id] %>
             <%= render '/sessions/new.html.erb' %>
-            <% if !new_user_path %>
-              <%= link_to 'Or sign up', new_user_path, method: :get, class:"btn btn-primary btn-block" %>
-            <% end %>
           <% else %>
             <%= render '/sessions/end.html.erb' %>
             <%= render '/jobs/post.html.erb' %>
