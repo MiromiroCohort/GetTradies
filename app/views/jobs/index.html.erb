@@ -20,7 +20,7 @@
             <% end %>
           </div>
           <div class="panel-body">
-            <img src="/images/job_pic.png">
+            <%= image_tag job.image.url(:thumb) %>
             <p>Description: <%= job.short_desc %></p>
             <p>Location: <%=job.location %> </p>
             <%= link_to 'More info', job_path(job.id), method: :get, class:"btn btn-info" %>

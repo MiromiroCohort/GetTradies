@@ -31,14 +31,10 @@ class JobsController < ApplicationController
   end
 
   def create
-
+    puts user_id = session[:user_id]
     if session[:user_id]
-      @job = Job.create(user_id: session[:user_id],
-                        title: params[:job][:title],
-                        location: params[:job][:location],
-                        description: params[:job][:description],
-                        photo_url: params[:job][:photo_url])
-
+      @job = Job.create(create_job_params)
+      @job.update(:user_id => user_id)
       redirect_to "/jobs"
     else
       render text: "Please <a href='/sessions/new'>log-in</a> if you'd like to post a job"
@@ -66,4 +62,14 @@ class JobsController < ApplicationController
     end
   end
 
+
+  private
+
+  def create_job_params
+    @user_id = 4
+    params.require(:job).permit(:title, :location, :description, :image)
+  end
+
 end
+
+

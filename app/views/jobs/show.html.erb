@@ -5,23 +5,15 @@
         <h3 class="panel-title"><%=@job.title%></h3>
       </div>
       <div class="panel-body">
-        <% if @job.photo_url != nil%>
-          <img src=<%= @job.photo_url%> class="img-responsive center-block " style="height:150px">
-        <% else%>
-          <img src="/images/job_pic.png" class="img-responsive center-block" style="height:150px">
-        <% end %>
+        <%= image_tag @job.image.url(:medium) %>
         <p>Description: <%= @job.description %></p>
         <p>Location: <%=@job.location %></p>
         <% if !@job_complete %>
-
           <% if @job.user == @current_user %>
-
             <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
-
             <% if @accepted_tender %>
               <a href="<%=@job.id%>/ratings/new" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
             <% end %>
-
             <% if @accepted_tender  %>
               <p>Tradie username: <%= User.find(@accepted_tender.user_id).username %></p>
               <p>Tradie rating: <%= User.find(@accepted_tender.user_id).rating %></p>
