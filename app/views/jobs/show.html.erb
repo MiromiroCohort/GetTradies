@@ -48,8 +48,18 @@
 
           <% if @accepted_tender%>
             <p>Job complete. Job rating: <%= @accepted_tender.rating  %></p>
+            <%if !@accepted_tender.comment%>
+              <h2>Leave a comment:</h2>
+              <%= form_for @accepted_tender do |f| %>
+                <%= f.text_area :comment %><br />
+                <%= f.submit %>
+              <% end %>
+            <%else%>
+              <p>Your Comment: <%= @accepted_tender.comment%> </p>
+            <%end%>
+
           <%else%>
-            <p>Open Tender Job closed? ERROR</p>
+            <p>I am error</p>
           <%end%>
 
 

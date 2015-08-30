@@ -19,14 +19,15 @@ ActiveRecord::Schema.define(version: 20150829042610) do
   create_table "jobs", force: :cascade do |t|
     t.integer  "user_id"
     t.decimal  "price"
-    t.string   "location",           null: false
+    t.string   "location",                           null: false
     t.string   "job_type"
     t.string   "title"
     t.text     "description"
     t.string   "photo_url"
     t.datetime "paid_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "completed",          default: false, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150829042610) do
     t.integer  "job_id"
     t.boolean  "accepted",   default: false, null: false
     t.integer  "rating"
+    t.text     "comment"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
