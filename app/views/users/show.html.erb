@@ -35,8 +35,11 @@
         <span class="col-xs-5 col-sm-3 col-md-2">Description:</span>
         <span class="col-xs-7 col-sm-9 col-md-10"><%= @user.description %></span>
       </p>
+
     <% end %>
-    <%=link_to "Edit profile", edit_user_path(@user), class:"btn btn-warning" %>
+    <% if @user.id == session[:user_id] %>
+      <%=link_to "Edit profile", edit_user_path(@user), class:"btn btn-warning" %>
+    <%end%>
   <% end %>
   <% if @user.tenders %>
     <%=link_to "See #{@user.username} tenders", user_tenders_path(@user), class:"btn btn-info" %>
@@ -44,4 +47,15 @@
   <% if @user.jobs %>
     <%=link_to "See #{@user.username} jobs", user_jobs_path(@user), class:"btn btn-info" %>
   <% end %>
+    <% if @user.profession != "customer" %>
+      <p class="row">
+        <span class="col-xs-5 col-sm-3 col-md-2">Comments for this Tradie:</span>
+      </p>
+      <% Tender.where(user_id: @user.id).each do |tender| %>
+        <%if tender.accepted && tender.comment%>
+          <p>"<%= tender.comment  %>", from user <%=User.find(Job.find(tender.job_id).user_id).username%></p>
+        <%end%>
+      <%end%>
+    <%end%>
+
 </div>
