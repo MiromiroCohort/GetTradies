@@ -2,10 +2,10 @@ class JobsController < ApplicationController
   def index
     @current_user = User.find_by_id(session[:user_id])
     @user_id = params[:user_id]
-    if !@user_id
-      @jobs = Job.all
+    if params[:search]
+      @jobs = Job.search(params[:search])
     else
-      @jobs = Job.where(user_id:@user_id)
+      @jobs = Job.all
     end
   end
 
@@ -66,7 +66,6 @@ class JobsController < ApplicationController
   private
 
   def create_job_params
-    @user_id = 4
     params.require(:job).permit(:title, :location, :description, :image)
   end
 
