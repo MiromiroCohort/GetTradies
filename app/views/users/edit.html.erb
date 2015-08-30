@@ -1,30 +1,49 @@
-
-<div class="users edit">
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
   <h2>Update user profile</h2>
-
-<%= form_for @user do |f| %>
-
-  <%= f.label :username  %>:
-  <%= f.text_field :username, required: true, placeholder: "Please enter your user name" %>
-  <%= f.label :given_name  %>:
-  <%= f.text_field :given_name, required: true, placeholder: "Please enter your given name" %><br />
-  <%= f.label :family_name  %>:
-  <%= f.text_field :family_name, required: true, placeholder: "Please enter your family name" %><br />
-  <%= f.label :email  %>:
-  <%= f.text_field :email, required: true, placeholder: "Please enter your email address" %><br />
-  <%= f.label :address  %>:
-  <%= f.text_field :address, required: true, placeholder: "Please enter your address" %><br />
-  <%= f.label :phone_number  %>:
-  <%= f.text_field :phone_number, required: true, placeholder: "Please enter your phone number" %><br />
-   <%= f.label :description  %>:
-  <%= f.text_area :description, required: true, placeholder: "Describe yourself and your skills" %><br />
-  <label>Only complete choose a profession if you wish to be listed as a tradie</label><br>
-  <%= f.label :profession  %>:<br>
-  <%= f.radio_button(:profession, "Builder") %> Builder <br>
-  <%= f.radio_button(:profession, "Electrician") %> Electrician <br>
-  <%= f.radio_button(:profession, "Plumber") %> Plumber <br>
-  <%= f.radio_button(:profession, "Painter") %> Painter <br>
-  <%= f.radio_button(:profession, "Plasterer") %> Plasterer <br>
-  <%= f.radio_button(:profession, "General Handy Man") %> General Handy Man <br>
-   <%= f.submit %>
-<% end %>
+  <%= image_tag @user.image.url(:medium) %>
+  <%= form_for(@user, html: { class: "form-horizontal"}) do |f| %>
+    <div class="form-group input-group">
+      <%= f.label :username, class: "form-label input-group-addon" %>
+      <%= f.text_field :username, required: true, placeholder: "Please enter your user name", class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :given_name, class: "form-label input-group-addon" %>
+      <%= f.text_field :given_name, required: true, placeholder: "Please enter your given name", class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :family_name, class: "form-label input-group-addon" %>
+      <%= f.text_field :family_name, required: true, placeholder: "Please enter your family name", class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :email, class: "form-label input-group-addon" %>
+      <%= f.text_field :email, required: true, placeholder: "Please enter your email address", class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :address, class: "form-label input-group-addon" %>
+      <%= f.text_field :address, required: true, placeholder: "Please enter your address", class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :phone_number, class: "form-label input-group-addon" %>
+      <%= f.text_field :phone_number, required: true, placeholder: "Please enter your phone number", class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :description, class: "form-label input-group-addon" %>
+      <%= f.text_area :description, required: true, placeholder: "Describe yourself and your skills", class: "form-control" %>
+    </div>
+      <div class="form-group input-group">
+        <%=f.label :image, class: "col-sm-2 control-label"%>
+      <div class="col-sm-10">
+        <%=f.file_field :image, class:"btn btn-primary btn-lg active" %>
+      </div>
+    </div>
+    <label>Only complete choose a profession if you wish to be listed as a tradie</label><br>
+    <%= f.label :profession  %>:<br>
+    <%= f.radio_button(:profession, "Builder") %> Builder <br>
+    <%= f.radio_button(:profession, "Electrician") %> Electrician <br>
+    <%= f.radio_button(:profession, "Plumber") %> Plumber <br>
+    <%= f.radio_button(:profession, "Painter") %> Painter <br>
+    <%= f.radio_button(:profession, "Plasterer") %> Plasterer <br>
+    <%= f.radio_button(:profession, "General Handy Man") %> General Handy Man <br>
+     <%= f.submit %>
+  <% end %>
+</div>

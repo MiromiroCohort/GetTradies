@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825020332) do
+ActiveRecord::Schema.define(version: 20150829042610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,18 @@ ActiveRecord::Schema.define(version: 20150825020332) do
   create_table "jobs", force: :cascade do |t|
     t.integer  "user_id"
     t.decimal  "price"
-    t.string   "location",    null: false
+    t.string   "location",           null: false
     t.string   "job_type"
     t.string   "title"
     t.text     "description"
     t.string   "photo_url"
     t.datetime "paid_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tenders", force: :cascade do |t|
@@ -42,15 +46,19 @@ ActiveRecord::Schema.define(version: 20150825020332) do
     t.string   "username"
     t.string   "given_name"
     t.string   "family_name"
-    t.string   "email",                              null: false
-    t.string   "profession",    default: "customer", null: false
+    t.string   "email",                                   null: false
+    t.string   "profession",         default: "customer", null: false
     t.string   "address"
     t.text     "description"
     t.decimal  "rates"
     t.string   "phone_number"
-    t.string   "password_hash",                      null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "password_hash",                           null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end
