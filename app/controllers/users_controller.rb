@@ -8,14 +8,15 @@ class UsersController < ApplicationController
        if user_signup_params[:password] == user_signup_params[:password_confirm]
         @user = User.new(user_signup_params)
         @user.save
-        UserMailer.welcome_email(@user).deliver_now
+        # UserMailer.welcome_email(@user).deliver_now
         session[:user_id] = @user.id
         redirect_to edit_user_path(@user)
        else
         redirect_to "/"
        end
     else
-      render text: "email already assigned to account. Please <a href='sessions/new'>log in.</a>"
+      flash[:notice] = "email already assigned to account. Please log in."
+      redirect_to '/'
     end
   end
 
