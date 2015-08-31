@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 feature "Jobs", :type => :feature do
   before(:each) do
     User.destroy_all
@@ -126,6 +127,22 @@ feature "Jobs", :type => :feature do
     visit jobs_path
     click_on 'More info'
     expect(page).to have_content("Ut enim ad minim veniam")
+  end
+end # End of Jobs feature
+
+
+feature "Sign up", :type => :feature do
+
+  scenario 'user can sign up' do
+    visit new_user_path
+    within_fieldset("signup") do
+      fill_in 'email', with: 'gin1@gmail.com'
+      fill_in 'password', with: 'mike'
+      fill_in 'password_confirm', with: 'mike'
+    end
+    click_on 'Sign up'
+
+    expect(page).to have_content("Update user profile")
   end
 end
 
