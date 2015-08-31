@@ -13,3 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$( ".toggleMap" ).on('click', function(){
+  $( ".map" ).toggle();
+});

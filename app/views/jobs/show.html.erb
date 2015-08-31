@@ -7,7 +7,7 @@
       <div class="panel-body">
         <%= image_tag @job.image.url(:medium) %>
         <p>Description: <%= @job.description %></p>
-        <p>Location: <%=@job.location %> <a href="">see on map</a></p>
+        <p>Location: <%=@job.location %></p>
         <div id="map<%=@job.id%>" class="map"></div>
         <script type="text/javascript">
           var map;
@@ -15,6 +15,25 @@
             map = new google.maps.Map(document.getElementById('map<%=@job.id%>'), {
                 center: {lat:-41.25, lng:174.75},
                 zoom: 10
+            });
+            var geocoder = new google.maps.Geocoder();
+            $(document).ready( function() {
+              geocodeAddress(geocoder, map);
+            });
+          }
+          function geocodeAddress(geocoder, resultsMap) {
+            var address = "<%=@job.location%>";
+            console.log(address);
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === google.maps.GeocoderStatus.OK) {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                  map: resultsMap,
+                  position: results[0].geometry.location
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
             });
           }
         </script>
