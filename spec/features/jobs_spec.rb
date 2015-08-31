@@ -12,7 +12,6 @@ feature "Jobs", :type => :feature do
     job.location="Quba street"
     job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     job.save!
-    # User.create(email: "email@email", password_hash: "pw")
   end
   after(:each) do
     User.destroy_all
@@ -169,61 +168,62 @@ feature "Show interest", :type => :feature do
     user1.password ='qwerty'
     user1.profession ='tradie'
     user1.save
+
     visit jobs_path
-    within_fieldset("login") do
       fill_in 'email', with: "gin2@gmail.com"
       fill_in 'password', with: 'qwerty'
-      # fill_in second 'password-confirm', with: "testPassword"
       click_on "Log in"
-    end
+
     visit jobs_path
-    click_on('Show Interest')
-    tender=Tender.last
-    job=Job.last
-    expect(page).to have_content("My jobs")
-    expect(tender.job_id).to eq(job.id)
-    expect(tender.user_id).to eq(user1.id)
+      click_on('Show interest')
+
+      tender=Tender.last
+      job=Job.last
+      expect(page).to have_content("My jobs")
+      expect(tender.job_id).to eq(job.id)
+      expect(tender.user_id).to eq(user1.id)
   end
-   scenario 'tradie can click on show interest button and will be redirected to his tenders' do
+
+  scenario 'tradie can click on show interest button and will be redirected to his tenders' do
     user1 = User.new
     user1.email = "gin2@gmail.com"
     user1.password ='qwerty'
     user1.profession ='tradie'
     user1.save
+
     visit jobs_path
-    within_fieldset("login") do
       fill_in 'email', with: "gin2@gmail.com"
       fill_in 'password', with: 'qwerty'
-      # fill_in second 'password-confirm', with: "testPassword"
       click_on "Log in"
-    end
+
     visit jobs_path
-    click_on('Show Interest')
-    expect(current_path).to eq(user_tenders_path(user1))
+      click_on('Show interest')
+      expect(current_path).to eq(user_tenders_path(user1))
   end
 
   scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
-   user1 = User.new
+    user1 = User.new
     user1.email = "gin2@gmail.com"
     user1.password ='qwerty'
     user1.save
+
     visit jobs_path
-    within_fieldset("login") do
       fill_in 'email', with: "gin2@gmail.com"
       fill_in 'password', with: 'qwerty'
-      # fill_in second 'password-confirm', with: "testPassword"
       click_on "Log in"
-    end
+
     visit jobs_path
-    click_link('Show Interest')
-    expect(page).to have_content("You need to be registered as a tradie to apply")
+      click_link('Show interest')
+      expect(page).to have_content("You need to be registered as a tradie to apply")
   end
+
    scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
     visit jobs_path
-    click_link('Show Interest')
+    click_link('Show interest')
     expect(page).to have_content("You should be logged in")
   end
-end
+end # End of show interest feature tests
+
 
 feature "See users jobs", :type => :feature do
 
@@ -240,9 +240,8 @@ feature "See users jobs", :type => :feature do
     user.save
     user1.jobs.create location:"Quba street", description:"Dishwasher"
     user.jobs.create location:"Churchill Drive", description:"Oven"
-
-    # User.create(email: "email@email", password_hash: "pw")
   end
+
   after(:each) do
     User.destroy_all
     Job.destroy_all
@@ -256,6 +255,7 @@ feature "See users jobs", :type => :feature do
     expect(page).to have_no_content("Churchill")
     expect(page).to have_no_content("Oven")
   end
+
   scenario 'User can see particular users jobs' do
     user=User.last
     visit user_jobs_path(user)
@@ -264,8 +264,8 @@ feature "See users jobs", :type => :feature do
     expect(page).to have_content("Churchill")
     expect(page).to have_content("Oven")
   end
+end # End of see users jobs feature
 
-end
 feature "Delete own job", :type => :feature do
 
  before(:each) do
@@ -277,9 +277,8 @@ feature "Delete own job", :type => :feature do
     user1.save
     user1.jobs.create location:"Quba street", description:"Dishwasher"
     user1.jobs.create location:"Churchill Drive", description:"Oven"
-
-    # User.create(email: "email@email", password_hash: "pw")
   end
+
   after(:each) do
     User.destroy_all
     Job.destroy_all
@@ -287,20 +286,18 @@ feature "Delete own job", :type => :feature do
 
   scenario 'User can delete his jobs' do
     visit jobs_path
-    within_fieldset("login") do
       fill_in 'email', with: "gin1@gmail.com"
       fill_in 'password', with: 'qwerty'
-      # fill_in second 'password-confirm', with: "testPassword"
       click_on "Log in"
-    end
-    user=User.last
-    visit user_jobs_path(user)
-    first(:link, "Delete job").click
-    expect(page).to have_no_content("Quba street")
-    expect(page).to have_no_content("Dishwasher")
-    expect(page).to have_content("Churchill")
-    expect(page).to have_content("Oven")
-    expect(page).to have_content("Job deleted")
-  end
 
-end
+    user=User.last
+
+    visit user_jobs_path(user)
+      first(:link, "Delete job").click
+      expect(page).to have_no_content("Quba street")
+      expect(page).to have_no_content("Dishwasher")
+      expect(page).to have_content("Churchill")
+      expect(page).to have_content("Oven")
+      expect(page).to have_content("Job deleted")
+  end
+end # End of Delete own job feature
