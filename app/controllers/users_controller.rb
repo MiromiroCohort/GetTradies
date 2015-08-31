@@ -14,14 +14,17 @@ class UsersController < ApplicationController
           redirect_to edit_user_path(@user)
         else
           flash[:notice] = "Click the captcha, robut"
+          redirect_to '/'
         end
        else
         flash[:notice] = "password must match."
+        redirect_to '/'
        end
     else
       flash[:notice] = "email already assigned to account. Please log in."
+      redirect_to '/'
+
     end
-    redirect_to '/'
   end
 
   def index

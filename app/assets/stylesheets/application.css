@@ -14,16 +14,27 @@
  *= require_self
  */
 
+require jquery-star-rating
+
 @media screen and (max-width: 767px) {
   div.xs-center {
     float: none;
     text-align: center;
+  }
+  .input-group {
+    width: 100%;
+  }
+  .input-group .input-group-addon {
+    width:40%;
   }
 }
 
 @media screen and (min-width: 768px) {
   div.sm-pull-right {
     float: right;
+  }
+  iframe {
+    margin-left: 20%;
   }
 }
 
@@ -33,14 +44,45 @@
   }
   div.col-sm-6.job:nth-child(3n+1) {
     clear: none;
+
+  }
+
+  .input-group {
+    width: 100%;
+  }
+  .input-group .input-group-addon {
+    width:30%;
   }
 }
 
-@media screen and (min-width: 991px) {
-  div.col-md-4.job:nth-child(2n+1) {
-    clear: none;
+
+
+  iframe {
+    margin-left: auto;
   }
-  div.col-md-4.job:nth-child(3n+1) {
-    clear: both;
+
+
+  .input-group {
+    width: 100%;
   }
+  .input-group .input-group-addon {
+    width:20%;
+  }
+}
+
+.input-group .input-group-addon {
+  text-align: right;
+}
+
+.map {
+  height: 200px;
+  width: 200px;
+}
+
+.thumbnail {
+  width: 100%;
+}
+
+.btn-primary {
+  margin: 2px;
 }
