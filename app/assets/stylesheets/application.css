@@ -14,7 +14,6 @@
  *= require_self
  */
 
-require jquery-star-rating
 
 @media screen and (max-width: 767px) {
   div.xs-center {
@@ -61,14 +60,6 @@ require jquery-star-rating
     margin-left: auto;
   }
 
-
-  .input-group {
-    width: 100%;
-  }
-  .input-group .input-group-addon {
-    width:20%;
-  }
-}
 
 .input-group .input-group-addon {
   text-align: right;
