@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         if verify_recaptcha
           @user = User.new(user_signup_params)
           @user.save
-          # UserMailer.welcome_email(@user).deliver_now
+          UserMailer.welcome_email(@user).deliver_now
           session[:user_id] = @user.id
           redirect_to edit_user_path(@user)
         else
