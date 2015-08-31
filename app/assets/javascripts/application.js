@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 
-require jquery-star-rating
+
+$( ".toggleMap" ).on('click', function(){
+  $( ".map" ).toggle();
+});

@@ -21,6 +21,12 @@ require jquery-star-rating
     float: none;
     text-align: center;
   }
+  .input-group {
+    width: 100%;
+  }
+  .input-group .input-group-addon {
+    width:40%;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -41,23 +47,38 @@ require jquery-star-rating
 
   }
 
+  .input-group {
+    width: 100%;
+  }
+  .input-group .input-group-addon {
+    width:30%;
+  }
 }
 
-@media screen and (min-width: 991px) {
-  div.col-md-4.job:nth-child(2n+1) {
-    clear: none;
-  }
-  div.col-md-4.job:nth-child(3n+1) {
-    clear: both;
-  }
 
-}
 
   iframe {
     margin-left: auto;
   }
 
 
-.front-page-image {
-  max-width: 100%
+  .input-group {
+    width: 100%;
+  }
+  .input-group .input-group-addon {
+    width:20%;
+  }
+}
+
+.input-group .input-group-addon {
+  text-align: right;
+}
+
+.map {
+  height: 200px;
+  width: 200px;
+}
+
+.thumbnail {
+  width: 100%;
 }

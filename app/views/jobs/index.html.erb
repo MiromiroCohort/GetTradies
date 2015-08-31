@@ -1,4 +1,3 @@
-
 <div class="row">
   <% @jobs.each do |job| %>
     <%if !job.completed || @personal_list%>
@@ -13,20 +12,22 @@
               <% end %>
             </div>
             <div class="panel-body">
-              <%= image_tag job.image.url(:thumb), class: "front-page-image" %>
+
+              <%= image_tag job.image.url(:thumb), class: "thumbnail" %>
+
               <p>Description: <%= job.short_desc %></p>
               <p>Location: <%=job.location %> </p>
-              <%= link_to 'More info', job_path(job.id), method: :get, class:"btn btn-info" %>
+              <%= link_to 'More info', job_path(job.id), method: :get, class: "btn btn-info" %>
               <% if job.user == @current_user %>
-                <%= link_to 'Delete job', job_path(job), method: :delete, class:"btn btn-danger" %>
+                <%= link_to 'Delete job', job_path(job), method: :delete, class: "btn btn-danger" %>
               <% else %>
                 <% if (@current_user && !job.tenders.find_by_user_id(@current_user.id))||(!@current_user) %>
-                  <%= link_to 'Show interest', job_tenders_path(job), method: :post, class:"btn btn-primary" %>
+                  <%= link_to 'Show interest', job_tenders_path(job), method: :post, class: "btn btn-primary" %>
                 <% else %>
                   <!-- this shouldn't be a button - it should be a "tag" or notice on the job itself showing that the job has been tendered on -->
                   <%= link_to 'Applied job', job_path(job), class:"btn btn-warning" %>
                 <% end %>
-                <%= link_to "More jobs by this user", user_jobs_path(job.user) , class:"btn btn-primary" %>
+                <%= link_to "More jobs by this user", user_jobs_path(job.user) , class: "btn btn-primary" %>
               <% end %>
             </div>
           <% end %>
