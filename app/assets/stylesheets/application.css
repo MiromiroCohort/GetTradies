@@ -82,3 +82,7 @@ require jquery-star-rating
 .thumbnail {
   width: 100%;
 }
+
+.btn-primary {
+  margin: 2px;
+}
