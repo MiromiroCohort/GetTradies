@@ -24,10 +24,12 @@ feature "Jobs", :type => :feature do
     expect(page).to have_selector('form')
   end
 
-  scenario 'user can see show interest button' do
+  scenario 'user can see show, More info and More jobs by this user interest buttons' do
     visit jobs_path
 
     expect(page).to have_link('Show interest')
+    expect(page).to have_link('More info')
+    expect(page).to have_link('More jobs by this user')
   end
 
   scenario 'logged in user can progress a job posting' do
@@ -220,7 +222,7 @@ feature "Show interest", :type => :feature do
    scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
     visit jobs_path
     click_link('Show interest')
-    expect(page).to have_content("You should be logged in")
+    expect(page).to have_content("You need to be logged in to register interest in a job")
   end
 end # End of show interest feature tests
 
