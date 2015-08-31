@@ -66,3 +66,12 @@
 .input-group .input-group-addon {
   text-align: right;
 }
+
+.map {
+  height: 100px;
+  width: 100px;
+}
+
+.thumbnail {
+  width: 100%;
+}

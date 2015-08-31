@@ -28,6 +28,7 @@ class AddJobsTable < ActiveRecord::Migration
       t.text :description
       t.string :photo_url
       t.datetime :paid_at
+      t.boolean :completed, null: false, default: false
 
       t.timestamps null: false
     end
@@ -41,6 +42,7 @@ class AddJobsTable < ActiveRecord::Migration
       # t.integer :tradie_id, null: false
       t.boolean :accepted, null: false, default: false
       t.integer :rating
+      t.text :comment
 
       t.timestamps null: false
     end

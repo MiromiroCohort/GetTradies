@@ -7,8 +7,8 @@ class RatingsController < ApplicationController
   def create
     @tender = Tender.where(job_id: params[:job_id], accepted:true).first
     @tender.update(rating: params[:rating])
-
-    render text: "#{params} session= #{session[:user_id]} tender rating = #{@tender.rating}"
+    Job.find(@tender.job_id).update(completed: true)
+    redirect_to "/jobs/#{@tender.job_id}"
   end
 
 end

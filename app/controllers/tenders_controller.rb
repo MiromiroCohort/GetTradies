@@ -36,12 +36,17 @@ class TendersController < ApplicationController
   end
 
   def update
-    # render text: params
     tender = Tender.find(params[:id])
+    if params[:tender]
+      # render text: "this is what you're looking for: #{params[:tender][:comment]}"
+      tender.update(comment: params[:tender][:comment])
+      redirect_to "/jobs/#{tender.job_id}"
+    else
     job_tenders = Tender.where(job_id: tender.job_id)
     job_tenders.each { |job| job.update(accepted: false)}
     tender.update(accepted: true)
     redirect_to "/jobs/#{tender.job_id}"
+    end
   end
 
 end
