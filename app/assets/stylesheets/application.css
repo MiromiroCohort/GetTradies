@@ -14,6 +14,8 @@
  *= require_self
  */
 
+require jquery-star-rating
+
 @media screen and (max-width: 767px) {
   div.xs-center {
     float: none;
@@ -25,6 +27,9 @@
   div.sm-pull-right {
     float: right;
   }
+  iframe {
+    margin-left: 20%;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -33,7 +38,9 @@
   }
   div.col-sm-6.job:nth-child(3n+1) {
     clear: none;
+
   }
+
 }
 
 @media screen and (min-width: 991px) {
@@ -43,4 +50,14 @@
   div.col-md-4.job:nth-child(3n+1) {
     clear: both;
   }
+
+}
+
+  iframe {
+    margin-left: auto;
+  }
+
+
+.front-page-image {
+  max-width: 100%
 }
