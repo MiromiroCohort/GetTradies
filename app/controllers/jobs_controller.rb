@@ -11,6 +11,7 @@ class JobsController < ApplicationController
     else
       @jobs = Job.all
     end
+    render json: @jobs
   end
 
   def show
@@ -28,6 +29,8 @@ class JobsController < ApplicationController
     end
     @job_complete = false if Tender.where(job_id: @job.id).length == 0
     # render text: @tenders.length
+    hash_for_job_show={job:@job,accepted_tender: @accepted_tender,tenders: @tenders,job_complete:@job_complete}
+    render json: hash_for_job_show
   end
 
   def new
