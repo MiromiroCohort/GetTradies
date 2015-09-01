@@ -131,7 +131,7 @@ feature "Jobs", :type => :feature do
 end # End of Jobs feature
 
 
-feature "Sign up", :type => :feature do
+feature "Sign up and logout", :type => :feature do
 
   scenario 'user can sign up' do
     visit new_user_path
@@ -141,10 +141,47 @@ feature "Sign up", :type => :feature do
       fill_in 'password_confirm', with: 'mike'
     end
     click_on 'Sign up'
+      expect(page).to have_content("Update user profile")
+    click_on 'Logout'
+      expect(page).to have_content("user logged out")
+  end
+end # End of sign up and log out feature
 
-    expect(page).to have_content("Update user profile")
+
+feature "login and logout", :type => :feature do
+   before(:each) do
+    User.destroy_all
+    Job.destroy_all
+    user1 = User.new
+    user1.email="gin1@gmail.com"
+    user1.password='qwerty'
+    user1.save
+    job = Job.new
+    job.user = user1
+    job.location="Quba street"
+    job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    job.save!
+  end
+
+  after(:each) do
+    User.destroy_all
+    Job.destroy_all
+  end
+
+  scenario 'user can login and logout up' do
+
+    visit jobs_path
+    within_fieldset("login") do
+      fill_in 'email', with: 'gin1@gmail.com'
+      fill_in 'password', with: 'qwerty'
+    end
+    click_on 'Log in'
+      expect(page).to have_content('Quba street')
+    click_on 'Logout'
+      expect(page).to have_content("user logged out")
   end
 end
+
 
 
 feature "Post jobs", :type => :feature do
