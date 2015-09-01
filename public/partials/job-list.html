@@ -1,10 +1,10 @@
-    <div ng-repeat="job in jobs">
-      <p>Title: {{job.title}}</p>
-      <p>Description: {{job.description}}</p>
-      <p>Location: {{job.location}}</p>
-      <a href="#/jobs/{{job.id}}">More info</a>
-      <a href={{job.showInterestLink}}>Show interest</a>
-      <a href={{job.userJobsLink}}>More jobs by this user</a>
-    </div>
+<div ng-repeat="job in jobs">
+  <p>Title: {{job.title}}</p>
+  <p>Description: {{job.description}}</p>
+  <p>Location: {{job.location}}</p>
+  <a href="#/jobs/{{job.id}}">More info</a>
+  <a href="{{job.showInterestLink}}">Show interest</a>
+  <a href="#/users/{{job.job.user_id}}/jobs">More jobs by this user</a>
+</div>
 
 

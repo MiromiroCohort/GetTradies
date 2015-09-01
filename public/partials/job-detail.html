@@ -1,8 +1,9 @@
       <p>Title: {{job.job.title}}</p>
+      <img ng-src={{job.image}}>
       <p>Description: {{job.job.description}}</p>
       <p>Location: {{job.job.location}}</p>
       <a href={{job.showInterestLink}}>Show interest</a>
-      <a href={{job.userJobsLink}}>More jobs by this user</a>
+      <a href="#/users/{{job.job.user_id}}/jobs">More jobs by this user</a>
       <div ng-show="tradie">
         <p> </p>
         <p> You have accepted offer from </p>

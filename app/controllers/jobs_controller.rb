@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+
   def index
     @current_user = User.find_by_id(session[:user_id])
     @user_id = params[:user_id]
@@ -9,7 +10,7 @@ class JobsController < ApplicationController
       @personal_list = true
       @jobs = Job.where(user_id: params[:user_id])
     else
-      @jobs = Job.all
+      @jobs = Job.where(completed: false)
     end
     render json: @jobs
   end
@@ -29,7 +30,8 @@ class JobsController < ApplicationController
     end
     @job_complete = false if Tender.where(job_id: @job.id).length == 0
     # render text: @tenders.length
-    hash_for_job_show={job:@job,accepted_tender: @accepted_tender,tenders: @tenders,job_complete:@job_complete}
+    hash_for_job_show={job:@job,accepted_tender: @accepted_tender,tenders: @tenders,
+      job_complete:@job_complete, image:@job.image.url(:medium)}
     render json: hash_for_job_show
   end
 

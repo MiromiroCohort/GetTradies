@@ -43,6 +43,26 @@ class UsersController < ApplicationController
     else
       @user = User.find(session[:user_id])
     end
+      user_hash_to_json = {id:user.id}
+      if @user == @current_user
+        user_hash_to_json[:user] = @user
+      end
+      if @user.tenders
+        user_hash_to_json[:tenders] = true
+      end
+      if @user.jobs
+        user_hash_to_json[:jobs] = true
+      end
+      if @user.profession != customer
+        comments=[]
+        user.tenders.where(tender.accepted: true).each do |tender|
+          if tender.comment
+            comments << {comment:tender.comment,user: tender.job.user.username}
+          end
+        end
+        user_hash_to_json << comments if comments.length > 0
+      end
+      render json: user_hash_to_json
   end
 
   def edit
