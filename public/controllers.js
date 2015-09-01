@@ -19,7 +19,7 @@ getTradiesControllers.controller('JobDetailController', ['$scope','$routeParams'
 getTradiesControllers.controller('UserJobsController', ['$scope','$routeParams', 'UserJobs', function ($scope,$routeParams, UserJobs)
 {
   console.log($routeParams.user_id)
-   $scope.jobs = UserJobs.query({ user_id: $routeParams.jobId }, function() {
+   $scope.jobs = UserJobs.query({ user_id: $routeParams.user_id }, function() {
     console.log($scope.jobs);
     });
 }]);
