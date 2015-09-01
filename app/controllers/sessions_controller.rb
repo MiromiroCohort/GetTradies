@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def index
     if User.exists?(session[:user_id])
-      render text: "session id = #{session[:user_id]}"
+      render text: "session id = #{session[:user_id]}, user email = #{User.find(session[:user_id]).email}"
     else
       session[:user_id] = nil
       render text: "no user session"
