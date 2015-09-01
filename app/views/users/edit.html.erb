@@ -24,7 +24,7 @@
       <%= f.label :Address, class: "form-label input-group-addon" %>
       <select name="user[address]" class="form-control">
         <%@suburbs.each do |suburb|%>
-        <option value=<%=suburb%>><%=suburb%></option>
+        <option value="<%=suburb%>"><%=suburb%></option>
         <%end%>
       </select>
     </div>
