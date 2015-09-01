@@ -1,0 +1,13 @@
+<div ng-repeat="tender in tenders">
+  <p>Job title: {{tender.job.title}}  </p>
+  <p>Description: {{tender.job.description}}</p>
+  <p>Location :{{tender.job.location}} </p>
+  <div ng-show="tender.job.completed">
+   <p> Completed. </p>
+   <p ng-show="tender.tender.raiting">Rating on completion:  {{tender.tender.raiting}}</p>
+ </div>
+  <p ng-show="tender.email">Customer e-mail: {{tender.email}}</p>
+  <p ng-show="tender.phone">Customer phone: {{tender.phone}}</p>
+  <p ng-show="tender.tender.comment">Customer comment: {{tender.tender.comment}}  </p>
+</div>
+
