@@ -18,6 +18,10 @@ app.config(['$routeProvider',
         templateUrl: 'partials/job-detail.html',
         controller: 'JobDetailController'
       }).
+      when('/users/:userId/jobs', {
+        templateUrl: 'partials/job-list.html',
+        controller: 'UserJobsController'
+      }).
       otherwise({
         redirectTo: '/jobs'
       });

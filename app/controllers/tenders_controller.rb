@@ -3,11 +3,12 @@ class TendersController < ApplicationController
     @user = User.find_by_id params[:user_id]
     @current_user = User.find_by_id(session[:user_id])
     if !@user
+      error = "You misspelled the path"
       flash.alert = "You misspelled the path"
     else
        @tenders=Tender.where user_id:@user.id
     end
-
+    render json: {tenders:@tenders,error:error}
   end
 
   def create
