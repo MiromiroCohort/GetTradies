@@ -19,25 +19,25 @@ require 'rails_helper'
 # end # End of sign up and log out feature
 
 feature "Jobs", :type => :feature do
-    before(:each) do
-      prelim_initialization_for_all_tests
-    end
+  before(:each) do
+    prelim_initialization_for_all_tests
+  end
 
-    after(:each) do
-      destroy_user_and_job
-    end
+  after(:each) do
+    destroy_user_and_job
+  end
 
   scenario 'user visits post a job page' do
     visit '/jobs/new'
     expect(page).to have_content('Please describe your job here')
   end
 
-  scenario 'registered user can see existing jobs that are listed' do
+  scenario 'logged in user can see existing jobs that are listed' do
     visit '/jobs'
     expect(page).to have_content('Quba street')
   end
 
-  scenario 'registered user can progress a job posting' do
+  scenario 'logged in user can progress a job posting' do
     visit '/jobs/new'
     post_a_job
     expect(page).to have_content('Quba street')
@@ -95,134 +95,77 @@ feature "Jobs", :type => :feature do
 end # End of Jobs feature
 
 
-# feature "login and logout", :type => :feature do
-#    before(:each) do
-#     User.destroy_all
-#     Job.destroy_all
-#     sign_up
-#     job = Job.new
-#     job.user = user1
-#     job.location="Quba street"
-#     job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-#     job.save!
-#   end
+feature "Post jobs", :type => :feature do
 
-#   after(:each) do
-#     User.destroy_all
-#     Job.destroy_all
-#   end
+  before(:each) do
+      prelim_initialization_for_all_tests
+    end
 
-#   scenario 'user can login and logout up' do
+    after(:each) do
+      destroy_user_and_job
+    end
 
-#     visit '/users/new'
-#     within_fieldset("login") do
-#       fill_in 'email', with: 'gin1@gmail.com'
-#       fill_in 'password', with: 'mike'
-#     end
-#     click_on 'Log in'
-#       expect(page).to have_content('Quba street')
-#     click_on 'Logout'
-#       expect(page).to have_content("user logged out")
-#   end
-# end
+  scenario 'logged in user can open a post job page' do
+    visit '/jobs/new'
+    expect(page).to have_content("Please describe your job here")
+  end
+
+  scenario 'post job page has an Upload photo button' do
+    visit new_job_path
+    expect(page).to have_content("Title")
+  end
+
+end
 
 
+feature "Show interest", :type => :feature do
 
-# feature "Post jobs", :type => :feature do
+  before(:each) do
+    prelim_initialization_for_all_tests
+  end
 
-#   scenario 'logged user can open a post job page' do
-#     visit new_job_path
-#     expect(page).to have_content("Please describe your job here")
-#   end
+  after(:each) do
+    destroy_user_and_job
+  end
 
-#   scenario 'post job page has an Upload photo button' do
-#     visit new_job_path
-#     expect(page).to have_content("Title")
-#   end
+  scenario 'tradie can click on show interest button and will have that job applied' do
+    tender=Tender.last
+    job=Job.last
+    create_tradie_and_login
+    click_on('Show interest')
+    expect(page).to have_content("My jobs")
+    expect(tender.job_id).to eq(job.id)
+  end
 
-# end
+  scenario 'tradie can click on show interest button and will be redirected to his tenders' do
+    create_tradie_and_login
+    visit jobs_path
+    click_on('Show interest')
+    expect(page).to have_content('You successfully applied for a job')
+  end
 
+  # scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
+  #   user1 = User.new
+  #   user1.email = "gin2@gmail.com"
+  #   user1.password ='qwerty'
+  #   user1.save
 
-# feature "Show interest", :type => :feature do
-#   before(:each) do
-#     User.destroy_all
-#     Job.destroy_all
-#     user1 = User.new
-#     user1.email="gin1@gmail.com"
-#     user1.password='qwerty'
-#     user1.save
-#     job = Job.new
-#     job.user = user1
-#     # job.tradie_id=2
-#     job.location="Quba street"
-#     job.description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-#     job.save
-#   end
-#   after(:each) do
-#     User.destroy_all
-#     Job.destroy_all
-#   end
-#   scenario 'tradie can click on show interest button and will have that job applied' do
-#     user1 = User.new
-#     user1.email = "gin2@gmail.com"
-#     user1.password ='qwerty'
-#     user1.profession ='tradie'
-#     user1.save
+  #   visit jobs_path
+  #     fill_in 'email', with: "gin2@gmail.com"
+  #     fill_in 'password', with: 'qwerty'
+  #     click_on "Log in"
 
-#     visit jobs_path
-#       fill_in 'email', with: "gin2@gmail.com"
-#       fill_in 'password', with: 'qwerty'
-#       click_on "Log in"
+  #   visit jobs_path
+  #     click_link('Show interest')
+  #     expect(page).to have_content("You need to be registered as a tradie to apply")
+  # end
 
-#     visit jobs_path
-#       click_on('Show interest')
-
-#       tender=Tender.last
-#       job=Job.last
-#       expect(page).to have_content("My jobs")
-#       expect(tender.job_id).to eq(job.id)
-#       expect(tender.user_id).to eq(user1.id)
-#   end
-
-#   scenario 'tradie can click on show interest button and will be redirected to his tenders' do
-#     user1 = User.new
-#     user1.email = "gin2@gmail.com"
-#     user1.password ='qwerty'
-#     user1.profession ='tradie'
-#     user1.save
-
-#     visit jobs_path
-#       fill_in 'email', with: "gin2@gmail.com"
-#       fill_in 'password', with: 'qwerty'
-#       click_on "Log in"
-
-#     visit jobs_path
-#       click_on('Show interest')
-#       expect(current_path).to eq(user_tenders_path(user1))
-#   end
-
-#   scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
-#     user1 = User.new
-#     user1.email = "gin2@gmail.com"
-#     user1.password ='qwerty'
-#     user1.save
-
-#     visit jobs_path
-#       fill_in 'email', with: "gin2@gmail.com"
-#       fill_in 'password', with: 'qwerty'
-#       click_on "Log in"
-
-#     visit jobs_path
-#       click_link('Show interest')
-#       expect(page).to have_content("You need to be registered as a tradie to apply")
-#   end
-
-#    scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
-#     visit jobs_path
-#     click_link('Show interest')
-#     expect(page).to have_content("You need to be logged in to register interest in a job")
-#   end
-# end # End of show interest feature tests
+  #  scenario 'customer can click on "show interest button" and will have message that he should be registered as tradie' do
+  #   visit jobs_path
+  #   click_link('Show interest')
+  #   expect(page).to have_content("You need to be logged in to register interest in a job")
+  # end
+end # End of show interest feature tests
 
 
 # feature "See users jobs", :type => :feature do

@@ -15,7 +15,7 @@ RSpec.describe UsersHelper, type: :helper do
 end
 
 
-def create_user_and_job
+def create_user1_and_job
   User.destroy_all
   Job.destroy_all
   user1 = User.new
@@ -29,10 +29,28 @@ def create_user_and_job
   job.save!
 end
 
-def login
+def create_tradie
+  user2 = User.new
+  user2.email="gin2@gmail.com"
+  user2.password='qwerty'
+  user2.profession="Builder"
+  user2.save
+end
+
+
+def login_user1
   visit '/jobs'
   within_fieldset("login") do
     fill_in 'email', with: 'gin1@gmail.com'
+    fill_in 'password', with: 'qwerty'
+    click_on 'Log in'
+  end
+end
+
+def login_tradie
+  visit '/jobs'
+  within_fieldset("login") do
+    fill_in 'email', with: 'gin2@gmail.com'
     fill_in 'password', with: 'qwerty'
     click_on 'Log in'
   end
@@ -50,8 +68,8 @@ end
 # end
 
 def prelim_initialization_for_all_tests
-  create_user_and_job
-  login
+  create_user1_and_job
+  login_user1
 end
 
 def destroy_user_and_job
@@ -65,3 +83,11 @@ def post_a_job
   fill_in 'job[location]', with: 'placy place'
   click_on 'Post job'
 end
+
+def create_tradie_and_login
+  click_on 'Logout'
+  create_tradie
+  login_tradie
+  visit '/jobs'
+end
+

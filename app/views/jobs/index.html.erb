@@ -22,7 +22,7 @@
                 <%= link_to 'Delete job', job_path(job), method: :delete, class: "btn btn-danger" %>
               <% else %>
                 <% if (@current_user && !job.tenders.find_by_user_id(@current_user.id))||(!@current_user) %>
-                  <%= link_to 'Show interest', job_tenders_path(job), method: :post, class: "btn btn-primary" %>
+                  <%= link_to 'Show interest', job_tenders_path(job), method: :post, class: "btn btn-primary", value: "Show interest" %>
                 <% else %>
                   <!-- this shouldn't be a button - it should be a "tag" or notice on the job itself showing that the job has been tendered on -->
                   <%= link_to 'Applied job', job_path(job), class:"btn btn-warning" %>
