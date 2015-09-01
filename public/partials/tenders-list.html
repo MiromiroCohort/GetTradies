@@ -2,6 +2,7 @@
   <p>Job title: {{tender.job.title}}  </p>
   <p>Description: {{tender.job.description}}</p>
   <p>Location :{{tender.job.location}} </p>
+  <a href="#/jobs/{{tender.job.id}}">More info</a>
   <div ng-show="tender.job.completed">
    <p> Completed. </p>
    <p ng-show="tender.tender.raiting">Rating on completion:  {{tender.tender.raiting}}</p>
