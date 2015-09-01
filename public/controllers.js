@@ -25,6 +25,20 @@ getTradiesControllers.controller('UserJobsController', ['$scope','$routeParams',
 }]);
 
 
+getTradiesControllers.controller('UserTendersController', ['$scope','$routeParams', 'UserTenders', function ($scope,$routeParams, UserTenders)
+{
+  console.log($routeParams.user_id)
+   $scope.tenders = UserTenders.query({ user_id: $routeParams.user_id }, function() {
+    console.log($scope.tenders);
+     for(var i=0;i<$scope.tenders.length;i++)
+     {
+
+     }
+    });
+}]);
+
+
+
 
 var jobs=[{title:"dishwasher", description:"dishwasher", location:"Island Bay", id:1, moreLink: "jobs/1", showInterestLink:"/tenders", userJobsLink:"users/1/jobs" },
 {title:"boyler", description:"boyler", location:"Quba street", id:1, moreLink: "jobs/2", showInterestLink:"/tenders", userJobsLink:"users/1/jobs" }]

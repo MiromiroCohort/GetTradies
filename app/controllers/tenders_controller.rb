@@ -7,8 +7,18 @@ class TendersController < ApplicationController
       flash.alert = "You misspelled the path"
     else
        @tenders=Tender.where user_id:@user.id
+       tenders_to_json = []
+       @tenders.each do |tender|
+          tender_hash = {tender:tender,job:tender.job}
+
+          if tender.accepted && (tender.user_id == @current_user.id)
+            tender_hash[:email] = tender.job.user.email
+            tender_hash[:phone] = tender.job.user.phone_number
+          end
+          tenders_to_json << tender_hash
+       end
     end
-    render json: {tenders:@tenders,error:error}
+    render json: tenders_to_json
   end
 
   def create
