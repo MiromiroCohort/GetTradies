@@ -21,8 +21,12 @@
       <%= f.text_field :email, required: true, readonly: true, placeholder: "Please enter your email address", class: "form-control" %>
     </div>
     <div class="form-group input-group">
-      <%= f.label :address, class: "form-label input-group-addon" %>
-      <%= f.text_field :address, required: true, placeholder: "Please enter your address", class: "form-control" %>
+      <%= f.label :Address, class: "form-label input-group-addon" %>
+      <select name="user[address]" class="form-control">
+        <%@suburbs.each do |suburb|%>
+        <option value="<%=suburb%>"><%=suburb%></option>
+        <%end%>
+      </select>
     </div>
     <div class="form-group input-group">
       <%= f.label :phone_number, class: "form-label input-group-addon" %>

@@ -18,6 +18,8 @@ class TendersController < ApplicationController
         if !job.tenders.find_by_user_id(user.id)
           Tender.create(job:job,user:user)
           flash.notice = 'You successfully applied for a job'
+          url = request.base_url+ "/jobs/"+params[:job_id]
+          UserMailer.tender_created_email(User.find(job.user_id), url).deliver_now
           # render text: "My jobs"
         else
           flash.alert = "You already applied for this job"
@@ -45,6 +47,8 @@ class TendersController < ApplicationController
     job_tenders = Tender.where(job_id: tender.job_id)
     job_tenders.each { |job| job.update(accepted: false)}
     tender.update(accepted: true)
+    url = request.base_url+ "/jobs/"+tender.job_id.to_s
+    UserMailer.tender_accepted_email(User.find(tender.user_id), url).deliver_now
     redirect_to "/jobs/#{tender.job_id}"
     end
   end
