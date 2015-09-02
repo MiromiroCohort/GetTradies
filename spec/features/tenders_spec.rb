@@ -1,30 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Tenders", type: :feature do
- before(:each) do
-    User.destroy_all
-    Job.destroy_all
-    Tender.destroy_all
-    user1 = User.new
-    user1.email = "gin1@gmail.com"
-    user1.password ='qwerty'
-    user1.profession ='tradie'
-    user1.save
-    user = User.new
-    user.email = "gin2@gmail.com"
-    user.password = 'qwerty'
-    user.profession = 'tradie'
-    user.save
-    user1.jobs.create location:"Quba street", description:"Dishwasher"
-    job = user.jobs.create location:"Churchill Drive", description:"Oven"
-    job.tenders.create user:user1
-    # User.create(email: "email@email", password_hash: "pw")
+  before(:each) do
+    create_tenders
   end
 
   after(:each) do
-    User.destroy_all
-    Job.destroy_all
-    Tender.destroy_all
+    delete_db_enteries
   end
 
   scenario 'tradie can see a list of his tenders' do

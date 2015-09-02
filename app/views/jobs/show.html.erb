@@ -2,7 +2,12 @@
   <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @job.title %></h3>
+        <h3 class="panel-title">
+          <%= @job.title %>
+          <% if @job.user == current_user %>
+            <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-danger pull-right" %>
+          <% end %>
+        </h3>
       </div>
       <div class="panel-body">
         <%= image_tag @job.image.url(:medium), class: "thumbnail" %>
@@ -43,57 +48,66 @@
         <div class="actions">
           <% if !@job_complete %>
             <% if @job.user == current_user %>
-              <p>
-                <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-danger" %>
-              </p>
-              <% if @accepted_tender  %>
+              <% if @accepted_tender %>
                 <div class="panel panel-success">
                   <div class="panel-heading">
-                    <h4 class="panel-title">Currently selected tradie</h4>
+                    <h4 class="panel-title">Selected Tradie</h4>
                   </div>
-                  <p class="form-group input-group">
-                    <span class="form-label input-group-addon">Currently selected Tradie</span>
-                    <span class="form-control"><%= @accepted_tradie.username %></span>
-                  </p>
-                  <p class="form-group input-group">
-                    <span class="form-label input-group-addon">Their rating</span>
-                    <span class="form-control"><%= @accepted_tradie.rating %></span>
-                  </p>
-                  <p class="form-group input-group">
-                    <span class="form-label input-group-addon">Their email</span>
-                    <span class="form-control"><%= @accepted_tradie.email %></span>
-                  </p>
-                  <p class="form-group input-group">
-                    <span class="form-label input-group-addon">Their address</span>
-                    <span class="form-control"><%= @accepted_tradie.address %></span>
-                  </p>
-                  <p>
-                    <a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info">View Profile</a>
-                    <a href="<%=@job.id%>/ratings/new" class="btn btn-warning">Rate Job</a>
-                  </p>
+                  <div class="panel-body">
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Username</span>
+                      <span class="form-control"><%= @accepted_tradie.username %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Average Rating</span>
+                      <span class="form-control"><%= @accepted_tradie.rating %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Email</span>
+                      <span class="form-control"><%= @accepted_tradie.email %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Address</span>
+                      <span class="form-control"><%= @accepted_tradie.address %></span>
+                    </p>
+                    <p>
+                      <a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info">View Profile</a>
+                      <a href="<%=@job.id%>/ratings/new" class="btn btn-success">Rate Job</a>
+                    </p>
+                  </div>
+                </div>
               <% end %>
               <% @tendering_tradies.each do |tradie, tender| %>
-                <p class="form-group input-group">
-                  <span class="form-label input-group-addon">Tradie username</span>
-                  <span class="form-control"><%= tradie.username %></span>
-                </p>
-                <p class="form-group input-group">
-                  <span class="form-label input-group-addon">Tradie rating</span>
-                  <span class="form-control"><%= tradie.rating %></span>
-                </p>
-                <p class="form-group input-group">
-                  <span class="form-label input-group-addon">Tradie description</span>
-                  <span class="form-control"><%= tradie.description %></span>
-                </p>
-                <% if @tender_changeable %>
-                  <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-success" %>
-                <% end %>
+              <div class="col-xs-12 col-md-6">
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Tendering Tradie</h4>
+                  </div>
+                  <div class="panel-body">
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Username</span>
+                      <span class="form-control"><%= tradie.username %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Average Rating</span>
+                      <span class="form-control"><%= tradie.rating %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Description</span>
+                      <span class="form-control"><%= tradie.description %></span>
+                    </p>
+                    <% if @tender_changeable %>
+                      <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-warning btn-block" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
               <% end %>
             <% else %>
               <% if (current_user && !@job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
                 <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-success" %>
               <% else %>
-                <%= link_to 'Applied to job', job_path(@job), class:"btn btn-warning" %>
+                <%= link_to 'You have an active tender on this job', job_path(@job), class:"btn btn-warning" %>
               <% end %>
             <%end%>
           <% else %>
