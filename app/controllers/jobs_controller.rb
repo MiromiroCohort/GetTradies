@@ -35,7 +35,11 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new
+    if @current_user = User.find_by_id(session[:user_id])
+      @job = Job.new
+    else
+      redirect_to "/jobs"
+    end
   end
 
   def create
@@ -53,8 +57,6 @@ class JobsController < ApplicationController
   def destroy
     @current_user = User.find_by_id(session[:user_id])
     job = Job.find_by_id(params[:id])
-    # p @current_user
-    # p params
     if @current_user && job
       if (@current_user == job.user)
         job.destroy
