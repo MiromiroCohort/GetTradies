@@ -38,8 +38,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(session[:user_id])
-    @current_user = User.find_by_id(session[:user_id])
     if params[:id] != "show"
       if User.exists?(params[:id])
         @user = User.find(params[:id])
@@ -56,7 +54,6 @@ class UsersController < ApplicationController
         @user_comments[comment] = User.find(Job.find(tender.job_id).user_id).username
       end
     end
-    # render text: @user_comments
   end
 
   def edit
@@ -65,7 +62,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @current_user = User.find_by_id(session[:user_id])
     if @user = User.find(params[:id])
       @id = @user.id.to_s
       @user.update_attributes(user_update_params)

@@ -22,7 +22,7 @@
             });
           }
           function geocodeAddress(geocoder, resultsMap) {
-            var address = "<%=@job.location%>";
+            var address = "<%=@job.location%>, Wellington";
             console.log(address);
             geocoder.geocode({'address': address}, function(results, status) {
               if (status === google.maps.GeocoderStatus.OK) {
@@ -39,34 +39,34 @@
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCX3bWAIQcrG0_Yg-HZV_5BeUTiaNvcAE&callback=initMap"></script>
         <% if !@job_complete %>
-          <% if @job.user == @current_user %>
+          <% if @job.user == current_user %>
             <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
             <% if @accepted_tender %>
               <a href="<%=@job.id%>/ratings/new" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
             <% end %>
             <% if @accepted_tender  %>
               <p>Tradie username: <%= @accepted_tradie.username %></p>
-              <p>Tradie rating: <%= accepted_tradie.rating %></p>
-              <p>Tradie email: <%= accepted_tradie.email %></p>
-              <p>Tradie address: <%= accepted_tradie.address %></p>
+              <p>Tradie rating: <%= @accepted_tradie.rating %></p>
+              <p>Tradie email: <%= @accepted_tradie.email %></p>
+              <p>Tradie address: <%= @accepted_tradie.address %></p>
               <p class="btn btn-success btn-sm">Accepted</p><a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info btn-sm">View Profile</a>
             <% end %>
 
-            <% if @tenders%>
+
               <% @tendering_tradies.each do |tradie, tender| %>
                 <br>
                 <p>Tradie username: <%= tradie.username %></p>
                 <p>Tradie rating: <%= tradie.rating %></p>
                 <p>Tradie description: <%= tradie.description %></p>
                 <% if @tender_changeable %>
-                  <%= link_to 'Accept Tender', tender_path(tender.id), method: :patch, class:"btn btn-info" %>
+                  <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-info" %>
                 <% end %>
               <% end %>
-            <%end%>
+
 
           <% else %>
 
-            <% if (@current_user && !@job.tenders.find_by_user_id(@current_user.id))||(!@current_user) %>
+            <% if (current_user && !@job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
               <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
             <% else %>
               <%= link_to 'Applied to job', job_path(@job), class:"btn btn-primary btn-lg btn-interest" %>
