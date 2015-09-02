@@ -41,7 +41,7 @@ feature "Jobs", :type => :feature do
 
   scenario 'user can see job description' do
     visit jobs_path
-    expect(page).to have_content('Job Description')
+    expect(page).to have_content('new job')
   end
 
   scenario 'user can see location' do
