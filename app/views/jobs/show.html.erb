@@ -2,19 +2,21 @@
   <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><%=@job.title%></h3>
+        <h3 class="panel-title"><%= @job.title %></h3>
       </div>
       <div class="panel-body">
-        <%= image_tag @job.image.url(:medium) %>
-        <p>Description: <%= @job.description %></p>
-        <p>Location: <%=@job.location %></p>
-        <div id="map<%=@job.id%>" class="map"></div>
+        <%= image_tag @job.image.url(:medium), class: "thumbnail" %>
+        <h4>Description</h4>
+        <p><%= @job.description %><br /></p>
+        <h4>Location</h4>
+        <p><%=@job.location %></p>
+        <div id="map<%=@job.id%>" class="map thumbnail"></div>
         <script type="text/javascript">
           var map;
           function initMap() {
             map = new google.maps.Map(document.getElementById('map<%=@job.id%>'), {
                 center: {lat:-41.25, lng:174.75},
-                zoom: 10
+                zoom: 13
             });
             var geocoder = new google.maps.Geocoder();
             $(document).ready( function() {
@@ -38,64 +40,78 @@
           }
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCX3bWAIQcrG0_Yg-HZV_5BeUTiaNvcAE&callback=initMap"></script>
-        <% if !@job_complete %>
-          <% if @job.user == current_user %>
-            <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-primary btn-lg btn-interest" %>
-            <% if @accepted_tender %>
-              <a href="<%=@job.id%>/ratings/new" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
-            <% end %>
-            <% if @accepted_tender  %>
-              <p>Tradie username: <%= @accepted_tradie.username %></p>
-              <p>Tradie rating: <%= @accepted_tradie.rating %></p>
-              <p>Tradie email: <%= @accepted_tradie.email %></p>
-              <p>Tradie address: <%= @accepted_tradie.address %></p>
-              <p class="btn btn-success btn-sm">Accepted</p><a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info btn-sm">View Profile</a>
-            <% end %>
-
-
+        <div class="actions">
+          <% if !@job_complete %>
+            <% if @job.user == current_user %>
+              <p>
+                <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-danger" %>
+              </p>
+              <% if @accepted_tender  %>
+                <div class="panel panel-success">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Currently selected tradie</h4>
+                  </div>
+                  <p class="form-group input-group">
+                    <span class="form-label input-group-addon">Currently selected Tradie</span>
+                    <span class="form-control"><%= @accepted_tradie.username %></span>
+                  </p>
+                  <p class="form-group input-group">
+                    <span class="form-label input-group-addon">Their rating</span>
+                    <span class="form-control"><%= @accepted_tradie.rating %></span>
+                  </p>
+                  <p class="form-group input-group">
+                    <span class="form-label input-group-addon">Their email</span>
+                    <span class="form-control"><%= @accepted_tradie.email %></span>
+                  </p>
+                  <p class="form-group input-group">
+                    <span class="form-label input-group-addon">Their address</span>
+                    <span class="form-control"><%= @accepted_tradie.address %></span>
+                  </p>
+                  <p>
+                    <a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info">View Profile</a>
+                    <a href="<%=@job.id%>/ratings/new" class="btn btn-warning">Rate Job</a>
+                  </p>
+              <% end %>
               <% @tendering_tradies.each do |tradie, tender| %>
-                <br>
-                <p>Tradie username: <%= tradie.username %></p>
-                <p>Tradie rating: <%= tradie.rating %></p>
-                <p>Tradie description: <%= tradie.description %></p>
+                <p class="form-group input-group">
+                  <span class="form-label input-group-addon">Tradie username</span>
+                  <span class="form-control"><%= tradie.username %></span>
+                </p>
+                <p class="form-group input-group">
+                  <span class="form-label input-group-addon">Tradie rating</span>
+                  <span class="form-control"><%= tradie.rating %></span>
+                </p>
+                <p class="form-group input-group">
+                  <span class="form-label input-group-addon">Tradie description</span>
+                  <span class="form-control"><%= tradie.description %></span>
+                </p>
                 <% if @tender_changeable %>
-                  <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-info" %>
+                  <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-success" %>
                 <% end %>
               <% end %>
-
-
-          <% else %>
-
-            <% if (current_user && !@job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
-              <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-primary btn-lg btn-interest" %>
             <% else %>
-              <%= link_to 'Applied to job', job_path(@job), class:"btn btn-primary btn-lg btn-interest" %>
-            <% end %>
-
-
-          <%end%>
-
-        <% else %>
-
-          <% if @accepted_tender%>
-            <p>Job complete. Job rating: <%= @accepted_tender.rating  %></p>
-            <%if !@accepted_tender.comment%>
-              <h2>Leave a comment:</h2>
-              <%= form_for @accepted_tender do |f| %>
-                <%= f.text_area :comment %><br />
-                <%= f.submit %>
+              <% if (current_user && !@job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
+                <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-success" %>
+              <% else %>
+                <%= link_to 'Applied to job', job_path(@job), class:"btn btn-warning" %>
               <% end %>
-            <%else%>
-              <p>Your Comment: <%= @accepted_tender.comment%> </p>
             <%end%>
-
-          <%else%>
-            <p>I am error</p>
-          <%end%>
-
-
-      <% end %>
-
+          <% else %>
+            <% if @accepted_tender%>
+              <p>Job complete. Job rating: <%= @accepted_tender.rating  %></p>
+              <% if !@accepted_tender.comment %>
+                <h2>Leave a comment:</h2>
+                <%= form_for @accepted_tender do |f| %>
+                  <%= f.text_area :comment %><br />
+                  <%= f.submit %>
+                <% end %>
+              <% else %>
+                <p>Your Comment: <%= @accepted_tender.comment%> </p>
+              <% end %>
+            <% else %>
+              <p>I am error</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
