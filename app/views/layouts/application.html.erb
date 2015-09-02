@@ -15,8 +15,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <%= javascript_include_tag 'application' %>
 
+    <link rel="shortcut icon" type="image/ico" href="/images/get_tradie_favicon.ico"/>
+
   </head>
-  <link rel="shortcut icon" type="image/ico" href="/images/get_tradie_favicon.ico"/>
   <body class="container">
     <nav id ="navbar" class="navbar navbar-default">
       <div class="navbar-header">
@@ -26,24 +27,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <h1>
-          <%= link_to "Get Tradies", jobs_path, class:"navbar-brand" %>
-        </h1>
+        <%= link_to "", jobs_path, class: "navbar-brand" %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav">
+          <li>
+            <%= form_tag(jobs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Jobs" %>
+              <button class="btn glyphicon glyphicon-search" type="submit"><span class="sr-only">Search</span></button>
+            <% end %>
+          </li>
           <%= render '/sessions/new.html.erb' %>
           <%= render '/jobs/post.html.erb' %>
           <%= render '/users/profile.html.erb' %>
           <%= render '/sessions/end.html.erb' %>
         </ul>
       </div>
-      <%= form_tag(jobs_path, :method => "get", class: "", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], class: "", placeholder: "Search Jobs" %>
-        <button class="btn glyphicon glyphicon-search" type="submit"><span class="sr-only">Search</span></button>
-      <% end %>
     </nav>
-
     <main class="row">
 
       <% if flash.alert %>
@@ -65,6 +65,5 @@
       <%= yield %>
 
     </main>
-
   </body>
 </html>
