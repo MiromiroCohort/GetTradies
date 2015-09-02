@@ -6,15 +6,25 @@ class UsersController < ApplicationController
   def create
     if !User.find_by_email(user_signup_params[:email])
        if user_signup_params[:password] == user_signup_params[:password_confirm]
-        @user = User.new(user_signup_params)
-        @user.save
-        session[:user_id] = @user.id
-        redirect_to edit_user_path(@user)
+        if verify_recaptcha
+          @user = User.new(user_signup_params)
+          @user.save
+          url = request.base_url
+          UserMailer.welcome_email(@user, url).deliver_now
+          session[:user_id] = @user.id
+          redirect_to edit_user_path(@user)
+        else
+          flash[:notice] = "Click the captcha, robut"
+          redirect_to '/'
+        end
        else
-        redirect_to "/"
+        flash[:notice] = "password must match."
+        redirect_to '/'
        end
     else
-      render text: "email already assigned to account. Please <a href='sessions/new'>log in.</a>"
+      flash[:notice] = "email already assigned to account. Please log in."
+      redirect_to '/'
+
     end
   end
 
@@ -37,6 +47,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @suburbs = ['Te Aro', 'Karori', 'Newtown', 'Island Bay', 'Kelburn', 'Kilbirnie', 'Khandallah', 'Hataitai', 'Miramar', 'Brooklyn', 'Petone', 'Johnsonville', 'Lyall Bay', 'Mount Cook', 'Mount Victoria', 'Oriental Bay', 'Seatoun', 'Thorndon']
     @user = User.find(session[:user_id])
   end
 
@@ -46,8 +57,7 @@ class UsersController < ApplicationController
       @id = @user.id.to_s
       @user.update_attributes(user_update_params)
       flash[:notice] = "Your profile has been successfully updated"
-      # redirect_to(:action => 'show', :id => @user.id)
-      redirect_to '/users/'+ @id + '/jobs/new'
+      redirect_to jobs_path
     else
       render('edit')
     end
@@ -68,7 +78,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:username, :given_name, :family_name, :email, :address, :phone_number, :profession, :description)
+    params.require(:user).permit(:username, :given_name, :family_name, :email, :address, :phone_number, :profession, :description, :image)
   end
 
 end

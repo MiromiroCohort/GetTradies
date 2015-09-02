@@ -1,5 +1,5 @@
 <form method="post" action="/users" class="form-horizontal col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-  <fieldset>
+  <fieldset id="signup">
     <legend class="sr-only">Sign up</legend>
     <div class="form-group">
         <label for="email" class="control-label sr-only">Email:</label>
@@ -11,9 +11,12 @@
     </div>
     <div class="form-group">
         <label for="password_confirm" class="control-label sr-only">Confirm password:</label>
-        <input id="password_confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required class="form-control" />
+        <input id="password_confirm" name="password_confirm" type="password" placeholder="Please re-enter your password" required class="form-control" /><br>
+    <%= recaptcha_tags %>
     </div>
     <input type="submit" value="Sign up" class="btn btn-success form-control">
   </fieldset>
 </form>
+
+
 

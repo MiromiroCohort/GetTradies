@@ -2,10 +2,14 @@ class JobsController < ApplicationController
   def index
     @current_user = User.find_by_id(session[:user_id])
     @user_id = params[:user_id]
-    if !@user_id
-      @jobs = Job.all
+    @personal_list = false
+    if params[:search]
+      @jobs = Job.search(params[:search])
+    elsif params[:user_id]
+      @personal_list = true
+      @jobs = Job.where(user_id: params[:user_id])
     else
-      @jobs = Job.where(user_id:@user_id)
+      @jobs = Job.all
     end
   end
 
@@ -27,18 +31,18 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new
+    if @current_user = User.find_by_id(session[:user_id])
+      @job = Job.new
+    else
+      redirect_to "/jobs"
+    end
   end
 
   def create
-
+    puts user_id = session[:user_id]
     if session[:user_id]
-      @job = Job.create(user_id: session[:user_id],
-                        title: params[:job][:title],
-                        location: params[:job][:location],
-                        description: params[:job][:description],
-                        photo_url: params[:job][:photo_url])
-
+      @job = Job.create(create_job_params)
+      @job.update(:user_id => user_id)
       redirect_to "/jobs"
     else
       render text: "Please <a href='/sessions/new'>log-in</a> if you'd like to post a job"
@@ -49,8 +53,6 @@ class JobsController < ApplicationController
   def destroy
     @current_user = User.find_by_id(session[:user_id])
     job = Job.find_by_id(params[:id])
-    # p @current_user
-    # p params
     if @current_user && job
       if (@current_user == job.user)
         job.destroy
@@ -66,4 +68,13 @@ class JobsController < ApplicationController
     end
   end
 
+
+  private
+
+  def create_job_params
+    params.require(:job).permit(:title, :location, :description, :image)
+  end
+
 end
+
+
