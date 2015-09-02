@@ -7,6 +7,7 @@ def create_user1_and_job
   user1.save
   job = Job.new
   job.user = user1
+  job.title = "new job"
   job.location = "Quba street"
   job.description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   job.save!
@@ -67,6 +68,7 @@ def destroy_user_and_job
 end
 
 def post_a_job
+  page.attach_file('job[image]', Rails.root + 'spec/Fixtures/cat.jpg')
   fill_in 'job[title]', with: 'title'
   fill_in 'job[description]', with: 'jobby job'
   fill_in 'job[location]', with: 'placy place'

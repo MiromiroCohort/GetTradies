@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Jobs", :type => :feature do
+feature "jobs", :type => :feature do
   before(:each) do
     prelim_initialization_for_all_tests
   end
@@ -41,7 +41,7 @@ feature "Jobs", :type => :feature do
 
   scenario 'user can see job description' do
     visit jobs_path
-    expect(page).to have_content('Job Description')
+    expect(page).to have_content('new job')
   end
 
   scenario 'user can see location' do
@@ -77,7 +77,7 @@ feature "Jobs", :type => :feature do
 end # End of Jobs feature
 
 
-feature "Post a job", :type => :feature do
+feature "sost a job", :type => :feature do
 
   before(:each) do
       prelim_initialization_for_all_tests
@@ -99,7 +99,7 @@ feature "Post a job", :type => :feature do
 end # End of post job feature
 
 
-feature "Show interest in a job", :type => :feature do
+feature "show interest in a job", :type => :feature do
 
   before(:each) do
     prelim_initialization_for_all_tests
@@ -135,7 +135,7 @@ feature "Show interest in a job", :type => :feature do
 end # End of show interest feature tests
 
 
-feature "See users jobs", :type => :feature do
+feature "see users jobs", :type => :feature do
 
   before(:each) do
       prelim_initialization_for_all_tests
@@ -145,15 +145,13 @@ feature "See users jobs", :type => :feature do
     destroy_user_and_job
   end
 
-  scenario 'User can see particular users jobs' do
+  scenario 'user can see particular users jobs' do
     expect(page).to have_content("Quba street")
     expect(page).to have_content("Lorem ipsum dolor")
-    expect(page).to have_no_content("Churchill")
-    expect(page).to have_no_content("Oven")
   end
 end # End of see users jobs feature
 
-feature "Delete a job", :type => :feature do
+feature "delete a job", :type => :feature do
 
   before(:each) do
       prelim_initialization_for_all_tests
@@ -163,7 +161,7 @@ feature "Delete a job", :type => :feature do
     destroy_user_and_job
   end
 
-  scenario 'User can delete his jobs' do
+  scenario 'user can delete their jobs' do
     click_on 'My jobs'
     click_on 'Delete job'
     expect(page).to have_no_content("Quba street")
