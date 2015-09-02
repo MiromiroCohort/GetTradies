@@ -17,7 +17,7 @@ RSpec.feature "Unregistered user access to features", type: :feature do
     expect(page).to have_link('Or sign up')
   end
 
-  scenario 'a user can see more info of a job' do
+  scenario 'user can see more info of a job' do
     create_user1_and_job
     visit jobs_path
     click_on 'More info'
