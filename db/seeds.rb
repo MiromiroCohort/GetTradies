@@ -13,6 +13,24 @@ descriptions2 = descriptions.shuffle
 
 # add customers
 10.times do |i|
+ User.create(username: user_names[i],
+             given_name: first_names[i],
+             family_name: last_names[i],
+             email: emails[i],
+             address: addresses[i],
+             description: descriptions[i],
+             password_hash: user_names[i])
+end
+# add tradies
+10.times do |i|
+ User.create(username: user_names2[i],
+             given_name: first_names2[i],
+             family_name: last_names2[i],
+             email: emails2[i],
+             profession: ['builder','plumber','electrician', 'handy man', 'plasterer', 'painter', 'gardener'].sample,
+             address: addresses[i],
+             description: descriptions2[i],
+             password_hash: user_names2[i])
   User.create(username: user_names[i],
               given_name: first_names[i],
               family_name: last_names[i],
@@ -32,13 +50,18 @@ end
               description: descriptions2[i],
               password_hash: user_names2[i])
 end
-
 prices = [33.33,11.11,44.44,55.55,99.99,56.78,54.32,87.90,12.22,41.56]
 job_description = ["running", "gunning", "sunning", "bunning", "cunning", "hunning", "zunning", "lunning", "munning", "eunning"]
 titles = ["flight", "fight", "fright", "might", "white", "kite", "gite", "slight", "dite", "wright"]
 
 # add jobs
 10.times do |i|
+ Job.create(user_id: rand(1..10),
+            price: prices[i],
+            location: ['Newtown', 'Te Aro', 'Karori', 'Johnsonville', 'Petone', 'Seatoun', 'Island Bay', 'Khandala', 'Kelburn'].sample,
+            job_type: ['Building', 'Plumbing', 'Electical', 'Gardening', 'Painting', 'General Handy Work', 'Plastering'].sample,
+            title: titles[i],
+            description: job_description[i])
   Job.create(user_id: rand(1..10),
              price: prices[i],
              location: ['Newtown', 'Te Aro', 'Karori', 'Johnsonville', 'Petone', 'Seatoun', 'Island Bay', 'Khandala', 'Kelburn'].sample,
@@ -53,6 +76,3 @@ end
                 user_id: rand(11..20),
                 comment: descriptions.sample)
 end
-
-
-
