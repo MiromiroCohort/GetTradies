@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :tenders
   attr_accessor :password_confirm
 
-   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ":styles/get_tradie.png"
+   has_attached_file :image, styles: { medium: "800x8git00>", thumb: "300x300>" }, default_url: ":styles/get_tradie.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_attachment_size :image, less_than: 2.megabytes
 

@@ -72,6 +72,9 @@ h1 {
   padding: 10px;
 }
 
+.tradie-thumb {
+  max-width: 22%
+}
 
 /* not sure who put this in here or why */
 .btn-primary {

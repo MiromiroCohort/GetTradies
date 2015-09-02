@@ -18,8 +18,12 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
     <div class="form-group input-group">
-      <%= f.label :location, class: "control-label input-group-addon" %>
-      <%= f.text_field :location, class: "form-control" %>
+      <%= f.label :address, class: "form-label input-group-addon" %>
+      <select name="job[location]" class="form-control">
+        <% @suburbs.each do |suburb| %>
+          <option value="<%= suburb %>"><%= suburb %></option>
+        <% end %>
+      </select>
     </div>
     <div class="form-group input-group">
       <%= f.submit "Post job", class: "btn btn-success btn-block"  %>

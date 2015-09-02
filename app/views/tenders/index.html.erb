@@ -6,7 +6,7 @@
 <% end %>
 <% @tenders.each do |tender| %>
   <a href=<%= job_path(tender.job.id) %> id="job_<%= tender.job.id %>">
-    <img src="images/job_pic.png" class="big-image">
+    <%= image_tag tender.job.image.url(:thumb), class: "tender-thumb" %>
     <div class="panel panel-primary">
       <% if tender.job.description %>
         <div class="panel-heading">

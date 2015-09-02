@@ -55,6 +55,7 @@
 
               <% @tendering_tradies.each do |tradie, tender| %>
                 <br>
+                <%= image_tag tradie.image.url(:thumb), class: "tradie-thumb" %>
                 <p>Tradie username: <%= tradie.username %></p>
                 <p>Tradie rating: <%= tradie.rating %></p>
                 <p>Tradie description: <%= tradie.description %></p>
