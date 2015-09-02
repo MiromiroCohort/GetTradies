@@ -11,7 +11,7 @@ class RatingsController < ApplicationController
     Job.find(@tender.job_id).update(completed: true)
     url = jobs_url(@tender.job)
     #TODO check if we are banned
-    UserMailer.rating_email(@tender.user), url).deliver_now
+    UserMailer.rating_email(@tender.user, url).deliver_now
 
     redirect_to job_path(@tender.job)
   end
