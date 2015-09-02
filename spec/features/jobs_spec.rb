@@ -129,6 +129,8 @@ feature "show interest in a job", :type => :feature do
     visit jobs_path
     create_user3
     login_user3
+    visit jobs_path
+    puts page.body
     click_link('Show interest')
     expect(page).to have_content("You need to be registered as a tradie to apply")
   end
@@ -146,6 +148,12 @@ feature "see users jobs", :type => :feature do
   end
 
   scenario 'user can see particular users jobs' do
+    click_on 'Logout'
+    create_user3
+    login_user3
+    visit jobs_path
+    puts page.body
+    click_link 'More jobs from this user'
     expect(page).to have_content("Quba street")
     expect(page).to have_content("Lorem ipsum dolor")
   end

@@ -7,7 +7,7 @@ RSpec.feature "Unregistered user access to features", type: :feature do
     visit jobs_path
     expect(page).to have_link('More info')
     expect(page).to have_link('Show interest')
-    expect(page).to have_link('More jobs by this user')
+    expect(page).to have_link('More jobs from this user')
   end
 
   scenario 'user can see "Login" button and "Or sign up" link' do
