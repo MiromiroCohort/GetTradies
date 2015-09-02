@@ -24,7 +24,7 @@
                 <!-- this shouldn't be a button - it should be a "tag" or notice on the job itself showing that the job has been tendered on -->
                 <%= link_to 'Applied job', job_path(job), class:"btn btn-warning" %>
               <% end %>
-              <%= link_to "More jobs by this user", user_jobs_path(job.user) , class: "btn btn-primary" %>
+              <%= link_to "More jobs from this user", user_jobs_path(job.user) , class: "btn btn-primary", value: "More jobs from this user" %>
             <% end %>
           </div>
         <% end %>
