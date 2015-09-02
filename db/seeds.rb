@@ -74,6 +74,5 @@ end
 5.times do |i|
   Tender.create(job_id: rand(1..10),
                 user_id: rand(11..20),
-                rating:[nil, rand(1..5)].sample,
                 comment: descriptions.sample)
 end

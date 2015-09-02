@@ -1,23 +1,5 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-require jquery-star-rating
-
 @media screen and (max-width: 767px) {
-  div.xs-center {
+  .xs-center {
     float: none;
     text-align: center;
   }
@@ -30,7 +12,7 @@ require jquery-star-rating
 }
 
 @media screen and (min-width: 768px) {
-  div.sm-pull-right {
+  .sm-pull-right {
     float: right;
   }
   iframe {
@@ -39,14 +21,12 @@ require jquery-star-rating
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  div.col-sm-6.job:nth-child(2n+1) {
+  .job:nth-child(2n+1) {
     clear: both;
   }
-  div.col-sm-6.job:nth-child(3n+1) {
+  .job:nth-child(3n+1) {
     clear: none;
-
   }
-
   .input-group {
     width: 100%;
   }
@@ -55,34 +35,45 @@ require jquery-star-rating
   }
 }
 
-
-
-  iframe {
-    margin-left: auto;
+@media screen and (min-width: 991px) {
+  .job:nth-child(2n+1) {
+    clear: none;
   }
-
-
+  .job:nth-child(3n+1) {
+    clear: both;
+  }
   .input-group {
     width: 100%;
   }
   .input-group .input-group-addon {
     width:20%;
+    text-align: right;
+  }
+  iframe {
+    margin-left: auto;
   }
 }
 
-.input-group .input-group-addon {
-  text-align: right;
+/* General over-rides */
+.margin-correct {
+  margin-left: 30px;
 }
-
+h1 {
+  margin-top: 0px;
+}
 .map {
   height: 200px;
   width: 200px;
 }
-
 .thumbnail {
   width: 100%;
 }
+.job-view-image {
+  padding: 10px;
+}
 
+
+/* not sure who put this in here or why */
 .btn-primary {
   margin: 2px;
 }

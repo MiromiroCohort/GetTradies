@@ -9,7 +9,8 @@ class UsersController < ApplicationController
         if verify_recaptcha
           @user = User.new(user_signup_params)
           @user.save
-          # UserMailer.welcome_email(@user).deliver_now
+          url = request.base_url
+          UserMailer.welcome_email(@user, url).deliver_now
           session[:user_id] = @user.id
           redirect_to edit_user_path(@user)
         else
@@ -29,11 +30,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if session[:user_id]
+      if User.find(session[:user_id]).profession == 'admin'
+        @admin = true
+      end
+    end
   end
 
   def show
-    # @user = User.find(session[:user_id])
-    @current_user = User.find_by_id(session[:user_id])
     if params[:id] != "show"
       if User.exists?(params[:id])
         @user = User.find(params[:id])
@@ -43,20 +47,26 @@ class UsersController < ApplicationController
     else
       @user = User.find(session[:user_id])
     end
+    @user_comments = Hash.new
+    Tender.where(user_id: @user.id).each do |tender|
+      if tender.comment
+        comment = tender.comment
+        @user_comments[comment] = User.find(Job.find(tender.job_id).user_id).username
+      end
+    end
   end
 
   def edit
+    @suburbs = ['Te Aro', 'Karori', 'Newtown', 'Island Bay', 'Kelburn', 'Kilbirnie', 'Khandallah', 'Hataitai', 'Miramar', 'Brooklyn', 'Petone', 'Johnsonville', 'Lyall Bay', 'Mount Cook', 'Mount Victoria', 'Oriental Bay', 'Seatoun', 'Thorndon']
     @user = User.find(session[:user_id])
   end
 
   def update
-    @current_user = User.find_by_id(session[:user_id])
     if @user = User.find(params[:id])
       @id = @user.id.to_s
       @user.update_attributes(user_update_params)
       flash[:notice] = "Your profile has been successfully updated"
-      # redirect_to(:action => 'show', :id => @user.id)
-      redirect_to '/users/'+ @id + '/jobs/new'
+      redirect_to jobs_path
     else
       render('edit')
     end

@@ -9,3 +9,4 @@ RSpec.feature "Signups", type: :feature do
   end
 
 end
+

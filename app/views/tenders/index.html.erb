@@ -1,5 +1,5 @@
 <div class="container">
-<% if @user == @current_user %>
+<% if @user == current_user %>
   <h1>My tenders</h1>
 <% else %>
   <h1><%= @user.username %> tenders</h1>
@@ -28,7 +28,7 @@
   <div class="location">
     <p>Location: <%=tender.job.location %> </p>
   </div>
-  <%if tender.accepted && (tender.user_id == @current_user.id) %>
+  <%if tender.accepted && (tender.user_id == current_user.id) %>
     <p>
       Contact email: <%=tender.job.user.email if tender.job.user.email %>
       Contact phone: <%=tender.job.user.phone_number if tender.job.user.phone_number %>
