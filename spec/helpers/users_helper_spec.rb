@@ -71,7 +71,7 @@ def post_a_job
   page.attach_file('job[image]', Rails.root + 'spec/Fixtures/cat.jpg')
   fill_in 'job[title]', with: 'title'
   fill_in 'job[description]', with: 'jobby job'
-  fill_in 'job[location]', with: 'placy place'
+  select 'Te Aro', from: 'job[location]'
   click_on 'Post job'
 end
 

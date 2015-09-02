@@ -86,6 +86,17 @@ h1 {
   padding: 10px;
 }
 
+/* Jobs Show Styles */
+.btn-primary {
+  margin: 2px;
+  margin-left: 40%
+}
+
+.job-img {
+  width: 35%;
+  margin-left: 32.5%
+}
+
 .tradie-thumb {
   max-width: 22%
 }
@@ -96,4 +107,15 @@ h1 {
 
 .btn {
   margin: 2px;
+}
+.job-desc {
+  margin-left: 15%
+}
+
+#map1 {
+  width: 60%;
+  margin-left: 20%;
+  margin-bottom: 15px;
+  border: 3px #428bca inset;
+  border-radius: 5px
 }
