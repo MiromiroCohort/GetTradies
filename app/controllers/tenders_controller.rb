@@ -40,19 +40,20 @@ class TendersController < ApplicationController
     tender = Tender.find(params[:id])
     if params[:tender]
       tender.update(comment: params[:tender][:comment])
-      redirect_to jobs_path(tender.id)
+      redirect_to job_url(tender.job)
     else
     job_tenders = Tender.where(job_id: tender.job_id)
     job_tenders.each { |job| job.update(accepted: false)}
     tender.update(accepted: true)
-    url = request.base_url+ "/jobs/"+tender.job_id.to_s
-    # UserMailer.tender_accepted_email(User.find(tender.user_id), url).deliver_now
-    redirect_to jobs_path(tender.id)
+    url = job_url(tender.job)
+    UserMailer.tender_accepted_email(User.find(tender.user_id), url).deliver_now
+    redirect_to job_url(tender.job)
     end
   end
+
   private
   def mail_not_send
-    flash.alert = "Unfortunately the mail wasn't send"
+    flash.alert = "Unfortunately the mail wasn't sent"
     redirect_to user_tenders_path(current_user)
   end
 

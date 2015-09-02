@@ -34,6 +34,7 @@ class JobsController < ApplicationController
   def new
     if current_user = User.find_by_id(session[:user_id])
       @job = Job.new
+      @suburbs = ['Te Aro', 'Karori', 'Newtown', 'Island Bay', 'Kelburn', 'Kilbirnie', 'Khandallah', 'Hataitai', 'Miramar', 'Brooklyn', 'Petone', 'Johnsonville', 'Lyall Bay', 'Mount Cook', 'Mount Victoria', 'Oriental Bay', 'Seatoun', 'Thorndon']
     else
       redirect_to jobs_path
     end

@@ -78,6 +78,7 @@
                 </div>
               <% end %>
               <% @tendering_tradies.each do |tradie, tender| %>
+<<<<<<< HEAD
               <div class="col-xs-12 col-md-6">
                 <div class="panel panel-warning">
                   <div class="panel-heading">
@@ -102,6 +103,16 @@
                   </div>
                 </div>
               </div>
+=======
+                <br>
+                <%= image_tag tradie.image.url(:thumb), class: "tradie-thumb" %>
+                <p>Tradie username: <%= tradie.username %></p>
+                <p>Tradie rating: <%= tradie.rating %></p>
+                <p>Tradie description: <%= tradie.description %></p>
+                <% if @tender_changeable %>
+                  <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-info" %>
+                <% end %>
+>>>>>>> 152a892f627321739dc494f432846abff94093b9
               <% end %>
             <% else %>
               <% if (current_user && !@job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
