@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       @id = @user.id.to_s
       @user.update_attributes(user_update_params)
       flash[:notice] = "Your profile has been successfully updated"
-      redirect_to '/users/'+ @id + '/jobs/new'
+      redirect_to jobs_path
     else
       render('edit')
     end
