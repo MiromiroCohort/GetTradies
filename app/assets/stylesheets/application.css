@@ -76,6 +76,10 @@ h1 {
   max-width: 22%
 }
 
+.tender-thumb {
+  max-width: 15%
+}
+
 /* not sure who put this in here or why */
 .btn-primary {
   margin: 2px;
