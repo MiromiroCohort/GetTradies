@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  rescue_from Mailgun::CommunicationError, with: :mail_not_send
 
   def new
   end
@@ -9,9 +10,10 @@ class UsersController < ApplicationController
         if verify_recaptcha
           @user = User.new(user_signup_params)
           @user.save
-          url = request.base_url
-          UserMailer.welcome_email(@user, url).deliver_now
           session[:user_id] = @user.id
+          url = request.base_url
+          #TODO check if we are banned
+          UserMailer.welcome_email(@user, url).deliver_now
           redirect_to edit_user_path(@user)
         else
           flash[:notice] = "Click the captcha, robut"
@@ -89,5 +91,11 @@ class UsersController < ApplicationController
   def user_update_params
     params.require(:user).permit(:username, :given_name, :family_name, :email, :address, :phone_number, :profession, :description, :image)
   end
+
+  def mail_not_send
+    flash.alert = "Unfortunately the mail wasn't send"
+    redirect_to edit_user_path(current_user)
+  end
+
 
 end

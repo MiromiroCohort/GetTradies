@@ -1,4 +1,6 @@
 class TendersController < ApplicationController
+  rescue_from Mailgun::CommunicationError, with: :mail_not_send
+
   def index
     @user = User.find_by_id params[:user_id]
     if !@user
@@ -18,6 +20,7 @@ class TendersController < ApplicationController
           Tender.create(job:job,user:user)
           flash.notice = 'You successfully applied for a job'
           url = request.base_url+ "/jobs/"+params[:job_id]
+          #TODO check if we are banned
           UserMailer.tender_created_email(User.find(job.user_id), url).deliver_now
         else
           flash.alert = "You already applied for this job"
@@ -43,9 +46,15 @@ class TendersController < ApplicationController
     job_tenders.each { |job| job.update(accepted: false)}
     tender.update(accepted: true)
     url = request.base_url+ "/jobs/"+tender.job_id.to_s
-    UserMailer.tender_accepted_email(User.find(tender.user_id), url).deliver_now
+    # UserMailer.tender_accepted_email(User.find(tender.user_id), url).deliver_now
     redirect_to jobs_path(tender.id)
     end
   end
+  private
+  def mail_not_send
+    flash.alert = "Unfortunately the mail wasn't send"
+    redirect_to user_tenders_path(current_user)
+  end
+
 
 end
