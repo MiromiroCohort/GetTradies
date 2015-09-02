@@ -9,15 +9,20 @@ class JobsController < ApplicationController
       @personal_list = true
       @jobs = Job.where(user_id: params[:user_id])
     else
-      @jobs = Job.all
+      @jobs = Job.where(completed: false)
     end
   end
 
   def show
+    @tendering_tradies = Hash.new
+
     @current_user = User.find_by_id(session[:user_id])
     @job = Job.find(params[:id])
     @accepted_tender = Tender.where(job_id: @job.id, accepted: true).first
-    @tenders = Tender.where(job_id: @job.id, accepted: false)
+    @accepted_tradie = User.where(job_id: @accepted_tender.user_id).first if @accepted_tender
+    Tender.where(job_id: @job.id, accepted: false).each do |tender|
+      @tendering_tradies[User.find(tender.job_id)] = tender.id
+    end
     @tender_changeable = true
     if @accepted_tender
       @tender_changeable = false if @accepted_tender.updated_at > 30.seconds.ago
@@ -27,7 +32,6 @@ class JobsController < ApplicationController
       @job_complete = true
     end
     @job_complete = false if Tender.where(job_id: @job.id).length == 0
-    # render text: @tenders.length
   end
 
   def new

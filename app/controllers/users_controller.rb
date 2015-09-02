@@ -30,6 +30,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if session[:user_id]
+      if User.find(session[:user_id]).profession == 'admin'
+        @admin = true
+      end
+    end
   end
 
   def show
@@ -44,6 +49,14 @@ class UsersController < ApplicationController
     else
       @user = User.find(session[:user_id])
     end
+    @user_comments = Hash.new
+    Tender.where(user_id: @user.id).each do |tender|
+      if tender.comment
+        comment = tender.comment
+        @user_comments[comment] = User.find(Job.find(tender.job_id).user_id).username
+      end
+    end
+    # render text: @user_comments
   end
 
   def edit

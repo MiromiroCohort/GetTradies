@@ -45,18 +45,19 @@
               <a href="<%=@job.id%>/ratings/new" class="btn btn-primary btn-lg btn-interest">Rate Your Job</a>
             <% end %>
             <% if @accepted_tender  %>
-              <p>Tradie username: <%= User.find(@accepted_tender.user_id).username %></p>
-              <p>Tradie rating: <%= User.find(@accepted_tender.user_id).rating %></p>
-              <p>Tradie email: <%= User.find(@accepted_tender.user_id).email %></p>
-              <p>Tradie address: <%= User.find(@accepted_tender.user_id).address %></p>
+              <p>Tradie username: <%= @accepted_tradie.username %></p>
+              <p>Tradie rating: <%= accepted_tradie.rating %></p>
+              <p>Tradie email: <%= accepted_tradie.email %></p>
+              <p>Tradie address: <%= accepted_tradie.address %></p>
               <p class="btn btn-success btn-sm">Accepted</p><a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info btn-sm">View Profile</a>
             <% end %>
 
             <% if @tenders%>
-              <% @tenders.each do |tender| %>
+              <% @tendering_tradies.each do |tradie, tender| %>
                 <br>
-                <p>Tradie username: <%= User.find(tender.user_id).username %></p>
-                <p>Tradie rating: <%= User.find(tender.user_id).rating %></p>
+                <p>Tradie username: <%= tradie.username %></p>
+                <p>Tradie rating: <%= tradie.rating %></p>
+                <p>Tradie description: <%= tradie.description %></p>
                 <% if @tender_changeable %>
                   <%= link_to 'Accept Tender', tender_path(tender.id), method: :patch, class:"btn btn-info" %>
                 <% end %>

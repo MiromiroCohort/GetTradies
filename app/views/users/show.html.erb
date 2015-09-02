@@ -51,10 +51,8 @@
       <p class="row">
         <span class="col-xs-5 col-sm-3 col-md-2">Comments for this Tradie:</span>
       </p>
-      <% Tender.where(user_id: @user.id).each do |tender| %>
-        <%if tender.accepted && tender.comment%>
-          <p>"<%= tender.comment  %>", from user <%=User.find(Job.find(tender.job_id).user_id).username%></p>
-        <%end%>
+      <% @user_comments.each do |comment, commenter| %>
+          <p>"<%=comment%>", from user <%=commenter%></p>
       <%end%>
     <%end%>
 
