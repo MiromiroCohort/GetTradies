@@ -13,7 +13,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <%= javascript_include_tag 'application' %>
 
   </head>
@@ -21,20 +20,22 @@
   <body class="container">
     <nav class="navbar navbar-default">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Get Tradies", jobs_path, class:"navbar-brand" %>
+        <h1>
+          <%= link_to "Get Tradies", jobs_path, class:"navbar-brand" %>
+        </h1>
       </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav">
-           <%= render '/sessions/new.html.erb' %>
-           <%= render '/jobs/post.html.erb' %>
-           <%= render '/users/profile.html.erb' %>
-           <%= render '/sessions/end.html.erb' %>
+            <%= render '/sessions/new.html.erb' %>
+            <%= render '/jobs/post.html.erb' %>
+            <%= render '/users/profile.html.erb' %>
+            <%= render '/sessions/end.html.erb' %>
           </ul>
       </div>
     </nav>

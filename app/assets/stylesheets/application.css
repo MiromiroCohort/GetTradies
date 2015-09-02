@@ -15,7 +15,7 @@
  */
 
 @media screen and (max-width: 767px) {
-  div.xs-center {
+  .xs-center {
     float: none;
     text-align: center;
   }
@@ -28,16 +28,16 @@
 }
 
 @media screen and (min-width: 768px) {
-  div.sm-pull-right {
+  .sm-pull-right {
     float: right;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  div.col-sm-6.job:nth-child(2n+1) {
+  .job:nth-child(2n+1) {
     clear: both;
   }
-  div.col-sm-6.job:nth-child(3n+1) {
+  .job:nth-child(3n+1) {
     clear: none;
   }
   .input-group {
@@ -49,10 +49,10 @@
 }
 
 @media screen and (min-width: 991px) {
-  div.col-md-4.job:nth-child(2n+1) {
+  .job:nth-child(2n+1) {
     clear: none;
   }
-  div.col-md-4.job:nth-child(3n+1) {
+  .job:nth-child(3n+1) {
     clear: both;
   }
   .input-group {
@@ -65,4 +65,12 @@
 
 .input-group .input-group-addon {
   text-align: right;
+}
+
+.margin-correct {
+  margin-left: 30px;
+}
+
+h1 {
+  margin-top: 0px;
 }

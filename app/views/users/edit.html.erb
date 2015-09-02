@@ -29,14 +29,21 @@
       <%= f.label :description, class: "form-label input-group-addon" %>
       <%= f.text_area :description, required: true, placeholder: "Describe yourself and your skills", class: "form-control" %>
     </div>
-    <label>Only complete choose a profession if you wish to be listed as a tradie</label><br>
-    <%= f.label :profession  %>:<br>
-    <%= f.radio_button(:profession, "Builder") %> Builder <br>
-    <%= f.radio_button(:profession, "Electrician") %> Electrician <br>
-    <%= f.radio_button(:profession, "Plumber") %> Plumber <br>
-    <%= f.radio_button(:profession, "Painter") %> Painter <br>
-    <%= f.radio_button(:profession, "Plasterer") %> Plasterer <br>
-    <%= f.radio_button(:profession, "General Handy Man") %> General Handy Man <br>
-     <%= f.submit %>
+    <div class="form-group">
+      <fieldset class="input-group">
+        <legend>Please choose a profession if you wish to be listed as a tradie</legend>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Builder") %>Builder</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Electrician") %>Electrician</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Gardener") %>Gardener</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Gasfitter") %>Gasfitter</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Glazier") %>Glazier</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Painter") %>Painter</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Plasterer") %>Plasterer</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Plumber") %>Plumber</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "Tiler") %>Tiler</label>
+        <label class="radio margin-correct"><%= f.radio_button(:profession, "General Handyworker") %>General Handyworker</label>
+      </fieldset>
+    </div>
+    <%= f.submit(class: "btn btn-danger") %>
   <% end %>
 </div>
