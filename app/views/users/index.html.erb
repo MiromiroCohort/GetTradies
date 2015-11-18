@@ -1,0 +1,41 @@
+<% if session[:user_id]%>
+  <%if @admin%>
+
+    <table style="width:100%">
+    <tr>
+      <td>Id</td>
+      <td>Username</td>
+      <td>Given</td>
+      <td>Family</td>
+      <td>email</td>
+      <td>phone number</td>
+      <td>profession</td>
+      <td>address</td>
+      <td>Created at</td>
+      <td>Updated at</td>
+      <td>rates</td>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%=user.id%></td>
+      <td><%=user.username%></td>
+      <td><%=user.given_name%></td>
+      <td><%=user.family_name%></td>
+      <td><%=user.email%></td>
+      <td><%=user.phone_number%></td>
+      <td><%=user.profession%></td>
+      <td><%=user.address%></td>
+      <td><%=user.created_at%></td>
+      <td><%=user.updated_at%></td>
+      <td><%=user.rates%></td>
+      <td><%= link_to 'Delete user', user_path(user), method: :delete, class:"btn btn-primary btn-sm btn-danger" %></td>
+    </tr>
+
+    <%end%>
+    </table>
+  <%else%>
+    <h1>☠☠☠Access Denied☠☠☠</h1>
+  <%end%>
+<%else%>
+  <h1>☠☠☠Access Denied☠☠☠</h1>
+<%end%>

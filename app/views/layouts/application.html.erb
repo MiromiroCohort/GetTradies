@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><% if @title != nil %><%= @title %> | <% end %>GetTradies</title>
+
+    <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag 'application' %>
+
+    <link rel="shortcut icon" type="image/ico" href="/images/get_tradie_favicon.ico"/>
+
+  </head>
+  <body class="container">
+    <nav id ="navbar" class="navbar navbar-default">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "", jobs_path, class: "navbar-brand" %>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <%= form_tag(jobs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Jobs" %>
+              <button class="btn glyphicon glyphicon-search" type="submit"><span class="sr-only">Search</span></button>
+            <% end %>
+          </li>
+          <%= render '/sessions/new.html.erb' %>
+          <%= render '/jobs/post.html.erb' %>
+          <%= render '/users/profile.html.erb' %>
+          <%= render '/sessions/end.html.erb' %>
+        </ul>
+      </div>
+    </nav>
+    <main class="row">
+
+      <% if flash.alert %>
+        <div class="messages">
+          <div class="alert alert-danger" role="alert">
+            <%= flash.alert %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if flash.notice %>
+        <div class="messages">
+          <div class="alert alert-success" role="alert">
+            <%= flash.notice %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
+    </main>
+  </body>
+</html>

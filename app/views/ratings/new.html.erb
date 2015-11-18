@@ -1,0 +1,19 @@
+<div class="col-xs-10 col-xs-offset-1">
+  <h2>Your rating for job:  <%=@job.title%></h2>
+  <div style="width: 100%;">
+    <div style="width: 300px; margin: 0 auto;">
+      <form method="post" action="../ratings" >
+        <fieldset style="text-align: center;">
+          <label class="radio-inline"><input type="radio" name="rating" value="1" checked> 1 </label>
+          <label class="radio-inline"><input type="radio" name="rating" value="2" checked> 2 </label>
+          <label class="radio-inline"><input type="radio" name="rating" value="3" checked> 3 </label>
+          <label class="radio-inline"><input type="radio" name="rating" value="4" checked> 4 </label>
+          <label class="radio-inline"><input type="radio" name="rating" value="5" checked> 5 </label>
+          <br />
+          <br />
+          <input type="submit" value="rate!" class="btn btn-success" style="width: 100%;">
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<% @jobs.each do |job| %>
+  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 col-md-offset-0 job">
+    <div class="panel panel-primary">
+      <% if job.description %>
+        <div class="panel-heading">
+          <% if job.title %>
+            <h3 class="panel-title"><%= job.title %></h3>
+          <% else %>
+            <h3 class="panel-title">Job Description</h3>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <%= image_tag job.image.url(:thumb), class: "thumbnail" %>
+          <p>Description: <%= job.short_desc %></p>
+          <p>Location: <%= job.location %> </p>
+          <%= link_to 'More info', job_path(job.id), method: :get, class: "btn btn-info" %>
+            <% if job.user == current_user %>
+              <%= link_to 'Delete job', job_path(job), method: :delete, class: "btn btn-danger" %>
+            <% else %>
+              <% if (current_user && !job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
+                <%= link_to 'Show interest', job_tenders_path(job), method: :post, class: "btn btn-primary", value: "Show interest" %>
+              <% else %>
+                <%= link_to 'You have an active tender on this job', job_path(job), class:"btn btn-warning" %>
+              <% end %>
+              <%= link_to 'More jobs from this user', user_jobs_path(job.user) , class: "btn btn-primary", value: "More jobs from this user" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

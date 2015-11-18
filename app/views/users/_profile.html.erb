@@ -1,0 +1,5 @@
+<% if current_user %>
+  <li> <%= link_to 'My profile', user_path(current_user)  %> </li>
+  <li> <%= link_to 'My jobs', user_jobs_path(current_user)  %> </li>
+  <li> <%= link_to 'My tenders', user_tenders_path(current_user)  %> </li>
+<% end %>

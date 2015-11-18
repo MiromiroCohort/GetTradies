@@ -1,0 +1,128 @@
+@media screen and (max-width: 767px) {
+  .xs-center {
+    float: none;
+    text-align: center;
+  }
+  .input-group {
+    width: 100%;
+  }
+  .input-group-addon {
+    width: 40%;
+  }
+  .map {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sm-pull-right {
+    float: right;
+  }
+  iframe {
+    margin-left: 20%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .job:nth-child(2n+1) {
+    clear: both;
+  }
+  .job:nth-child(3n+1) {
+    clear: none;
+  }
+  .input-group {
+    width: 100%;
+  }
+  .input-group-addon {
+    width: 30%;
+  }
+  .map {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .job:nth-child(2n+1) {
+    clear: none;
+  }
+  .job:nth-child(3n+1) {
+    clear: both;
+  }
+  .input-group {
+    width: 100%;
+  }
+  .input-group-addon {
+    width: 20%;
+  }
+  iframe {
+    margin-left: auto;
+  }
+  .map {
+    height: 600px;
+    width: 600px;
+  }
+}
+
+/* General over-rides */
+h1 {
+  margin-top: 0px;
+}
+
+.input-group-addon {
+  text-align: right;
+}
+.margin-correct {
+  margin-left: 30px;
+}
+.thumbnail {
+  width: 100%;
+}
+.job-view-image {
+  padding: 10px;
+}
+.actions {
+  padding: 10px;
+}
+.job-desc {
+  margin-left: 15%
+}
+.navbar-brand {
+  background: url(/images/get_tradie_banner.jpg) no-repeat;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  color: rgb(248,248,248);
+}
+
+/* Jobs Show Styles */
+.btn-primary {
+  margin: 2px;
+  margin-left: 40%
+}
+
+.job-img {
+  width: 35%;
+  margin-left: 32.5%
+}
+
+.tradie-thumb {
+  max-width: 22%
+}
+
+.tender-thumb {
+  max-width: 15%
+}
+
+.btn {
+  margin: 2px;
+}
+
+#map1 {
+  width: 60%;
+  margin-left: 20%;
+  margin-bottom: 15px;
+  border: 3px #428bca inset;
+  border-radius: 5px
+}

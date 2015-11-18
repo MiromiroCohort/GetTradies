@@ -1,0 +1,32 @@
+<div class = "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+  <h2>Please describe your job here</h2>
+  <%= form_for @job, html: { multipart: true, class: "form-horizontal" } do |f|  %>
+    <div class="form-group input-group">
+      <img src="/images/job_pic.png" alt="Job pic" class="img-rounded img-responsive">
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :image, class: "control-label input-group-addon" %>
+      <%= f.file_field :image, class: "form-control" %>
+      <p class="input-group-addon extra">Maximum file size: 2MB.</p>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :title, class: "control-label input-group-addon"%>
+      <%= f.text_field :title, class: "form-control"%>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :description, class: "control-label input-group-addon" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group input-group">
+      <%= f.label :address, class: "form-label input-group-addon" %>
+      <select name="job[location]" class="form-control">
+        <% @suburbs.each do |suburb| %>
+          <option value="<%= suburb %>"><%= suburb %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="form-group input-group">
+      <%= f.submit "Post job", class: "btn btn-success btn-block"  %>
+    </div>
+  <% end %>
+</div>

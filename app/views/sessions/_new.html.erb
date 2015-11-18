@@ -1,0 +1,19 @@
+<% if !current_user %>
+  <form method="post" action="/sessions" class="navbar-form navbar-left">
+    <fieldset id="login">
+      <legend class="sr-only">Log in</legend>
+      <div class="form-group">
+        <label for="email" class="sr-only">Email:</label>
+        <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control has-feedback" />
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">Password:</label>
+        <input id="password" name="password" type="password" placeholder="Please enter your password" required class="form-control has-feedback" />
+      </div>
+      <input type="submit" value="Log in" class="btn btn-success form-control navbar-btn">
+      <% if @current_path != new_user_path %>
+        <%= link_to 'Or sign up', new_user_path, method: :get, class:"btn btn-warning form-control navbar-btn" %>
+      <% end %>
+    </fieldset>
+  </form>
+<% end %>

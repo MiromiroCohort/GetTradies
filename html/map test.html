@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GetTradies</title>
+
+<style>
+
+.map {
+  height: 100px;
+  width: 100px;
+}
+</style>
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="nRNMWBfGCO2YKt99j602e6WFRqaNNzfaDKZNKhNHXeJnIWVJRLLbu4aoiXplvCNnXBa7VIcv3VIWlaQYyAeivQ==" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" media="all" href="/assets/jobs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" />
+<link rel="stylesheet" media="all" href="/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" />
+<link rel="stylesheet" media="all" href="/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" />
+<link rel="stylesheet" media="all" href="/assets/users.self-c53a4daf024798ee96da8824931f35a753b6606e86c7adc6576dd511b236ab27.css?body=1" />
+<link rel="stylesheet" media="all" href="/assets/application.self-eadbbc4888dcde48178809b23bf79358cafe865f139e7ce0a9206351f810134f.css?body=1" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1"></script>
+<script src="/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1"></script>
+<script src="/assets/jobs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1"></script>
+<script src="/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1"></script>
+<script src="/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1"></script>
+<script src="/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1"></script>
+<script src="/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1"></script>
+
+  </head>
+
+  <body class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/jobs">Get Tradies</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav">
+             <form method="post" action="/sessions" class="navbar-form navbar-left">
+    <fieldset>
+      <legend class="sr-only">Log in</legend>
+      <div class="form-group">
+        <label for="email" class="sr-only">Email:</label>
+        <input id="email" name="email" type="email" placeholder="Please enter your email" required class="form-control has-feedback" />
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">Password:</label>
+        <input id="password" name="password" type="password" placeholder="Please enter your password" required class="form-control has-feedback" />
+      </div>
+      <input type="submit" value="Log in" class="btn btn-success form-control navbar-btn">
+        <a class="btn btn-success form-control navbar-btn" data-method="get" href="/users/new">Or sign up</a>
+    </fieldset>
+  </form>
+
+
+
+
+
+
+          </ul>
+      </div>
+
+      <!-- This search input field needs styling -->
+      <form class="" id="search-form" action="/jobs" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+        <div class="input-append">
+         <input type="text" name="search" id="search" class="" placeholder="Search Jobs" />
+      <!-- In order to have the "search" icon int the button, we need to use plain HTML instead
+           of using a Rails form helper -->
+         <button class="btn" type="submit"><i class="icon-search"></i></button>
+       </div>
+</form>      <!-- This search input field needs styling -->
+
+
+    </nav>
+
+    <main class="row">
+
+
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">flight</h3>
+      </div>
+      <div class="panel-body">
+        <img src="/images/mediums/get_tradie.png" alt="Get tradie" />
+        <p>Description: running</p>
+        <p>Location: Seatoun <a href="">see on map</a></p>
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: {lat: -41.20, lng: 174.80}
+            });
+            var geocoder = new google.maps.Geocoder();
+            document.getElementById('submit').addEventListener('click', function() {
+              geocodeAddress(geocoder, map);
+            });
+          }
+          function geocodeAddress(geocoder, resultsMap) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({'address': address}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+              resultsMap.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCX3bWAIQcrG0_Yg-HZV_5BeUTiaNvcAE&callback=initMap" async defer></script>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    </main>
+
+  </body>
+</html>

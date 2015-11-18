@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= @job.title %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <% if @job.user == current_user %>
+          <%= link_to 'Delete job', job_path(@job), method: :delete, class:"btn btn-danger pull-right" %>
+        <% end %>
+        <%= image_tag @job.image.url(:medium), class:'job-img' %>
+        <h4>Description</h4>
+        <p><%= @job.description %></p>
+        <h4>Location</h4>
+        <p><%=@job.location %></p>
+        <div id="map<%=@job.id%>" class="map"></div>
+        <script type="text/javascript">
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map<%=@job.id%>'), {
+                center: {lat:-41.25, lng:174.75},
+                zoom: 13
+            });
+            var geocoder = new google.maps.Geocoder();
+            $(document).ready( function() {
+              geocodeAddress(geocoder, map);
+            });
+          }
+          function geocodeAddress(geocoder, resultsMap) {
+            var address = "<%=@job.location%>, Wellington";
+            console.log(address);
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === google.maps.GeocoderStatus.OK) {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                  map: resultsMap,
+                  position: results[0].geometry.location
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCX3bWAIQcrG0_Yg-HZV_5BeUTiaNvcAE&callback=initMap"></script>
+        <div class="actions">
+          <% if !@job_complete %>
+            <% if @job.user == current_user %>
+              <% if @accepted_tender %>
+                <div class="panel panel-success">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Selected Tradie</h4>
+                  </div>
+                  <div class="panel-body">
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Username</span>
+                      <span class="form-control"><%= @accepted_tradie.username %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Average Rating</span>
+                      <span class="form-control"><%= @accepted_tradie.rating %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Email</span>
+                      <span class="form-control"><%= @accepted_tradie.email %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Address</span>
+                      <span class="form-control"><%= @accepted_tradie.address %></span>
+                    </p>
+                    <p>
+                      <a href="../users/<%=@accepted_tender.user_id%>" class="btn btn-info">View Profile</a>
+                      <a href="<%=@job.id%>/ratings/new" class="btn btn-success">Rate Job</a>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+              <% @tendering_tradies.each do |tradie, tender| %>
+              <div class="col-xs-12 col-md-6">
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Tendering Tradie</h4>
+                  </div>
+                  <div class="panel-body">
+                    <%= image_tag tradie.image.url(:thumb), class: "tradie-thumb" %>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Username</span>
+                      <span class="form-control"><%= tradie.username %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Average Rating</span>
+                      <span class="form-control"><%= tradie.rating %></span>
+                    </p>
+                    <p class="form-group input-group">
+                      <span class="form-label input-group-addon">Description</span>
+                      <span class="form-control"><%= tradie.description %></span>
+                    </p>
+                    <% if @tender_changeable %>
+                      <%= link_to 'Accept Tender', tender_path(tender), method: :patch, class:"btn btn-warning btn-block" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            <% else %>
+              <% if (current_user && !@job.tenders.find_by_user_id(current_user.id))||(!current_user) %>
+                <%= link_to 'Show Interest', job_tenders_path(@job), method: :post, class:"btn btn-success" %>
+              <% else %>
+                <%= link_to 'You have an active tender on this job', job_path(@job), class:"btn btn-warning" %>
+              <% end %>
+            <%end%>
+          <% else %>
+            <% if @accepted_tender%>
+              <p>Job complete. Job rating: <%= @accepted_tender.rating  %></p>
+              <% if !@accepted_tender.comment %>
+                <h2>Leave a comment:</h2>
+                <%= form_for @accepted_tender do |f| %>
+                  <%= f.text_area :comment %><br />
+                  <%= f.submit %>
+                <% end %>
+              <% else %>
+                <p>Your Comment: <%= @accepted_tender.comment%> </p>
+              <% end %>
+            <% else %>
+              <p>I am error</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>

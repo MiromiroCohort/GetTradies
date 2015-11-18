@@ -1,0 +1,46 @@
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+  <% if @user == current_user %>
+    <h2>My tenders</h2>
+  <% else %>
+    <h2><%= @user.username %> tenders</h2>
+  <% end %>
+  <% @tenders.each do |tender| %>
+    <div class="panel panel-primary">
+      <% if tender.job.description %>
+        <div class="panel-heading">
+          <% if tender.job.description %>
+            <h3 class="panel-title"><%= tender.job.title %></h3>
+          <% else %>
+            <h3 class="panel-title">Job Description</h3>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="panel-body">
+        <%= image_tag tender.job.image.url(:medium), class: "thumbnail" %>
+        <div class="row">
+          <div class="col-xs-3 grid-info">Description</div>
+          <div class="col-xs-9 grid-detail"><%= tender.job.description %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3 grid-info">Location</div>
+          <div class="col-xs-9 grid-detail"><%=tender.job.location %></div>
+        </div>
+        <%if tender.accepted && (tender.user_id == current_user.id) %>
+          <div class="row">
+            <div class="col-xs-3 grid-info">Contact email</div>
+            <div class="col-xs-9 grid-detail"><%=tender.job.user.email if tender.job.user.email %></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3 grid-info">Contact phone</div>
+            <div class="col-xs-9 grid-detail"><%=tender.job.user.phone_number if tender.job.user.phone_number %></div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col-xs-12">
+            <a href=<%= job_path(tender.job.id) %> id="job_<%= tender.job.id %>" class="btn btn-info btn-block">View Job</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
